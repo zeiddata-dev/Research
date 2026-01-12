@@ -1,4 +1,36 @@
+███████╗███████╗██╗██████╗     ██████╗  █████╗ ████████╗ █████╗ 
+╚══███╔╝██╔════╝██║██╔══██╗    ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗
+  ███╔╝ █████╗  ██║██║  ██║    ██║  ██║███████║   ██║   ███████║
+ ███╔╝  ██╔══╝  ██║██║  ██║    ██║  ██║██╔══██║   ██║   ██╔══██║
+███████╗███████╗██║██████╔╝    ██████╔╝██║  ██║   ██║   ██║  ██║
+╚══════╝╚══════╝╚═╝╚═════╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
+
 **Zeid Data Research - Tell Copper to hang back...**
+
+# Port Scanner
+
+*This Python script performs a simple TCP port scan on a given host and ports.*
+
+## Usage
+```
+The program takes two command line arguments:
+```
+
+- -H, --host: specify target host
+- -p, --ports: specify target ports separated by commas (,)
+
+*The -H option is used to specify the target host to scan and the -p option is used to specify the target ports separated by a comma.*
+
+## Example
+To scan port 80 on example.com, run the following command:
+```
+python port_scanner.py -H example.com -p 80
+```
+To scan ports 80, 443, and 8080 on example.com, run the following command:
+```
+python port_scanner.py -H example.com -p 80,443,8080
+
+#####################################################################################################################
 
 # ZD_SSH Brute Force (Internal SSH Credential Audit Tool)
 
