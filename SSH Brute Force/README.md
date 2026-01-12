@@ -5,7 +5,7 @@
 ███████╗███████╗██║██████╔╝    ██████╔╝██║  ██║   ██║   ██║  ██║
 ╚══════╝╚══════╝╚═╝╚═════╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
 
-**Zeid Data Research - Tell Copper to hang back...**
+**Zeid Data Research - Copper hang back...**
 
 # Port Scanner
 
