@@ -1,0 +1,187 @@
+#Zeid Data - Copper Hang Back...
+#!/usr/bin/env python3
+"""
+network_inventory.py
+Safely list LAN devices your machine already has in its ARP/neighbor table.
+This does NOT actively scan or probe other hosts.
+
+Works on Windows/macOS/Linux by parsing:
+- Windows:  arp -a
+- macOS:    arp -a
+- Linux:    ip neigh (preferred) or arp -a
+
+Tip: The ARP/neighbor table only contains devices your machine has talked to recently.
+"""
+
+from __future__ import annotations
+
+import argparse
+import ipaddress
+import platform
+import re
+import shutil
+import subprocess
+from dataclasses import dataclass
+from typing import List, Optional
+
+
+@dataclass
+class Neighbor:
+    ip: str
+    mac: str
+    iface: Optional[str] = None
+    state: Optional[str] = None
+    source: str = ""
+
+
+def run_cmd(cmd: List[str]) -> str:
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, check=False)
+        return (proc.stdout or "") + (proc.stderr or "")
+    except Exception as e:
+        return f"ERROR running {cmd}: {e}"
+
+
+def parse_windows_arp(text: str) -> List[Neighbor]:
+    out: List[Neighbor] = []
+    # Example lines:
+    #   192.168.1.1           aa-bb-cc-dd-ee-ff     dynamic
+    line_re = re.compile(r"^\s*(\d+\.\d+\.\d+\.\d+)\s+([0-9a-fA-F\-]{11,})\s+(\w+)\s*$")
+    for line in text.splitlines():
+        m = line_re.match(line)
+        if not m:
+            continue
+        ip, mac, typ = m.group(1), m.group(2).replace("-", ":").lower(), m.group(3)
+        out.append(Neighbor(ip=ip, mac=mac, state=typ, source="arp -a"))
+    return out
+
+
+def parse_macos_arp(text: str) -> List[Neighbor]:
+    out: List[Neighbor] = []
+    # Example:
+    # ? (192.168.1.1) at aa:bb:cc:dd:ee:ff on en0 ifscope [ethernet]
+    line_re = re.compile(r"\((\d+\.\d+\.\d+\.\d+)\)\s+at\s+([0-9a-fA-F:]{17}|<incomplete>)\s+on\s+(\S+)")
+    for line in text.splitlines():
+        m = line_re.search(line)
+        if not m:
+            continue
+        ip, mac, iface = m.group(1), m.group(2).lower(), m.group(3)
+        if mac == "<incomplete>":
+            continue
+        out.append(Neighbor(ip=ip, mac=mac, iface=iface, source="arp -a"))
+    return out
+
+
+def parse_linux_ip_neigh(text: str) -> List[Neighbor]:
+    out: List[Neighbor] = []
+    # Example:
+    # 192.168.1.1 dev wlan0 lladdr aa:bb:cc:dd:ee:ff REACHABLE
+    line_re = re.compile(
+        r"^\s*(\d+\.\d+\.\d+\.\d+)\s+dev\s+(\S+)(?:\s+lladdr\s+([0-9a-fA-F:]{17}))?\s*(\S+)?\s*$"
+    )
+    for line in text.splitlines():
+        m = line_re.match(line.strip())
+        if not m:
+            continue
+        ip = m.group(1)
+        iface = m.group(2)
+        mac = (m.group(3) or "").lower()
+        state = (m.group(4) or "").strip()
+        if not mac:
+            continue
+        out.append(Neighbor(ip=ip, mac=mac, iface=iface, state=state, source="ip neigh"))
+    return out
+
+
+def parse_linux_arp(text: str) -> List[Neighbor]:
+    out: List[Neighbor] = []
+    # arp -a can look like macOS form on some distros:
+    # ? (192.168.1.1) at aa:bb:cc:dd:ee:ff [ether] on wlan0
+    line_re = re.compile(r"\((\d+\.\d+\.\d+\.\d+)\)\s+at\s+([0-9a-fA-F:]{17})\s+.*\s+on\s+(\S+)")
+    for line in text.splitlines():
+        m = line_re.search(line)
+        if not m:
+            continue
+        ip, mac, iface = m.group(1), m.group(2).lower(), m.group(3)
+        out.append(Neighbor(ip=ip, mac=mac, iface=iface, source="arp -a"))
+    return out
+
+
+def sort_key_ip(n: Neighbor):
+    try:
+        return ipaddress.ip_address(n.ip)
+    except Exception:
+        return ipaddress.ip_address("0.0.0.0")
+
+
+def print_table(items: List[Neighbor]) -> None:
+    if not items:
+        print("No neighbors found in ARP/neighbor table yet.")
+        print("Try browsing the web, pinging your router, or using your network normally, then rerun.")
+        return
+
+    # Deduplicate by IP (keep first)
+    seen = set()
+    dedup: List[Neighbor] = []
+    for n in sorted(items, key=sort_key_ip):
+        if n.ip in seen:
+            continue
+        seen.add(n.ip)
+        dedup.append(n)
+
+    cols = ["IP", "MAC", "IFACE", "STATE", "SOURCE"]
+    rows = []
+    for n in dedup:
+        rows.append([n.ip, n.mac, n.iface or "-", n.state or "-", n.source or "-"])
+
+    widths = [len(c) for c in cols]
+    for r in rows:
+        for i, cell in enumerate(r):
+            widths[i] = max(widths[i], len(str(cell)))
+
+    def fmt_row(r):
+        return "  ".join(str(r[i]).ljust(widths[i]) for i in range(len(cols)))
+
+    print(fmt_row(cols))
+    print("  ".join("-" * w for w in widths))
+    for r in rows:
+        print(fmt_row(r))
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Safely list devices from your ARP/neighbor table (no scanning).")
+    ap.add_argument("--raw", action="store_true", help="Print the raw command output used for parsing.")
+    args = ap.parse_args()
+
+    sysname = platform.system().lower()
+
+    neighbors: List[Neighbor] = []
+    raw_text = ""
+
+    if "windows" in sysname:
+        raw_text = run_cmd(["arp", "-a"])
+        neighbors = parse_windows_arp(raw_text)
+
+    elif "darwin" in sysname:  # macOS
+        raw_text = run_cmd(["arp", "-a"])
+        neighbors = parse_macos_arp(raw_text)
+
+    else:  # Linux / others
+        if shutil.which("ip"):
+            raw_text = run_cmd(["ip", "neigh"])
+            neighbors = parse_linux_ip_neigh(raw_text)
+        else:
+            raw_text = run_cmd(["arp", "-a"])
+            neighbors = parse_linux_arp(raw_text)
+
+    if args.raw:
+        print("=== RAW OUTPUT ===")
+        print(raw_text.strip())
+        print("==================\n")
+
+    print_table(neighbors)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
