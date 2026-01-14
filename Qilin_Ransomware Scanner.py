@@ -1,0 +1,324 @@
+#!/usr/bin/env python3
+"""
+qilin_triage_scan.py
+Quick Windows file-system triage for Qilin (and optional Akira) ransomware artifacts.
+
+What it does (best-effort):
+- Searches for encrypted-file extensions commonly associated with Qilin (.qilin)
+- Searches for ransom note filename patterns observed in incidents (README-RECOVER-*.txt)
+- Optionally checks a few common Akira artifacts (.akira, akira_readme.txt, fn.txt)
+
+What it does NOT do:
+- Detect memory-only/fileless activity
+- Reliably detect the ransomware binary itself (names/hashes change constantly)
+- Replace EDR/AV or an incident response investigation
+
+Safe: reads filenames/metadata, and optionally samples small text files for keywords.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import sys
+from dataclasses import dataclass, asdict
+from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Iterable, List, Dict, Optional, Tuple
+
+
+# --- Indicators (kept intentionally conservative to reduce false positives) ---
+
+QILIN_EXTENSIONS = {".qilin"}  # Microsoft notes .qilin is used for encrypted files
+QILIN_NOTE_NAME_REGEXES = [
+    re.compile(r"^README-RECOVER-.*\.txt$", re.IGNORECASE),  # observed in incident reporting
+]
+
+# Optional: Akira (also highly active in 2025/early 2026 reporting)
+AKIRA_EXTENSIONS = {".akira"}
+AKIRA_NOTE_FILENAMES = {"akira_readme.txt", "fn.txt"}  # commonly reported across cases
+
+
+DEFAULT_EXCLUDE_DIR_NAMES = {
+    # Avoid massive/system dirs that create noise and permission issues
+    "Windows",
+    "$Recycle.Bin",
+    "System Volume Information",
+    "WinSxS",
+    "Program Files",
+    "Program Files (x86)",
+}
+
+
+@dataclass
+class Finding:
+    category: str                  # e.g., "qilin_encrypted_extension", "qilin_ransom_note"
+    path: str
+    modified_utc: Optional[str]    # ISO string
+    size_bytes: Optional[int]
+
+
+def utc_iso(ts: float) -> str:
+    return datetime.utcfromtimestamp(ts).replace(microsecond=0).isoformat() + "Z"
+
+
+def should_skip_dir(dir_name: str, exclude_names: set[str]) -> bool:
+    return dir_name.lower() in {d.lower() for d in exclude_names}
+
+
+def iter_files(
+    roots: List[Path],
+    exclude_dir_names: set[str],
+) -> Iterable[Path]:
+    for root in roots:
+        if not root.exists():
+            continue
+
+        for current_root, dirs, files in os.walk(root, topdown=True):
+            # Prune directories in-place
+            pruned = []
+            for d in dirs:
+                if should_skip_dir(d, exclude_dir_names):
+                    continue
+                pruned.append(d)
+            dirs[:] = pruned
+
+            # Yield files
+            for f in files:
+                yield Path(current_root) / f
+
+
+def match_qilin_note(filename: str) -> bool:
+    base = Path(filename).name
+    return any(rx.match(base) for rx in QILIN_NOTE_NAME_REGEXES)
+
+
+def safe_stat(p: Path) -> Optional[os.stat_result]:
+    try:
+        return p.stat()
+    except (PermissionError, FileNotFoundError, OSError):
+        return None
+
+
+def scan(
+    roots: List[Path],
+    exclude_dir_names: set[str],
+    since_hours: Optional[int],
+    include_akira: bool,
+    sample_note_contents: bool,
+    max_findings: int,
+) -> Dict:
+    now = datetime.utcnow()
+    since_cutoff = (now - timedelta(hours=since_hours)) if since_hours else None
+
+    findings: List[Finding] = []
+    counters = {
+        "files_scanned": 0,
+        "permission_or_missing": 0,
+        "qilin_encrypted_extension_hits": 0,
+        "qilin_ransom_note_hits": 0,
+        "akira_encrypted_extension_hits": 0,
+        "akira_ransom_note_hits": 0,
+    }
+
+    # Optional: light keyword validation for suspected ransom notes
+    # (kept generic: onion/tor are common across many notes)
+    note_keyword_regex = re.compile(r"\b(tor|onion|decrypt|ransom)\b", re.IGNORECASE)
+
+    for p in iter_files(roots, exclude_dir_names):
+        counters["files_scanned"] += 1
+
+        st = safe_stat(p)
+        if st is None:
+            counters["permission_or_missing"] += 1
+            continue
+
+        mtime = datetime.utcfromtimestamp(st.st_mtime)
+        if since_cutoff and mtime < since_cutoff:
+            continue
+
+        name = p.name
+        suffix = p.suffix.lower()
+
+        # Qilin: encrypted extension
+        if suffix in QILIN_EXTENSIONS:
+            counters["qilin_encrypted_extension_hits"] += 1
+            findings.append(Finding(
+                category="qilin_encrypted_extension",
+                path=str(p),
+                modified_utc=utc_iso(st.st_mtime),
+                size_bytes=st.st_size,
+            ))
+
+        # Qilin: ransom note name pattern
+        if match_qilin_note(name):
+            valid = True
+            if sample_note_contents and st.st_size <= 512_000:  # sample only small-ish files
+                try:
+                    with open(p, "rb") as fh:
+                        chunk = fh.read(64_000)
+                    valid = bool(note_keyword_regex.search(chunk.decode("utf-8", errors="ignore")))
+                except (PermissionError, FileNotFoundError, OSError):
+                    valid = True  # keep it as a hit even if we can't read
+
+            if valid:
+                counters["qilin_ransom_note_hits"] += 1
+                findings.append(Finding(
+                    category="qilin_ransom_note",
+                    path=str(p),
+                    modified_utc=utc_iso(st.st_mtime),
+                    size_bytes=st.st_size,
+                ))
+
+        # Optional Akira checks
+        if include_akira:
+            if suffix in AKIRA_EXTENSIONS:
+                counters["akira_encrypted_extension_hits"] += 1
+                findings.append(Finding(
+                    category="akira_encrypted_extension",
+                    path=str(p),
+                    modified_utc=utc_iso(st.st_mtime),
+                    size_bytes=st.st_size,
+                ))
+
+            if name.lower() in AKIRA_NOTE_FILENAMES:
+                valid = True
+                if sample_note_contents and st.st_size <= 512_000:
+                    try:
+                        with open(p, "rb") as fh:
+                            chunk = fh.read(64_000)
+                        valid = bool(note_keyword_regex.search(chunk.decode("utf-8", errors="ignore")))
+                    except (PermissionError, FileNotFoundError, OSError):
+                        valid = True
+
+                if valid:
+                    counters["akira_ransom_note_hits"] += 1
+                    findings.append(Finding(
+                        category="akira_ransom_note",
+                        path=str(p),
+                        modified_utc=utc_iso(st.st_mtime),
+                        size_bytes=st.st_size,
+                    ))
+
+        # Prevent runaway memory on huge drives
+        if len(findings) >= max_findings:
+            break
+
+    report = {
+        "scanned_utc": now.replace(microsecond=0).isoformat() + "Z",
+        "roots": [str(r) for r in roots],
+        "exclude_dir_names": sorted(list(exclude_dir_names)),
+        "since_hours": since_hours,
+        "include_akira": include_akira,
+        "sample_note_contents": sample_note_contents,
+        "counters": counters,
+        "findings_truncated": (len(findings) >= max_findings),
+        "findings": [asdict(f) for f in findings],
+        "interpretation": {
+            "high_confidence_signals": [
+                "Many *.qilin files and/or README-RECOVER-*.txt notes across multiple folders",
+                "Rapid appearance of these within the last few hours/days (use --since-hours)"
+            ],
+            "next_steps_if_hits": [
+                "Disconnect from network (unplug Ethernet / disable Wi-Fi) to limit spread",
+                "Run a FULL Microsoft Defender Offline scan (or trusted EDR) immediately",
+                "Preserve evidence (don’t wipe); consider incident response help",
+            ],
+        },
+    }
+    return report
+
+
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(
+        description="Triage scan for Qilin ransomware artifacts (and optional Akira) on Windows."
+    )
+    p.add_argument(
+        "--paths",
+        nargs="*",
+        default=[r"C:\Users", r"C:\ProgramData"],
+        help="Root paths to scan (default: C:\\Users C:\\ProgramData). Add additional drives like D:\\",
+    )
+    p.add_argument(
+        "--since-hours",
+        type=int,
+        default=None,
+        help="Only consider files modified within the last N hours (reduces scan time/noise).",
+    )
+    p.add_argument(
+        "--include-akira",
+        action="store_true",
+        help="Also check common Akira artifacts (.akira, akira_readme.txt, fn.txt).",
+    )
+    p.add_argument(
+        "--sample-note-contents",
+        action="store_true",
+        help="For suspected note files, read up to 64KB and look for generic ransom keywords.",
+    )
+    p.add_argument(
+        "--exclude",
+        nargs="*",
+        default=list(DEFAULT_EXCLUDE_DIR_NAMES),
+        help="Directory names to skip anywhere in the tree (default excludes common system dirs).",
+    )
+    p.add_argument(
+        "--max-findings",
+        type=int,
+        default=2000,
+        help="Stop after this many hits to avoid huge reports (default: 2000).",
+    )
+    p.add_argument(
+        "--out",
+        default=None,
+        help="Output JSON filename (default: qilin_scan_report_<timestamp>.json).",
+    )
+    return p.parse_args()
+
+
+def main() -> int:
+    args = parse_args()
+
+    roots = [Path(pth) for pth in args.paths]
+    exclude_names = set(args.exclude)
+
+    report = scan(
+        roots=roots,
+        exclude_dir_names=exclude_names,
+        since_hours=args.since_hours,
+        include_akira=args.include_akira,
+        sample_note_contents=args.sample_note_contents,
+        max_findings=args.max_findings,
+    )
+
+    ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+    out_file = args.out or f"qilin_scan_report_{ts}.json"
+
+    try:
+        with open(out_file, "w", encoding="utf-8") as f:
+            json.dump(report, f, indent=2)
+    except OSError as e:
+        print(f"[!] Failed to write report: {e}", file=sys.stderr)
+        return 2
+
+    # Human summary
+    c = report["counters"]
+    print("\n=== Qilin triage scan summary ===")
+    print(f"Scanned roots: {', '.join(report['roots'])}")
+    print(f"Files scanned: {c['files_scanned']:,}")
+    print(f"Unreadable/missing: {c['permission_or_missing']:,}")
+    print(f"Qilin '*.qilin' hits: {c['qilin_encrypted_extension_hits']:,}")
+    print(f"Qilin note hits (README-RECOVER-*.txt): {c['qilin_ransom_note_hits']:,}")
+    if args.include_akira:
+        print(f"Akira '*.akira' hits: {c['akira_encrypted_extension_hits']:,}")
+        print(f"Akira note hits: {c['akira_ransom_note_hits']:,}")
+    if report["findings_truncated"]:
+        print("Findings: TRUNCATED (increase --max-findings if needed)")
+    print(f"Report saved to: {out_file}\n")
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
