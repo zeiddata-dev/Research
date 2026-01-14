@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
+#Zeid Data - Copper Hang Back...
 """
 qilin_triage_scan.py
 Quick Windows file-system triage for Qilin (and optional Akira) ransomware artifacts.
-
 What it does (best-effort):
 - Searches for encrypted-file extensions commonly associated with Qilin (.qilin)
 - Searches for ransom note filename patterns observed in incidents (README-RECOVER-*.txt)
@@ -322,3 +322,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
