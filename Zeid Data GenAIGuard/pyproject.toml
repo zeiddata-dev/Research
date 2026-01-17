@@ -1,0 +1,8 @@
+[project]
+name = "zeiddata-aigo"
+version = "0.1.0"
+description = "Zeid Data AI Governance Evidence Toolkit (AIGO)"
+requires-python = ">=3.10"
+
+[project.scripts]
+aigo = "aigo.cli:main"
