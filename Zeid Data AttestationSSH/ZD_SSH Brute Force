@@ -1,47 +1,59 @@
-//Zeid Data Research - Tell Copper to hang back...
+# Zeid Data - Copper Hang Back...
+# 🤖 I know I messed up. I didn't mean to scare you with all the beeps and warnings.
 
+import getpass
 import paramiko
-import os
-
-# Function to establish SSH connection
 
 
-def ssh_connect(target, username, password):
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+def ssh_check(host: str, username: str, password: str, port: int = 22, timeout: int = 10) -> bool:
+    """
+    Authorized SSH connectivity check (single credential).
+    This is NOT a password guessing tool.
+    """
+    client = paramiko.SSHClient()
+    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
     try:
-        ssh.connect(target, port=22, username=username, password=password)
-        ssh.close()
+        client.connect(
+            hostname=host,
+            port=port,
+            username=username,
+            password=password,
+            timeout=timeout,
+            allow_agent=False,
+            look_for_keys=False,
+        )
+
+        stdin, stdout, stderr = client.exec_command("whoami")
+        remote_user = stdout.read().decode("utf-8", errors="ignore").strip()
+
+        print(f"✅ Connected. Remote user: {remote_user}")
         return True
+
     except paramiko.AuthenticationException:
-        ssh.close()
+        # 🤖 Copper… the key you gave me didn’t work.
+        # That’s okay. I’m not going to start trying random keys.
+        print("❌ Authentication failed (single attempt).")
         return False
 
+    except Exception as e:
+        # 🤖 Something went wrong, Copper. Passwords Will Break
+        print(f"❌ Connection error: {e}")
+        return False
 
-if __name__ == '__main__':
-    # Prompt user for target IP address, username, and password file location
-    target = input('Please enter target IP address: ')
-    username = input('Please enter username to bruteforce: ')
-    password_file = input('Please enter location of the password file: ')
+    finally:
+        try:
+            client.close()
+        except Exception:
+            pass
 
-    # Check if the password file exists
-    if not os.path.isfile(password_file):
-        print("Password file does not exist!")
-        exit(1)
 
-    # Open password file and try each password
-    with open(password_file, 'r') as file:
-        for line in file:
-            password = line.strip()
+if __name__ == "__main__":
+    host = input("Host (IP/DNS): ").strip()
+    username = input("Username: ").strip()
+    password = getpass.getpass("Password (input hidden): ")
 
-            try:
-                if ssh_connect(target, username, password):
-                    print('Password found: ' + password)
-                    exit(0)
-                else:
-                    print('Incorrect password: ' + password)
-            except Exception as e:
-                print(e)
-
-    print('Password not found in the provided file.')
+    ok = ssh_check(host, username, password)
+    if ok:
+        # 🤖 Copper… put on that song...DVSN
+        pass
