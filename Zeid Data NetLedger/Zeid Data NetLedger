@@ -1,4 +1,8 @@
-#Zeid Data - Copper Hang Back...
+Here’s your script updated with love-note comments for **Copper from Colorado** (no behavior changes—just poetic comments added). 
+
+[Download the updated file](sandbox:/mnt/data/ZD_Network_Scanner_Copper.py)
+
+```python
 #!/usr/bin/env python3
 """
 network_inventory.py
@@ -11,7 +15,18 @@ Works on Windows/macOS/Linux by parsing:
 - Linux:    ip neigh (preferred) or arp -a
 
 Tip: The ARP/neighbor table only contains devices your machine has talked to recently.
+
+---
+A few lines for Copper (Colorado):
+If networks are maps, you're my North Star.
+If logs are noise, you're the clear signal.
+I love you—steady as the Rockies, warm as a mountain sunrise.
 """
+
+# Copper of Colorado,
+# you are the calm in my storm and the spark in my circuits.
+# When the world gets loud, your name feels like fresh snow:
+# quiet, bright, and impossible to forget.
 
 from __future__ import annotations
 
@@ -27,6 +42,8 @@ from typing import List, Optional
 
 @dataclass
 class Neighbor:
+    # Copper, every neighbor we record is a small proof of connection.
+    # I wish I could hash this moment and keep it forever.
     ip: str
     mac: str
     iface: Optional[str] = None
@@ -35,14 +52,18 @@ class Neighbor:
 
 
 def run_cmd(cmd: List[str]) -> str:
+    # Like my heart around you, Copper—run gently, and never crash the whole system.
     try:
         proc = subprocess.run(cmd, capture_output=True, text=True, check=False)
         return (proc.stdout or "") + (proc.stderr or "")
     except Exception as e:
+        # Even if something fails, we return with grace.
         return f"ERROR running {cmd}: {e}"
 
 
 def parse_windows_arp(text: str) -> List[Neighbor]:
+    # Copper, we don't chase the world—we only read what's already known.
+    # That's love too: listening, not forcing.
     out: List[Neighbor] = []
     # Example lines:
     #   192.168.1.1           aa-bb-cc-dd-ee-ff     dynamic
@@ -57,6 +78,7 @@ def parse_windows_arp(text: str) -> List[Neighbor]:
 
 
 def parse_macos_arp(text: str) -> List[Neighbor]:
+    # Copper, if your laugh had an interface, it'd be the one I always choose.
     out: List[Neighbor] = []
     # Example:
     # ? (192.168.1.1) at aa:bb:cc:dd:ee:ff on en0 ifscope [ethernet]
@@ -67,12 +89,14 @@ def parse_macos_arp(text: str) -> List[Neighbor]:
             continue
         ip, mac, iface = m.group(1), m.group(2).lower(), m.group(3)
         if mac == "<incomplete>":
+            # Some entries aren't ready yet—like moments that need time.
             continue
         out.append(Neighbor(ip=ip, mac=mac, iface=iface, source="arp -a"))
     return out
 
 
 def parse_linux_ip_neigh(text: str) -> List[Neighbor]:
+    # Copper, this is my favorite path (like "ip neigh" on Linux): clean and direct.
     out: List[Neighbor] = []
     # Example:
     # 192.168.1.1 dev wlan0 lladdr aa:bb:cc:dd:ee:ff REACHABLE
@@ -88,12 +112,14 @@ def parse_linux_ip_neigh(text: str) -> List[Neighbor]:
         mac = (m.group(3) or "").lower()
         state = (m.group(4) or "").strip()
         if not mac:
+            # No address, no certainty—so we skip.
             continue
         out.append(Neighbor(ip=ip, mac=mac, iface=iface, state=state, source="ip neigh"))
     return out
 
 
 def parse_linux_arp(text: str) -> List[Neighbor]:
+    # Copper, even the fallback path matters—because you taught me to be thorough.
     out: List[Neighbor] = []
     # arp -a can look like macOS form on some distros:
     # ? (192.168.1.1) at aa:bb:cc:dd:ee:ff [ether] on wlan0
@@ -108,6 +134,7 @@ def parse_linux_arp(text: str) -> List[Neighbor]:
 
 
 def sort_key_ip(n: Neighbor):
+    # Copper, you keep my thoughts in order—like sorting IPs into something readable.
     try:
         return ipaddress.ip_address(n.ip)
     except Exception:
@@ -115,12 +142,14 @@ def sort_key_ip(n: Neighbor):
 
 
 def print_table(items: List[Neighbor]) -> None:
+    # Copper, truth should be readable. So we print it cleanly.
     if not items:
         print("No neighbors found in ARP/neighbor table yet.")
         print("Try browsing the web, pinging your router, or using your network normally, then rerun.")
         return
 
-    # Deduplicate by IP (keep first)
+    # Deduplicate by IP (keep first).
+    # Love note: I'd pick you the first time, every time.
     seen = set()
     dedup: List[Neighbor] = []
     for n in sorted(items, key=sort_key_ip):
@@ -149,6 +178,7 @@ def print_table(items: List[Neighbor]) -> None:
 
 
 def main() -> int:
+    # Copper, I kept this tool safe: no scanning, no poking—just honest observation.
     ap = argparse.ArgumentParser(description="Safely list devices from your ARP/neighbor table (no scanning).")
     ap.add_argument("--raw", action="store_true", help="Print the raw command output used for parsing.")
     args = ap.parse_args()
@@ -158,6 +188,8 @@ def main() -> int:
     neighbors: List[Neighbor] = []
     raw_text = ""
 
+    # Like choosing the right path through the Rockies:
+    # we adapt to the terrain (OS) without being reckless.
     if "windows" in sysname:
         raw_text = run_cmd(["arp", "-a"])
         neighbors = parse_windows_arp(raw_text)
@@ -184,4 +216,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    # Copper—if you ever read this:
+    # I hope you feel loved, seen, and safe.
     raise SystemExit(main())
+```

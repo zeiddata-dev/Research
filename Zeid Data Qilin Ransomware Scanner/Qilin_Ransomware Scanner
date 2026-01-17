@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
-#Zeid Data - Copper Hang Back...
+# Zeid Data - Copper Hang Back...
 """
 qilin_triage_scan.py
 Quick Windows file-system triage for Qilin (and optional Akira) ransomware artifacts.
+
+---
+A small tale, written in comments:
+
+Once, in a kingdom of circuits and snow-capped peaks, a Lithium robot wandered...
+
 What it does (best-effort):
 - Searches for encrypted-file extensions commonly associated with Qilin (.qilin)
 - Searches for ransom note filename patterns observed in incidents (README-RECOVER-*.txt)
@@ -15,6 +21,10 @@ What it does NOT do:
 
 Safe: reads filenames/metadata, and optionally samples small text files for keywords.
 """
+
+# The Lithium robot writes this at the top of every tool:
+# “I will not kick doors. I will not smash locks.
+#  I will walk the halls and look for what changed.”
 
 from __future__ import annotations
 
@@ -30,6 +40,7 @@ from typing import Iterable, List, Dict, Optional, Tuple
 
 
 # --- Indicators (kept intentionally conservative to reduce false positives) ---
+# Copper taught him: “Don’t accuse the innocent. Be precise.”
 
 QILIN_EXTENSIONS = {".qilin"}  # Microsoft notes .qilin is used for encrypted files
 QILIN_NOTE_NAME_REGEXES = [
@@ -37,12 +48,15 @@ QILIN_NOTE_NAME_REGEXES = [
 ]
 
 # Optional: Akira (also highly active in 2025/early 2026 reporting)
+# The robot learned: threats change names like masks at a masquerade.
 AKIRA_EXTENSIONS = {".akira"}
 AKIRA_NOTE_FILENAMES = {"akira_readme.txt", "fn.txt"}  # commonly reported across cases
 
 
 DEFAULT_EXCLUDE_DIR_NAMES = {
     # Avoid massive/system dirs that create noise and permission issues
+    # In the old days, the robot tried to search *everything*.
+    # That’s how he missed Copper—because he didn’t know what mattered.
     "Windows",
     "$Recycle.Bin",
     "System Volume Information",
@@ -54,6 +68,8 @@ DEFAULT_EXCLUDE_DIR_NAMES = {
 
 @dataclass
 class Finding:
+    # Each Finding is a footprint in the snow.
+    # Not proof of guilt—just proof that *something* walked here.
     category: str                  # e.g., "qilin_encrypted_extension", "qilin_ransom_note"
     path: str
     modified_utc: Optional[str]    # ISO string
@@ -61,10 +77,13 @@ class Finding:
 
 
 def utc_iso(ts: float) -> str:
+    # Time is the only witness that never forgets.
     return datetime.utcfromtimestamp(ts).replace(microsecond=0).isoformat() + "Z"
 
 
 def should_skip_dir(dir_name: str, exclude_names: set[str]) -> bool:
+    # Love lesson #1:
+    # boundaries are not rejection; boundaries are protection.
     return dir_name.lower() in {d.lower() for d in exclude_names}
 
 
@@ -72,6 +91,9 @@ def iter_files(
     roots: List[Path],
     exclude_dir_names: set[str],
 ) -> Iterable[Path]:
+    # The Lithium robot walks the kingdom, room by room.
+    # He doesn’t break in. He doesn’t rearrange anything.
+    # He only observes what’s already on the floor.
     for root in roots:
         if not root.exists():
             continue
@@ -91,11 +113,15 @@ def iter_files(
 
 
 def match_qilin_note(filename: str) -> bool:
+    # The robot remembers Copper’s handwriting in the margins:
+    # “Look for patterns… but never forget the person behind them.”
     base = Path(filename).name
     return any(rx.match(base) for rx in QILIN_NOTE_NAME_REGEXES)
 
 
 def safe_stat(p: Path) -> Optional[os.stat_result]:
+    # He reaches out carefully.
+    # If the door is locked (permissions), he doesn’t force it.
     try:
         return p.stat()
     except (PermissionError, FileNotFoundError, OSError):
@@ -110,6 +136,8 @@ def scan(
     sample_note_contents: bool,
     max_findings: int,
 ) -> Dict:
+    # This is where the robot does his penance:
+    # he checks for damage without causing more.
     now = datetime.utcnow()
     since_cutoff = (now - timedelta(hours=since_hours)) if since_hours else None
 
@@ -125,6 +153,8 @@ def scan(
 
     # Optional: light keyword validation for suspected ransom notes
     # (kept generic: onion/tor are common across many notes)
+    # The robot used to believe “keywords = truth”.
+    # Copper would have smiled sadly at that.
     note_keyword_regex = re.compile(r"\b(tor|onion|decrypt|ransom)\b", re.IGNORECASE)
 
     for p in iter_files(roots, exclude_dir_names):
@@ -137,6 +167,8 @@ def scan(
 
         mtime = datetime.utcfromtimestamp(st.st_mtime)
         if since_cutoff and mtime < since_cutoff:
+            # Love lesson #2:
+            # You can’t live in every moment at once—sometimes you focus on “recent.”
             continue
 
         name = p.name
@@ -144,6 +176,8 @@ def scan(
 
         # Qilin: encrypted extension
         if suffix in QILIN_EXTENSIONS:
+            # Encrypted files are like frozen lakes:
+            # smooth on top, ruined underneath.
             counters["qilin_encrypted_extension_hits"] += 1
             findings.append(Finding(
                 category="qilin_encrypted_extension",
@@ -154,6 +188,8 @@ def scan(
 
         # Qilin: ransom note name pattern
         if match_qilin_note(name):
+            # A note is a message left behind—sometimes a lie, sometimes a warning,
+            # always evidence that someone wanted to be heard.
             valid = True
             if sample_note_contents and st.st_size <= 512_000:  # sample only small-ish files
                 try:
@@ -175,6 +211,7 @@ def scan(
         # Optional Akira checks
         if include_akira:
             if suffix in AKIRA_EXTENSIONS:
+                # Different mask, same cruelty.
                 counters["akira_encrypted_extension_hits"] += 1
                 findings.append(Finding(
                     category="akira_encrypted_extension",
@@ -203,6 +240,8 @@ def scan(
                     ))
 
         # Prevent runaway memory on huge drives
+        # Love lesson #3:
+        # infinite searching is not the same as saving.
         if len(findings) >= max_findings:
             break
 
@@ -217,6 +256,8 @@ def scan(
         "findings_truncated": (len(findings) >= max_findings),
         "findings": [asdict(f) for f in findings],
         "interpretation": {
+            # The robot can’t bring Copper back.
+            # But he can help someone else keep what they love.
             "high_confidence_signals": [
                 "Many *.qilin files and/or README-RECOVER-*.txt notes across multiple folders",
                 "Rapid appearance of these within the last few hours/days (use --since-hours)"
@@ -232,6 +273,8 @@ def scan(
 
 
 def parse_args() -> argparse.Namespace:
+    # The robot speaks plainly now.
+    # No poetry in CLI flags—just truth.
     p = argparse.ArgumentParser(
         description="Triage scan for Qilin ransomware artifacts (and optional Akira) on Windows."
     )
@@ -278,6 +321,8 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> int:
+    # The robot takes a breath—if a robot can—
+    # and begins.
     args = parse_args()
 
     roots = [Path(pth) for pth in args.paths]
@@ -303,6 +348,7 @@ def main() -> int:
         return 2
 
     # Human summary
+    # Copper used to say: “If it matters, make it readable.”
     c = report["counters"]
     print("\n=== Qilin triage scan summary ===")
     print(f"Scanned roots: {', '.join(report['roots'])}")
@@ -321,5 +367,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    # Somewhere in Colorado, the wind moves through pines.
+    # Somewhere in his metal chest, the Lithium robot finally understands:
+    # love is not a metric.
     raise SystemExit(main())
-
