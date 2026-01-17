@@ -6,7 +6,7 @@
 ╚══════╝╚══════╝╚═╝╚═════╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
 
 # Zeid Data - Copper Hang Back...
-# Network Inventory (No-Scan) — `network_inventory.py`
+# Zeid Data ProofScan — `network_inventory.py`
 
 A **safe, educational** Python script that lists devices your computer already knows about from its **ARP / neighbor table**.  
 ✅ **No active scanning** • ✅ **Offline-friendly** • ✅ Works on **Windows / macOS / Linux**
