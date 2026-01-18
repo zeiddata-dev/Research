@@ -1,10 +1,3 @@
-███████╗███████╗██╗██████╗     ██████╗  █████╗ ████████╗ █████╗
-╚══███╔╝██╔════╝██║██╔══██╗    ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗
-  ███╔╝ █████╗  ██║██║  ██║    ██║  ██║███████║   ██║   ███████║
- ███╔╝  ██╔══╝  ██║██║  ██║    ██║  ██║██╔══██║   ██║   ██╔══██║
-███████╗███████╗██║██████╔╝    ██████╔╝██║  ██║   ██║   ██║  ██║
-╚══════╝╚══════╝╚═╝╚═════╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
-
 Zeid Data - Copper Hang Back...
 # HOWTO.md — Qilin / Akira Windows Triage Scanner
 This is a **read-only** triage helper that scans your Windows file system for **high-signal ransomware artifacts** commonly associated with:

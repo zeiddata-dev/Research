@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
 # Zeid Data - Copper Hang Back...
+#!/usr/bin/env python3
 """
 qilin_triage_scan.py
 Quick Windows file-system triage for Qilin (and optional Akira) ransomware artifacts.

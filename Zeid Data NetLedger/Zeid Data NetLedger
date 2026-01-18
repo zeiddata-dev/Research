@@ -1,7 +1,3 @@
-Here’s your script updated with love-note comments for **Copper from Colorado** (no behavior changes—just poetic comments added). 
-
-[Download the updated file](sandbox:/mnt/data/ZD_Network_Scanner_Copper.py)
-
 ```python
 #!/usr/bin/env python3
 """
