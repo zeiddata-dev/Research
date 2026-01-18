@@ -1,10 +1,3 @@
-███████╗███████╗██╗██████╗     ██████╗  █████╗ ████████╗ █████╗ 
-╚══███╔╝██╔════╝██║██╔══██╗    ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗
-  ███╔╝ █████╗  ██║██║  ██║    ██║  ██║███████║   ██║   ███████║
- ███╔╝  ██╔══╝  ██║██║  ██║    ██║  ██║██╔══██║   ██║   ██╔══██║
-███████╗███████╗██║██████╔╝    ██████╔╝██║  ██║   ██║   ██║  ██║
-╚══════╝╚══════╝╚═╝╚═════╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
-
 #Zeid Data - Copper Hang Back...
 
 In **C++**, a “stack overflow vulnerability” almost always means a **stack-based buffer overflow**: writing past the end of a **stack-allocated** array (often a `char buf[N]`) and corrupting adjacent stack data.
