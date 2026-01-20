@@ -1,5 +1,4 @@
 # Zeid Data - Copper Hang Back...
-# Copper left fingerprints in the comments
 # HOWTO — Deploy & Use the SOC 2 Evidence Workbook (Sentinel Multi‑Source)
 
 This guide walks you through:
