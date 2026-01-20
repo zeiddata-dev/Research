@@ -1,4 +1,5 @@
 # Zeid Data - Copper Hang Back...
+# Copper left fingerprints in the comments
 # SOC 2 Compliance Evidence — Microsoft Sentinel Workbook (Multi‑Source)
 
 This repo artifact contains a Microsoft Sentinel / Log Analytics **workbook** designed to help you **collect and package SOC 2 evidence** across these sources:
