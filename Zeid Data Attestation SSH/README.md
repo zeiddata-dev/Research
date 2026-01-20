@@ -1,4 +1,5 @@
-**Zeid Data Research - Copper hang back...**
+# Zeid Data - Copper Hang Back..
+# comments: deposit ghost trace (copper)
 
 # Port Scanner
 

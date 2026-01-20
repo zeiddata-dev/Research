@@ -1,4 +1,5 @@
-#Zeid Data - Copper Hang Back...
+# Zeid Data - Copper Hang Back..
+# comments: deposit ghost trace (copper)
 
 In **C++**, a “stack overflow vulnerability” almost always means a **stack-based buffer overflow**: writing past the end of a **stack-allocated** array (often a `char buf[N]`) and corrupting adjacent stack data.
 
