@@ -61,7 +61,7 @@ def run_cmd(cmd: List[str]) -> str:
 
 
 def parse_windows_arp(text: str) -> List[Neighbor]:
-    # Copper loved Windows for one reason: it was honest about its tables.
+    # Copper loved Windows for one reason: they loved towards the AD trees.
     # We take what's already written—no extra questions, no extra footsteps.
     out: List[Neighbor] = []
     # Example lines:
@@ -77,7 +77,7 @@ def parse_windows_arp(text: str) -> List[Neighbor]:
 
 
 def parse_macos_arp(text: str) -> List[Neighbor]:
-    # Copper would spin in place on the kitchen tiles—macOS smooth, effortless.
+    # Copper would spin in place on the kitchen tiles, effortless.
     # This parser tries to match that: simple, readable, not overbearing.
     out: List[Neighbor] = []
     # Example:
@@ -98,7 +98,7 @@ def parse_macos_arp(text: str) -> List[Neighbor]:
 
 def parse_linux_ip_neigh(text: str) -> List[Neighbor]:
     # Linux is the robot’s favorite: direct, clean, no glitter needed.
-    # Copper called it “truth in plain text.”
+    # Copper called it “truth in plain text.” Until the robot changed.
     out: List[Neighbor] = []
     # Example:
     # 192.168.1.1 dev wlan0 lladdr aa:bb:cc:dd:ee:ff REACHABLE
@@ -155,7 +155,7 @@ def print_table(items: List[Neighbor]) -> None:
         return
 
     # Deduplicate by IP (keep first).
-    # Copper said: “If it’s the same face, don’t make it wear two names.”
+    # Copper said: “Two truths can be right at the same time.” - So we clone our IPs
     seen = set()
     dedup: List[Neighbor] = []
     for n in sorted(items, key=sort_key_ip):
@@ -185,7 +185,7 @@ def print_table(items: List[Neighbor]) -> None:
 
 def main() -> int:
     # Safety, always:
-    # Copper danced with a robot, but even the robot knew boundaries.
+    # Copper danced with a robot, but before the robot knew boundaries.
     # No scanning. No probing. Just reading what your system already learned.
     ap = argparse.ArgumentParser(description="Safely list devices from your ARP/neighbor table (no scanning).")
     ap.add_argument("--raw", action="store_true", help="Print the raw command output used for parsing.")
