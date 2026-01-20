@@ -1,0 +1,200 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "playbookName": {
+      "type": "string",
+      "metadata": {
+        "description": "Logic App (Sentinel playbook) name"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]"
+    },
+    "la_subscriptionId": {
+      "type": "string",
+      "metadata": {
+        "description": "Subscription ID that contains the Log Analytics workspace"
+      }
+    },
+    "la_resourceGroup": {
+      "type": "string",
+      "metadata": {
+        "description": "Resource group name that contains the Log Analytics workspace"
+      }
+    },
+    "la_workspaceName": {
+      "type": "string",
+      "metadata": {
+        "description": "Log Analytics workspace name"
+      }
+    },
+    "evidenceTimeRange": {
+      "type": "string",
+      "defaultValue": "Last 30 days",
+      "metadata": {
+        "description": "Azure Monitor Logs connector time range string"
+      }
+    },
+    "connections": {
+      "type": "object",
+      "metadata": {
+        "description": "API connection settings for azuresentinel and azuremonitorlogs"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Logic/workflows",
+      "apiVersion": "2019-05-01",
+      "name": "[parameters('playbookName')]",
+      "location": "[parameters('location')]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "state": "Enabled",
+        "definition": {
+          "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {
+            "$connections": {
+              "type": "Object",
+              "defaultValue": {}
+            },
+            "la_subscriptionId": {
+              "type": "String"
+            },
+            "la_resourceGroup": {
+              "type": "String"
+            },
+            "la_workspaceName": {
+              "type": "String"
+            },
+            "evidenceTimeRange": {
+              "type": "String",
+              "defaultValue": "Last 30 days"
+            }
+          },
+          "triggers": {
+            "Microsoft_Sentinel_incident": {
+              "type": "ApiConnectionWebhook",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['azuresentinel']['connectionId']"
+                  }
+                },
+                "body": {
+                  "callback_url": "@{listCallbackUrl()}"
+                },
+                "path": "/incident-creation"
+              }
+            }
+          },
+          "actions": {
+            "Get_incident": {
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['azuresentinel']['connectionId']"
+                  }
+                },
+                "method": "post",
+                "path": "/Incidents",
+                "body": {
+                  "incidentArmId": "@triggerBody()?['object']?['id']"
+                }
+              },
+              "runAfter": {}
+            },
+            "Run_SOC2_evidence_snapshot": {
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['azuremonitorlogs']['connectionId']"
+                  }
+                },
+                "method": "post",
+                "path": "/queryData",
+                "queries": {
+                  "subscriptions": "@parameters('la_subscriptionId')",
+                  "resourcegroups": "@parameters('la_resourceGroup')",
+                  "resourcetype": "Log Analytics Workspace",
+                  "resourcename": "@parameters('la_workspaceName')",
+                  "timerange": "@parameters('evidenceTimeRange')"
+                },
+                "body": "// SOC 2 Evidence Snapshot (Monitoring + Log Source Continuity)\nlet tr = ago(30d);\nlet incidentSummary = SecurityIncident\n| where CreatedTime >= tr\n| extend IsClosed = iff(isnotempty(ClosedTime) or tolower(Status) has 'closed', true, false)\n| summarize Incidents=count(), Open=countif(IsClosed==false), Closed=countif(IsClosed==true), HighCritical=countif(Severity in~ ('High','Critical'));\nlet lastSeen = union withsource=TableName isfuzzy=true\n    SigninLogs, AuditLogs, OfficeActivity, OktaSystemLogs, Okta_CL, AWSCloudTrail, AWSCloudTrail_CL, CrowdStrikeDetections, CrowdStrikeAlerts, CommonSecurityLog, Syslog\n| where TimeGenerated >= tr\n| summarize LastSeen=max(TimeGenerated), Events=count() by TableName;\nincidentSummary\n| extend Section='IncidentSummary', TableName='', LastSeen=datetime(null)\n| project Section, TableName, LastSeen, Events=Incidents, Open, Closed, HighCritical\n| union (lastSeen | extend Section='SourceContinuity', Open=long(null), Closed=long(null), HighCritical=long(null) | project Section, TableName, LastSeen, Events, Open, Closed, HighCritical)\n| order by Section asc, Events desc\n"
+              },
+              "runAfter": {
+                "Get_incident": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Create_HTML_table": {
+              "type": "Table",
+              "inputs": {
+                "from": "@body('Run_SOC2_evidence_snapshot')?['value']",
+                "format": "HTML"
+              },
+              "runAfter": {
+                "Run_SOC2_evidence_snapshot": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Add_comment_to_incident": {
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['azuresentinel']['connectionId']"
+                  }
+                },
+                "method": "post",
+                "path": "/Incidents/Comment",
+                "body": {
+                  "incidentArmId": "@triggerBody()?['object']?['id']",
+                  "message": "@{concat('<b>SOC 2 Evidence Snapshot</b><br/>Incident #', string(body('Get_incident')?['properties']?['incidentNumber']), ' \u2014 ', string(body('Get_incident')?['properties']?['title']), '<br/><br/>', body('Create_HTML_table'), '<br/><br/>Generated by Zeid Data SOC2 Evidence Playbook.') }"
+                }
+              },
+              "runAfter": {
+                "Create_HTML_table": [
+                  "Succeeded"
+                ]
+              }
+            }
+          },
+          "outputs": {}
+        },
+        "parameters": {
+          "$connections": {
+            "value": "[parameters('connections')]"
+          },
+          "la_subscriptionId": {
+            "value": "[parameters('la_subscriptionId')]"
+          },
+          "la_resourceGroup": {
+            "value": "[parameters('la_resourceGroup')]"
+          },
+          "la_workspaceName": {
+            "value": "[parameters('la_workspaceName')]"
+          },
+          "evidenceTimeRange": {
+            "value": "[parameters('evidenceTimeRange')]"
+          }
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "logicAppName": {
+      "type": "string",
+      "value": "[parameters('playbookName')]"
+    }
+  }
+}
