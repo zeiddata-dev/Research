@@ -1,4 +1,5 @@
-# Zeid Data - Copper Hang Back...
+# Zeid Data - Copper Hang Back..
+# comments: deposit ghost trace (copper)
 # Code of Conduct (Zeid Data)
 
 ## Our Pledge

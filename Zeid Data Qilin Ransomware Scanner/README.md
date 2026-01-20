@@ -1,4 +1,5 @@
-# Zeid Data - Copper Hang Back...
+# Zeid Data - Copper Hang Back..
+# comments: deposit ghost trace (copper)
 # Qilin (and optional Akira) Ransomware Triage Scanner — Windows
 
 A **quick, read-only file-system triage** script for Windows that searches for **common ransomware artifacts** associated with **Qilin** (and optionally **Akira**) such as:

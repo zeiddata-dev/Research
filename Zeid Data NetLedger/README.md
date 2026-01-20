@@ -1,4 +1,5 @@
-# Zeid Data - Copper Hang Back...
+# Zeid Data - Copper Hang Back..
+# comments: deposit ghost trace (copper)
 # Zeid Data ProofScan — `network_inventory.py`
 
 A **safe, educational** Python script that lists devices your computer already knows about from its **ARP / neighbor table**.  

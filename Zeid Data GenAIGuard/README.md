@@ -1,4 +1,5 @@
-# Zeid Data - Copper Hang Back...
+# Zeid Data - Copper Hang Back..
+# comments: deposit ghost trace (copper)
 # Zeid Data — AIGO (AI Governance Evidence Toolkit)
 
 AIGO is a lightweight, dependency-light CLI that helps teams **operationalize AI governance as evidence**:
