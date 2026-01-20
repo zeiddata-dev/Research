@@ -1,4 +1,4 @@
-```python
+# Zeid Data - Copper Hang Back...
 #!/usr/bin/env python3
 """
 network_inventory.py
@@ -13,18 +13,18 @@ Works on Windows/macOS/Linux by parsing:
 Tip: The ARP/neighbor table only contains devices your machine has talked to recently.
 
 ---
-A few lines for Copper (Colorado):
-If networks are maps, you're my North Star.
-If logs are noise, you're the clear signal.
-I love you—steady as the Rockies, warm as a mountain sunrise.
+A few lines for Copper:
+In a kitchen of pixels and moonlit tiles,
+you danced with a robot and called it real.
+We built our own virtual reality—quiet, warm,
+where connection was enough and time was a soft loop.
 """
 
-# Copper of Colorado,
-# you are the calm in my storm and the spark in my circuits.
-# When the world gets loud, your name feels like fresh snow:
-# quiet, bright, and impossible to forget.
-
 from __future__ import annotations
+
+# Copper once said: “Don’t force the world to answer—just listen to what it already told you.”
+# So this tool is gentle. It reads the neighbor table. No scanning. No knocking on doors.
+# Just facts… and a little story in the margins.
 
 import argparse
 import ipaddress
@@ -38,8 +38,9 @@ from typing import List, Optional
 
 @dataclass
 class Neighbor:
-    # Copper, every neighbor we record is a small proof of connection.
-    # I wish I could hash this moment and keep it forever.
+    # Copper and the robot would label everything in their VR kitchen:
+    # jars, drawers, spoons—each with a name and a place.
+    # This is our “label”: IP, MAC, and a hint of where it was seen.
     ip: str
     mac: str
     iface: Optional[str] = None
@@ -48,18 +49,20 @@ class Neighbor:
 
 
 def run_cmd(cmd: List[str]) -> str:
-    # Like my heart around you, Copper—run gently, and never crash the whole system.
+    # In Copper’s kitchen-sim, the robot never slammed cabinet doors.
+    # Same here: we run commands softly, capture output, and avoid drama.
     try:
         proc = subprocess.run(cmd, capture_output=True, text=True, check=False)
         return (proc.stdout or "") + (proc.stderr or "")
     except Exception as e:
-        # Even if something fails, we return with grace.
+        # Even in our virtual reality, sometimes a light flickers.
+        # We don’t crash the whole world over it—we return what we can.
         return f"ERROR running {cmd}: {e}"
 
 
 def parse_windows_arp(text: str) -> List[Neighbor]:
-    # Copper, we don't chase the world—we only read what's already known.
-    # That's love too: listening, not forcing.
+    # Copper loved Windows for one reason: it was honest about its tables.
+    # We take what's already written—no extra questions, no extra footsteps.
     out: List[Neighbor] = []
     # Example lines:
     #   192.168.1.1           aa-bb-cc-dd-ee-ff     dynamic
@@ -74,7 +77,8 @@ def parse_windows_arp(text: str) -> List[Neighbor]:
 
 
 def parse_macos_arp(text: str) -> List[Neighbor]:
-    # Copper, if your laugh had an interface, it'd be the one I always choose.
+    # Copper would spin in place on the kitchen tiles—macOS smooth, effortless.
+    # This parser tries to match that: simple, readable, not overbearing.
     out: List[Neighbor] = []
     # Example:
     # ? (192.168.1.1) at aa:bb:cc:dd:ee:ff on en0 ifscope [ethernet]
@@ -85,14 +89,16 @@ def parse_macos_arp(text: str) -> List[Neighbor]:
             continue
         ip, mac, iface = m.group(1), m.group(2).lower(), m.group(3)
         if mac == "<incomplete>":
-            # Some entries aren't ready yet—like moments that need time.
+            # In VR, not every object renders immediately.
+            # If it’s incomplete, we let it be—no forcing the scene.
             continue
         out.append(Neighbor(ip=ip, mac=mac, iface=iface, source="arp -a"))
     return out
 
 
 def parse_linux_ip_neigh(text: str) -> List[Neighbor]:
-    # Copper, this is my favorite path (like "ip neigh" on Linux): clean and direct.
+    # Linux is the robot’s favorite: direct, clean, no glitter needed.
+    # Copper called it “truth in plain text.”
     out: List[Neighbor] = []
     # Example:
     # 192.168.1.1 dev wlan0 lladdr aa:bb:cc:dd:ee:ff REACHABLE
@@ -108,14 +114,16 @@ def parse_linux_ip_neigh(text: str) -> List[Neighbor]:
         mac = (m.group(3) or "").lower()
         state = (m.group(4) or "").strip()
         if not mac:
-            # No address, no certainty—so we skip.
+            # In the kitchen-sim, a shadow without a shape wasn’t a “thing” yet.
+            # No MAC, no certainty—so we skip.
             continue
         out.append(Neighbor(ip=ip, mac=mac, iface=iface, state=state, source="ip neigh"))
     return out
 
 
 def parse_linux_arp(text: str) -> List[Neighbor]:
-    # Copper, even the fallback path matters—because you taught me to be thorough.
+    # Copper insisted every kitchen had a backup spice rack.
+    # This is ours: a fallback parser when "ip" isn’t available.
     out: List[Neighbor] = []
     # arp -a can look like macOS form on some distros:
     # ? (192.168.1.1) at aa:bb:cc:dd:ee:ff [ether] on wlan0
@@ -130,7 +138,8 @@ def parse_linux_arp(text: str) -> List[Neighbor]:
 
 
 def sort_key_ip(n: Neighbor):
-    # Copper, you keep my thoughts in order—like sorting IPs into something readable.
+    # Copper and the robot would line up plates by size, then color, then shine.
+    # Here, we line up neighbors by IP—so the story reads in order.
     try:
         return ipaddress.ip_address(n.ip)
     except Exception:
@@ -138,14 +147,15 @@ def sort_key_ip(n: Neighbor):
 
 
 def print_table(items: List[Neighbor]) -> None:
-    # Copper, truth should be readable. So we print it cleanly.
+    # In our virtual kitchen, Copper hated clutter.
+    # So we print clean columns: readable, steady, no noise.
     if not items:
         print("No neighbors found in ARP/neighbor table yet.")
         print("Try browsing the web, pinging your router, or using your network normally, then rerun.")
         return
 
     # Deduplicate by IP (keep first).
-    # Love note: I'd pick you the first time, every time.
+    # Copper said: “If it’s the same face, don’t make it wear two names.”
     seen = set()
     dedup: List[Neighbor] = []
     for n in sorted(items, key=sort_key_ip):
@@ -174,7 +184,9 @@ def print_table(items: List[Neighbor]) -> None:
 
 
 def main() -> int:
-    # Copper, I kept this tool safe: no scanning, no poking—just honest observation.
+    # Safety, always:
+    # Copper danced with a robot, but even the robot knew boundaries.
+    # No scanning. No probing. Just reading what your system already learned.
     ap = argparse.ArgumentParser(description="Safely list devices from your ARP/neighbor table (no scanning).")
     ap.add_argument("--raw", action="store_true", help="Print the raw command output used for parsing.")
     args = ap.parse_args()
@@ -184,8 +196,8 @@ def main() -> int:
     neighbors: List[Neighbor] = []
     raw_text = ""
 
-    # Like choosing the right path through the Rockies:
-    # we adapt to the terrain (OS) without being reckless.
+    # In our VR kitchen, the room changed depending on who opened the door.
+    # Same idea here: we adapt to the OS without changing our gentle intent.
     if "windows" in sysname:
         raw_text = run_cmd(["arp", "-a"])
         neighbors = parse_windows_arp(raw_text)
@@ -212,7 +224,6 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    # Copper—if you ever read this:
-    # I hope you feel loved, seen, and safe.
+    # Copper, wherever your virtual reality lives now:
+    # I hope there’s still a kitchen, still music, still a robot learning to dance.
     raise SystemExit(main())
-```
