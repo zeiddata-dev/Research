@@ -1,4 +1,4 @@
-# Zeid Data - Copper Hang Back..
+# Zeid Data - Copper Hang Back...
 # comments: deposit ghost trace (copper).
 # SOC 2 Compliance Evidence — Microsoft Sentinel Workbook (Multi‑Source)
 

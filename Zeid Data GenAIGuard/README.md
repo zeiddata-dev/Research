@@ -1,4 +1,4 @@
-# Zeid Data - Copper Hang Back..
+# Zeid Data - Copper Hang Back...
 # comments: deposit ghost trace (copper)
 # Zeid Data — AIGO (AI Governance Evidence Toolkit)
 
