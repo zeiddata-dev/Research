@@ -1,0 +1,227 @@
+{
+  "version": "Notebook/1.0",
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
+  "items": [
+    {
+      "type": 1,
+      "name": "header",
+      "content": {
+        "json": "# SOC 2 Correlation Investigator — Microsoft Sentinel (Multi‑Source)\n\nUse this workbook to **correlate identity, SaaS, cloud, endpoint, and network evidence** around a single pivot (UPN, IP, host, or CorrelationId).\n\n**Designed to pair with** the Zeid Data multi‑source SOC 2 evidence workbook you already have.\n\n---\n\n**Tip:** Start with a UPN or IP from an incident, then use the **Correlation Timeline** to build an audit‑ready narrative.\n"
+      }
+    },
+    {
+      "type": 9,
+      "name": "parameters",
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "style": "pills",
+        "parameters": [
+          {
+            "id": "18da9dc8-a992-4c4b-9477-c3d657af74c4",
+            "version": "KqlParameterItem/1.0",
+            "name": "TimeRange",
+            "type": 4,
+            "isRequired": true,
+            "label": "⏱️ Time Range",
+            "value": {
+              "durationMs": 2592000000
+            },
+            "typeSettings": {
+              "selectableValues": [
+                {
+                  "durationMs": 86400000
+                },
+                {
+                  "durationMs": 604800000
+                },
+                {
+                  "durationMs": 2592000000
+                },
+                {
+                  "durationMs": 7776000000
+                },
+                {
+                  "durationMs": 15552000000
+                }
+              ],
+              "allowCustom": true
+            }
+          },
+          {
+            "id": "2ebdf9cf-e8a5-454d-a9c1-b012074725f2",
+            "version": "KqlParameterItem/1.0",
+            "name": "selectedTab",
+            "type": 1,
+            "isRequired": true,
+            "label": "Section",
+            "value": "Correlate"
+          },
+          {
+            "id": "291836ae-e14a-4b1d-968e-b1edd4e10c08",
+            "version": "KqlParameterItem/1.0",
+            "name": "CorrelationKey",
+            "type": 1,
+            "isRequired": true,
+            "label": "🔎 Correlation key (UPN / IP / Host / CorrelationId)",
+            "value": ""
+          },
+          {
+            "id": "a150aa3c-5e2e-4d1d-872f-671725667daf",
+            "version": "KqlParameterItem/1.0",
+            "name": "CorrelationMode",
+            "type": 1,
+            "isRequired": true,
+            "label": "Mode",
+            "value": "Auto",
+            "typeSettings": {
+              "selectableValues": [
+                {
+                  "value": "Auto",
+                  "label": "Auto"
+                },
+                {
+                  "value": "User",
+                  "label": "User (UPN)"
+                },
+                {
+                  "value": "IP",
+                  "label": "IP"
+                },
+                {
+                  "value": "Host",
+                  "label": "Host"
+                },
+                {
+                  "value": "CorrelationId",
+                  "label": "CorrelationId"
+                }
+              ],
+              "allowCustom": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": 11,
+      "name": "tabs",
+      "content": {
+        "version": "LinkItem/1.0",
+        "style": "tabs",
+        "links": [
+          {
+            "id": "ca6557d3-09b1-42bf-86ef-a83605ea2ef2",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Correlate",
+            "subTarget": "Correlate",
+            "style": "link"
+          },
+          {
+            "id": "59624ee8-4b53-4b95-853d-96109e425fc2",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Breakdown",
+            "subTarget": "Breakdown",
+            "style": "link"
+          },
+          {
+            "id": "17fde785-2a3e-40f7-a27d-f3643ad8bdf4",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Export",
+            "subTarget": "Export",
+            "style": "link"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "correlate-text",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Correlate"
+      },
+      "content": {
+        "json": "## Correlation Timeline\n\nEnter a **Correlation key** (UPN / IP / host / CorrelationId).\n\n**Auto mode** guesses based on what you typed (e.g., `@` → UPN). If your environment stores fields differently, switch to an explicit mode.\n"
+      }
+    },
+    {
+      "type": 3,
+      "name": "correlation-timeline",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Correlate"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// Correlation timeline across common SOC 2 evidence sources\n// Works best when your tables align to the common names used in the multi-source workbook.\nlet key_raw = trim(' ', tostring('{CorrelationKey}'));\nlet key = tolower(key_raw);\nlet mode = tostring('{CorrelationMode}');\nlet matchUser = mode == 'User' or (mode == 'Auto' and key has '@');\nlet matchIP   = mode == 'IP'   or (mode == 'Auto' and key_raw contains '.' and key_raw !has '@');\nlet matchHost = mode == 'Host' or (mode == 'Auto' and key_raw !contains '.' and key_raw !has '@' and strlen(key_raw) >= 3);\nlet matchCorr = mode == 'CorrelationId';\nlet start = todatetime(startofday({TimeRange:start}));\nlet end   = todatetime(startofday({TimeRange:end}));\nlet _empty = isempty(key_raw);\nunion isfuzzy=true\n(\n  SigninLogs\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | where (matchUser and tolower(UserPrincipalName) == key)\n      or (matchIP and IPAddress == key_raw)\n      or (matchCorr and tostring(CorrelationId) == key_raw)\n  | project Time=TimeGenerated, System='EntraID', EvidenceType='SignIn',\n            Summary=strcat(AppDisplayName, ' — ', tostring(ResultDescription)),\n            Actor=UserPrincipalName, Entity=strcat(IPAddress, ' / ', tostring(DeviceDetail.displayName)),\n            IP=IPAddress, Correlation=tostring(CorrelationId)\n),\n(\n  AuditLogs\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend Actor=tostring(InitiatedBy.user.userPrincipalName)\n  | extend Target=tostring(TargetResources[0].displayName)\n  | extend TargetUPN=tostring(TargetResources[0].userPrincipalName)\n  | where (matchUser and (tolower(Actor)==key or tolower(TargetUPN)==key))\n      or (matchCorr and tostring(CorrelationId)==key_raw)\n  | project Time=TimeGenerated, System='EntraID', EvidenceType='Audit',\n            Summary=OperationName, Actor, Entity=Target,\n            IP=tostring(InitiatedBy.user.ipAddress), Correlation=tostring(CorrelationId)\n),\n(\n  OfficeActivity\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend Operation=tostring(column_ifexists('Operation',''))\n  | extend UserId=tostring(column_ifexists('UserId',''))\n  | extend ClientIP=tostring(column_ifexists('ClientIP',''))\n  | where (matchUser and tolower(UserId)==key)\n      or (matchIP and ClientIP==key_raw)\n  | project Time=TimeGenerated, System='M365', EvidenceType='Audit',\n            Summary=Operation, Actor=UserId,\n            Entity=strcat(tostring(column_ifexists('Workload','')), ' ', tostring(column_ifexists('ObjectId',''))),\n            IP=ClientIP, Correlation=tostring(column_ifexists('Id',''))\n),\n(\n  union isfuzzy=true OktaSystemLogs, Okta_CL\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend Actor=tostring(coalesce(column_ifexists('actor_alternateId',''), column_ifexists('actor_alternateId_s',''), column_ifexists('Actor_s','')))\n  | extend ClientIP=tostring(coalesce(column_ifexists('client_ip',''), column_ifexists('client_ip_s',''), column_ifexists('client_ipAddress_s','')))\n  | extend EventType=tostring(coalesce(column_ifexists('eventType',''), column_ifexists('eventType_s','')))\n  | extend Msg=tostring(coalesce(column_ifexists('displayMessage',''), column_ifexists('displayMessage_s','')))\n  | where (matchUser and tolower(Actor)==key)\n      or (matchIP and ClientIP==key_raw)\n  | project Time=TimeGenerated, System='Okta', EvidenceType='SystemLog',\n            Summary=strcat(EventType, ' — ', Msg),\n            Actor, Entity='', IP=ClientIP, Correlation=''\n),\n(\n  union isfuzzy=true AWSCloudTrail, AWSCloudTrail_CL\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend EventName=tostring(coalesce(column_ifexists('EventName',''), column_ifexists('eventName_s','')))\n  | extend UserArn=tostring(coalesce(column_ifexists('UserIdentityArn',''), column_ifexists('userIdentity_arn_s','')))\n  | extend SourceIP=tostring(coalesce(column_ifexists('SourceIPAddress',''), column_ifexists('sourceIPAddress_s','')))\n  | where (matchUser and tolower(UserArn) has key)\n      or (matchIP and SourceIP==key_raw)\n  | project Time=TimeGenerated, System='AWS', EvidenceType='CloudTrail',\n            Summary=EventName, Actor=UserArn, Entity='', IP=SourceIP, Correlation=''\n),\n(\n  union isfuzzy=true CrowdStrikeDetections, CrowdStrikeAlerts, CrowdStrikeIncidents\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend User=tostring(column_ifexists('UserName',''))\n  | extend Host=tostring(coalesce(column_ifexists('DeviceName',''), column_ifexists('Hostname','')))\n  | where (matchUser and tolower(User)==key)\n      or (matchHost and tolower(Host)==key)\n  | project Time=TimeGenerated, System='CrowdStrike', EvidenceType=tostring($table),\n            Summary=tostring(column_ifexists('Description','')),\n            Actor=User, Entity=Host, IP='', Correlation=tostring(column_ifexists('DetectionId',''))\n),\n(\n  CommonSecurityLog\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend SrcIP=tostring(SourceIP)\n  | extend DstIP=tostring(DestinationIP)\n  | extend SrcUser=tostring(SourceUserName)\n  | extend Host=tostring(DeviceName)\n  | where (matchIP and (SrcIP==key_raw or DstIP==key_raw))\n      or (matchUser and tolower(SrcUser)==key)\n      or (matchHost and tolower(Host)==key)\n  | project Time=TimeGenerated, System='Cisco', EvidenceType='CommonSecurityLog',\n            Summary=strcat(Activity,' / ',Action),\n            Actor=SrcUser, Entity=strcat(SrcIP,' → ',DstIP,':',tostring(DestinationPort)),\n            IP=SrcIP, Correlation=tostring(DeviceEventClassID)\n)\n| order by Time desc\n| take 2000\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 1,
+      "name": "breakdown-text",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Breakdown"
+      },
+      "content": {
+        "json": "## Breakdown\n\nQuick counts by source to validate coverage around your pivot.\n"
+      }
+    },
+    {
+      "type": 3,
+      "name": "breakdown-counts",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Breakdown"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\nlet key_raw = trim(' ', tostring('{CorrelationKey}'));\nlet key = tolower(key_raw);\nlet mode = tostring('{CorrelationMode}');\nlet matchUser = mode == 'User' or (mode == 'Auto' and key has '@');\nlet matchIP   = mode == 'IP'   or (mode == 'Auto' and key_raw contains '.' and key_raw !has '@');\nlet matchHost = mode == 'Host' or (mode == 'Auto' and key_raw !contains '.' and key_raw !has '@' and strlen(key_raw) >= 3);\nlet matchCorr = mode == 'CorrelationId';\nlet start = todatetime(startofday({TimeRange:start}));\nlet end   = todatetime(startofday({TimeRange:end}));\nlet _empty = isempty(key_raw);\nunion isfuzzy=true\n(\n  SigninLogs\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | where (matchUser and tolower(UserPrincipalName) == key) or (matchIP and IPAddress == key_raw) or (matchCorr and tostring(CorrelationId) == key_raw)\n  | project System='EntraID'\n),\n(\n  AuditLogs\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend Actor=tostring(InitiatedBy.user.userPrincipalName)\n  | extend TargetUPN=tostring(TargetResources[0].userPrincipalName)\n  | where (matchUser and (tolower(Actor)==key or tolower(TargetUPN)==key)) or (matchCorr and tostring(CorrelationId)==key_raw)\n  | project System='EntraID'\n),\n(\n  OfficeActivity\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend UserId=tostring(column_ifexists('UserId',''))\n  | extend ClientIP=tostring(column_ifexists('ClientIP',''))\n  | where (matchUser and tolower(UserId)==key) or (matchIP and ClientIP==key_raw)\n  | project System='M365'\n),\n(\n  union isfuzzy=true OktaSystemLogs, Okta_CL\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend Actor=tostring(coalesce(column_ifexists('actor_alternateId',''), column_ifexists('actor_alternateId_s','')))\n  | extend ClientIP=tostring(coalesce(column_ifexists('client_ip',''), column_ifexists('client_ip_s','')))\n  | where (matchUser and tolower(Actor)==key) or (matchIP and ClientIP==key_raw)\n  | project System='Okta'\n),\n(\n  union isfuzzy=true AWSCloudTrail, AWSCloudTrail_CL\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend UserArn=tostring(coalesce(column_ifexists('UserIdentityArn',''), column_ifexists('userIdentity_arn_s','')))\n  | extend SourceIP=tostring(coalesce(column_ifexists('SourceIPAddress',''), column_ifexists('sourceIPAddress_s','')))\n  | where (matchUser and tolower(UserArn) has key) or (matchIP and SourceIP==key_raw)\n  | project System='AWS'\n),\n(\n  union isfuzzy=true CrowdStrikeDetections, CrowdStrikeAlerts, CrowdStrikeIncidents\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend User=tostring(column_ifexists('UserName',''))\n  | extend Host=tostring(coalesce(column_ifexists('DeviceName',''), column_ifexists('Hostname','')))\n  | where (matchUser and tolower(User)==key) or (matchHost and tolower(Host)==key)\n  | project System='CrowdStrike'\n),\n(\n  CommonSecurityLog\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend SrcIP=tostring(SourceIP)\n  | extend DstIP=tostring(DestinationIP)\n  | extend SrcUser=tostring(SourceUserName)\n  | extend Host=tostring(DeviceName)\n  | where (matchIP and (SrcIP==key_raw or DstIP==key_raw)) or (matchUser and tolower(SrcUser)==key) or (matchHost and tolower(Host)==key)\n  | project System='Cisco'\n)\n| summarize Events=count() by System\n| order by Events desc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 1,
+      "name": "export-text",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Export"
+      },
+      "content": {
+        "json": "## Export\n\nThis table is designed for **CSV export** as part of an audit packet: a normalized timeline with Source, Summary, Actor, IP, and Correlation fields.\n"
+      }
+    },
+    {
+      "type": 3,
+      "name": "export-table",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Export"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\nlet key_raw = trim(' ', tostring('{CorrelationKey}'));\nlet key = tolower(key_raw);\nlet mode = tostring('{CorrelationMode}');\nlet matchUser = mode == 'User' or (mode == 'Auto' and key has '@');\nlet matchIP   = mode == 'IP'   or (mode == 'Auto' and key_raw contains '.' and key_raw !has '@');\nlet matchHost = mode == 'Host' or (mode == 'Auto' and key_raw !contains '.' and key_raw !has '@' and strlen(key_raw) >= 3);\nlet matchCorr = mode == 'CorrelationId';\nlet start = todatetime(startofday({TimeRange:start}));\nlet end   = todatetime(startofday({TimeRange:end}));\nlet _empty = isempty(key_raw);\nunion isfuzzy=true\n(\n  SigninLogs\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | where (matchUser and tolower(UserPrincipalName) == key) or (matchIP and IPAddress == key_raw) or (matchCorr and tostring(CorrelationId) == key_raw)\n  | project Time=TimeGenerated, Source='EntraID', Type='SignIn', Summary=strcat(AppDisplayName,' — ',tostring(ResultDescription)), Actor=UserPrincipalName, IP=IPAddress, Entity=tostring(DeviceDetail.displayName), Correlation=tostring(CorrelationId)\n),\n(\n  AuditLogs\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend Actor=tostring(InitiatedBy.user.userPrincipalName)\n  | extend Target=tostring(TargetResources[0].displayName)\n  | extend TargetUPN=tostring(TargetResources[0].userPrincipalName)\n  | where (matchUser and (tolower(Actor)==key or tolower(TargetUPN)==key)) or (matchCorr and tostring(CorrelationId)==key_raw)\n  | project Time=TimeGenerated, Source='EntraID', Type='Audit', Summary=OperationName, Actor, IP=tostring(InitiatedBy.user.ipAddress), Entity=Target, Correlation=tostring(CorrelationId)\n),\n(\n  OfficeActivity\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend Operation=tostring(column_ifexists('Operation',''))\n  | extend UserId=tostring(column_ifexists('UserId',''))\n  | extend ClientIP=tostring(column_ifexists('ClientIP',''))\n  | where (matchUser and tolower(UserId)==key) or (matchIP and ClientIP==key_raw)\n  | project Time=TimeGenerated, Source='M365', Type='Audit', Summary=Operation, Actor=UserId, IP=ClientIP, Entity=strcat(tostring(column_ifexists('Workload','')),' ',tostring(column_ifexists('ObjectId',''))), Correlation=tostring(column_ifexists('Id',''))\n),\n(\n  union isfuzzy=true OktaSystemLogs, Okta_CL\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend Actor=tostring(coalesce(column_ifexists('actor_alternateId',''), column_ifexists('actor_alternateId_s','')))\n  | extend ClientIP=tostring(coalesce(column_ifexists('client_ip',''), column_ifexists('client_ip_s','')))\n  | extend EventType=tostring(coalesce(column_ifexists('eventType',''), column_ifexists('eventType_s','')))\n  | extend Msg=tostring(coalesce(column_ifexists('displayMessage',''), column_ifexists('displayMessage_s','')))\n  | where (matchUser and tolower(Actor)==key) or (matchIP and ClientIP==key_raw)\n  | project Time=TimeGenerated, Source='Okta', Type='SystemLog', Summary=strcat(EventType,' — ',Msg), Actor, IP=ClientIP, Entity='', Correlation=''\n),\n(\n  union isfuzzy=true AWSCloudTrail, AWSCloudTrail_CL\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend EventName=tostring(coalesce(column_ifexists('EventName',''), column_ifexists('eventName_s','')))\n  | extend UserArn=tostring(coalesce(column_ifexists('UserIdentityArn',''), column_ifexists('userIdentity_arn_s','')))\n  | extend SourceIP=tostring(coalesce(column_ifexists('SourceIPAddress',''), column_ifexists('sourceIPAddress_s','')))\n  | where (matchUser and tolower(UserArn) has key) or (matchIP and SourceIP==key_raw)\n  | project Time=TimeGenerated, Source='AWS', Type='CloudTrail', Summary=EventName, Actor=UserArn, IP=SourceIP, Entity='', Correlation=''\n),\n(\n  union isfuzzy=true CrowdStrikeDetections, CrowdStrikeAlerts, CrowdStrikeIncidents\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend User=tostring(column_ifexists('UserName',''))\n  | extend Host=tostring(coalesce(column_ifexists('DeviceName',''), column_ifexists('Hostname','')))\n  | where (matchUser and tolower(User)==key) or (matchHost and tolower(Host)==key)\n  | project Time=TimeGenerated, Source='CrowdStrike', Type=tostring($table), Summary=tostring(column_ifexists('Description','')), Actor=User, IP='', Entity=Host, Correlation=tostring(column_ifexists('DetectionId',''))\n),\n(\n  CommonSecurityLog\n  | where not(_empty)\n  | where TimeGenerated between (start .. end)\n  | extend SrcIP=tostring(SourceIP)\n  | extend DstIP=tostring(DestinationIP)\n  | extend SrcUser=tostring(SourceUserName)\n  | extend Host=tostring(DeviceName)\n  | where (matchIP and (SrcIP==key_raw or DstIP==key_raw)) or (matchUser and tolower(SrcUser)==key) or (matchHost and tolower(Host)==key)\n  | project Time=TimeGenerated, Source='Cisco', Type='CommonSecurityLog', Summary=strcat(Activity,' / ',Action), Actor=SrcUser, IP=SrcIP, Entity=strcat(SrcIP,' → ',DstIP,':',tostring(DestinationPort)), Correlation=tostring(DeviceEventClassID)\n)\n| order by Time desc\n| take 5000\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    }
+  ]
+}
