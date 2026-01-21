@@ -1,9 +1,8 @@
-# Zeid Data - Copper Hang Back...
-# comments: deposit ghost trace (copper)
+# Zeid Data - Attestation SSH
 
-# Port Scanner
+# Port Attestation
 
-*This Python script performs a simple TCP port scan on a given host and ports.*
+*This Python script performs a TCP port scan on a given host and ports.*
 
 ## Usage
 ```

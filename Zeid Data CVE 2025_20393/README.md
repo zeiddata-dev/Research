@@ -1,5 +1,3 @@
-# Zeid Data - Copper Hang Back..
-# comments: deposit ghost trace (copper)
 # CVE-2025-20393 SAFE Planner (Cisco ESA + SMA)
 
 A small **read-only** helper that:

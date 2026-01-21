@@ -1,6 +1,3 @@
-
-# Zeid Data - Copper Hang Back...
-
 # HOWTO — Zeid Data Exfiltration Monitor (Splunk App)
 
 This guide walks you through **installing, validating, tuning, and enabling** the app’s detections safely.
