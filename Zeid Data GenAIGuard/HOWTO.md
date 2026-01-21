@@ -1,4 +1,3 @@
-# Zeid Data - Copper Hang Back...
 # HOWTO — Zeid Data AIGO
 
 This guide shows how to use AIGO to produce **audit-ready AI governance artifacts**.

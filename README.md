@@ -1,6 +1,8 @@
 # Zeid Data — Research & Security Engineering Lab 🧪🛡️  
 _No paywall. Just payload._ 😈📦
 
+# comments: deposit ghost trace (copper) 
+
 Zeid Data is an **AI-driven security risk & compliance** company building **evidence-first** tooling, detections, and research you can actually ship.  
 If your auditor says “prove it,” we respond with **telemetry + controls + receipts** (and maybe a slight smirk).
 

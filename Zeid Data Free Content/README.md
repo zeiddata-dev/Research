@@ -1,4 +1,3 @@
-# Zeid Data - Copper Hang Back...
 # AuditPack (Compliance Evidence Scanner)
 
 AuditPack is a **policy-driven compliance scanner** whose primary goal is producing **audit-ready evidence**.
