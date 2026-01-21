@@ -1,4 +1,3 @@
-# Zeid Data - Copper Hang Back..
 # comments: deposit ghost trace (copper)
 # Zeid Data - Research and Detection Engineering
 ## Security Policy
