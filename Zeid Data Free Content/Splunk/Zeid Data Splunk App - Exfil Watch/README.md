@@ -1,5 +1,4 @@
 
-# Zeid Data - Copper Hang Back...
 # Zeid Data | Exfiltration Monitor (Splunk App Skeleton)
 
 A lightweight Splunk app skeleton to help you **detect and triage data exfiltration signals** using:

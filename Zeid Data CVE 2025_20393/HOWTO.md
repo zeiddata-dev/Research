@@ -1,4 +1,3 @@
-# Zeid Data - Copper Hang Back...
 # HOWTO — CVE-2025-20393 SAFE Assessment + Patch Planning
 
 This guide assumes you want **low-risk** steps:
