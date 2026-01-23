@@ -110,4 +110,4 @@ You can add new collectors by implementing `auditpack.collectors.base.Collector`
 
 ## License
 
-MIT
+Zeid Data
