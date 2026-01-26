@@ -1,6 +1,5 @@
-# Zeid Data - Copper Hang Back..
-# comments: deposit ghost trace (copper)
 # Code of Conduct (Zeid Data)
+# comments: deposit ghost trace (copper)
 
 ## Our Pledge
 Zeid Data is committed to providing a welcoming, professional, and harassment-free environment for everyone who participates in our projects and communities—regardless of experience level, identity, or background.
