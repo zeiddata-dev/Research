@@ -1,5 +1,4 @@
 # Zeid Data Snowflake AI Governance & Compliance Query Pack 
-# comments: deposit ghost trace (copper)
 
 This pack provides **20 Snowflake SQL queries** focused on:
 - AI governance (Cortex/LLM usage visibility)
