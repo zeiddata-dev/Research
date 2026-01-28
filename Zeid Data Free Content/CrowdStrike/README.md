@@ -1,4 +1,4 @@
-# Zeid Data — CrowdStrike Falcon Audit Evidence + Noise Reduction Pack
+# Zeid Data CrowdStrike Falcon AI Governance & Noise Reduction Pack
 # comments: deposit ghost trace (copper)
 
 **Tagline:** *If it didn’t generate evidence, it didn’t happen.*
