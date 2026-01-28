@@ -1,4 +1,4 @@
-# HOWTO — Implement Zeid Data AI Governance & Noise Reduction Pack in Falcon
+# HOWTO — Implement Zeid Data AI Governance & Noise Reduction Pack in CrowdStrike Falcon
 
 This guide maps to the 4 deliverables shipped in this pack.
 
