@@ -1,0 +1,12 @@
+$schema: https://schemas.humio.com/manifest/v2.0.0
+name: zeiddata/cs-ai-governance
+version: 0.1.0
+type: library
+description: |
+  CrowdStrike AI Governance dashboards + saved searches for Falcon LogScale (Next-Gen SIEM).
+  Includes lookup-driven AI domain/app allowlisting, usage visibility, and audit-friendly evidence queries.
+author:
+  name: Zeid Data
+  email: support@zeiddata.com
+licenseUrl: https://www.apache.org/licenses/LICENSE-2.0
+minHumioVersion: 1.208.0
