@@ -1,5 +1,4 @@
 # HOWTO: Run, Export, and Operationalize
-# comments: deposit ghost trace (copper)
 
 ## Run (Snowsight)
 ```sql
