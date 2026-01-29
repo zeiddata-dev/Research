@@ -1,4 +1,4 @@
-# Zeid Data — CrowdStrike AI Governance Dashboards (Falcon LogScale)
+# Zeid Data — CrowdStrike Falcon AI Governance Visibility
 
 **Tagline:** _If it didn’t generate evidence, it didn’t happen._
 
