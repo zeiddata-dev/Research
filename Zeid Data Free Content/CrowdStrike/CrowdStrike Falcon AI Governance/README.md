@@ -89,4 +89,5 @@ If your data uses different field names, open any dashboard template and update 
 
 ## License
 
+Zeid Data (see `LICENSE`).
 Apache 2.0 (see `LICENSE`).
