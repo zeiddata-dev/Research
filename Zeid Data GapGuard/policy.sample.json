@@ -1,0 +1,44 @@
+{
+  "policy_name": "AirGap Compliance Baseline (Sample)",
+  "allow_default_gateway": false,
+  "allowed_dns": [
+    "10.0.0.53",
+    "10.0.0.54"
+  ],
+  "disallowed_interface_patterns": [
+    "wlan",
+    "wi-fi",
+    "wifi",
+    "wireless",
+    "bluetooth",
+    "bth",
+    "wwan"
+  ],
+  "connectivity_test": {
+    "enabled": true,
+    "timeout_seconds": 2,
+    "targets": [
+      {
+        "host": "1.1.1.1",
+        "port": 443,
+        "label": "Cloudflare"
+      },
+      {
+        "host": "8.8.8.8",
+        "port": 443,
+        "label": "Google"
+      },
+      {
+        "host": "9.9.9.9",
+        "port": 443,
+        "label": "Quad9"
+      }
+    ]
+  },
+  "subnet_scan": {
+    "enabled": false,
+    "max_prefixlen": 24,
+    "ping_timeout_ms": 500,
+    "concurrency": 64
+  }
+}
