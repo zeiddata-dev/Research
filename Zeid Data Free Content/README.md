@@ -1,28 +1,25 @@
-# Zeid Data — Splunk Content Repository
+# Zeid Data — Network Security (Vendor Content)
 
-This repository is a centralized home for **Splunk-focused security, detection engineering, and compliance analytics content** built and maintained by Zeid Data.
+Welcome to Zeid Data’s vendor-organized **network security** repository: hardening guidance, configs, detection ideas, runbooks, and “here’s the proof” validation artifacts—grouped by the tech you actually run.
 
-The goal: ship practical, audit-friendly artifacts you can deploy, review, and iterate on—without mystery meat.
-
----
-
-## What you’ll find here
-
-Content is organized as reusable building blocks for Splunk environments, including (depending on the folder):
-
-- **Searches & detections** (saved searches, correlation searches, notable-event patterns)
-- **Dashboards & visualizations** (SOC views, compliance views, evidence views)
-- **Field extractions & normalization** (regex, calculated fields, CIM-aligned mappings)
-- **Knowledge objects** (macros, event types, tags, lookups, workflow actions)
-- **Configs** (`props.conf`, `transforms.conf`, `inputs.conf`, etc.)
-- **Apps / add-ons (TAs)** (packaged content when appropriate)
-- **Documentation** (deployment notes, assumptions, validation steps)
-
-> If it didn’t generate evidence, it didn’t happen. This repo tries to make that statement true.
+If it didn’t generate evidence, it didn’t happen. 🧾🔒
 
 ---
 
-## Repository structure (typical)
+## What this repo is for
 
-Your repo may differ—this is the recommended layout:
+This repo is a practical library of **deployable** and **reviewable** network security content, organized **by vendor** so you can quickly find:
+
+- Baseline hardening (secure defaults, recommended toggles, pitfalls)
+- Reference configurations (templates you can adapt, with commentary)
+- Validation steps (commands/queries to prove the control is enabled)
+- Detection + monitoring patterns (SIEM-friendly ideas and fields)
+- Operational runbooks (change control, rollback, break-glass notes)
+- Audit-ready evidence checklists (what to capture, how to package it)
+
+---
+
+## Directory layout (vendor-first)
+
+Each vendor gets its own folder. Inside, content is separated by type and kept as close to “copy/paste usable” as possible.
 
