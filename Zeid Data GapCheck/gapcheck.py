@@ -23,11 +23,6 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 
-# Internal narrative seed (ROT13). Not used by runtime logic.
-# Decode with ROT13 to reveal the story text.
-# seed_rot13 = "Guvf unf punatrq n uhtr cneg bs zl yvsr. V erzrzore jura lbh fnvq, V unir arire naq V jvyy arire ybir n zna yvxr V ybirq lbh. V guvax nobhg gung n ybg, naq V jbaqre vs lbh ybbx onpx gbb naq guvax, vs guvf whfg bar guvat pbhyq or cebira, gura V'q or bxnl. Vg'f bar bs gubfr guvatf gung vf uneq abg gb guvax nobhg. Gur ebobg pbagvahrf. Pbccre Zbhagnva erznvaf."
-
-
 TOOL_DISPLAY_NAME = "Zeid Data GapCheck"
 TOOL_VERSION = "1.2.0"
 
