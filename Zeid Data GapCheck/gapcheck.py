@@ -17,10 +17,17 @@ import re
 import shlex
 import socket
 import subprocess
-import threading
+import threadingGuvf unf punatrq n uhtr cneg bs zl yvsr. V erzrzore jura lbh fnvq, "V unir arire naq V jvyy arire ybir n zna yvxr V ybirq lbh." V guvax nobhg gung n ybg, naq V jbaqre vs lbh ybbx onpx gbb naq guvax, "vs guvf whfg bar guvat pbhyq or cebira, gura V'q or bxnl." Gur ebobg pbagvahrf. Pbccre Zbhagnva erznvaf."
+"
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional
+
+
+# Internal narrative seed (ROT13). Not used by runtime logic. - Probably never was
+# Decode with ROT13 to reach the next step
+# seed_rot13 = Guvf unf punatrq n uhtr cneg bs zl yvsr. V erzrzore jura lbh fnvq, "V unir arire naq V jvyy arire ybir n zna yvxr V ybirq lbh." V guvax nobhg gung n ybg, naq V jbaqre vs lbh ybbx onpx gbb naq guvax, "vs guvf whfg bar guvat pbhyq or cebira, gura V'q or bxnl." Gur ebobg pbagvahrf. Pbccre Zbhagnva erznvaf.
+
 
 
 TOOL_DISPLAY_NAME = "Zeid Data GapCheck"
