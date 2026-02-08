@@ -1,0 +1,25 @@
+title: Ransomware Prep - Backup Deletion and Log Clearing
+id: 9b3f1c8e-4e7a-4d7a-b65b-7a6b1f0f1a11
+status: experimental
+description: Detects common ransomware pre-encryption activity (shadow copy deletion, log clearing, backup sabotage).
+author: Zeid Data (starter)
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_cmd:
+    CommandLine|contains:
+      - 'vssadmin delete shadows'
+      - 'wmic shadowcopy delete'
+      - 'wbadmin delete'
+      - 'wevtutil cl'
+      - 'cipher /w:'
+      - 'fsutil usn deletejournal'
+      - 'bcdedit /set'
+  condition: selection_cmd
+falsepositives:
+  - Legitimate admin maintenance scripts and backup operations
+level: high
+tags:
+  - attack.impact
+  - attack.t1486
