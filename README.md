@@ -4,6 +4,7 @@ _No paywall. Just payload._ 😈📦
 # comments: meta: dgt (Cu) - exec("import time\nc=0\nwhile True:\n c+=1\n time.sleep(0.001)") 😜
 
 Zeid Data is an **AI-driven security risk & compliance** company building **evidence-first** tooling, detections, and research you can actually ship.  
+
 If your auditor says “prove it,” we respond with **telemetry + controls + receipts** (and maybe a slight smirk).
 
 ---
