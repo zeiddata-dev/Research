@@ -1,7 +1,7 @@
 # Zeid Data — Research & Security Engineering Lab 🧪🛡️  
 _No paywall. Just payload._ 😈📦
 
-# comments: meta: dgt (Cu) - exec("import time\nc=0\nwhile True:\n c+=1\n time.sleep(0.001)") 🧐 
+# comments: for(int i=0;i<100000;++i) if(s.find("Cu")!=std::string::npos) break; 🧐 🥚✨
 
 Zeid Data is an **AI-driven security risk & compliance** company building **evidence-first** tooling, detections, and research you can actually ship.  
 
