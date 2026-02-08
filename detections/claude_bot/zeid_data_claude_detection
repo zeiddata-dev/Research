@@ -1,0 +1,518 @@
+#!/usr/bin/env python3
+# Zeid Data Labs + Research
+# Multi-Vendor Claude (Anthropic) Detection Pack Builder
+#
+# Purpose
+# - Generate vendor-ready detection artifacts for identifying Claude usage via:
+#   - DNS queries (qname)
+#   - TLS SNI (server name indication)
+#   - HTTP Host / URL host (where available)
+#   - API path /v1/messages (proxy logs, http logs)
+#
+# Notes
+# - This is defensive detection engineering for egress governance and audit evidence.
+# - Templates intentionally avoid vendor tenant specifics; map fields and indexes in your environment.
+# - Indicators are domain-based and should be maintained as vendors change infrastructure.
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import textwrap
+from dataclasses import dataclass, asdict
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict, List, Optional, Sequence, Tuple
+
+
+@dataclass(frozen=True)
+class PackConfig:
+    pack_name: str = "claude-bot"
+    pack_title: str = "Claude Bot Detection Pack"
+    org_label: str = "Zeid Data Labs + Research"
+    version: str = "0.1.0"
+    build_time_utc: str = ""
+    indicator_confidence: str = "high"
+    domains: Tuple[str, ...] = (
+        # High-confidence endpoints and properties
+        "api.anthropic.com",
+        "console.anthropic.com",
+        "www.anthropic.com",
+        "anthropic.com",
+        "platform.claude.com",
+        "code.claude.com",
+        "claude.ai",
+        "www.claude.ai",
+    )
+    # Optional, broader suffix matches (can increase false positives)
+    suffixes_optional: Tuple[str, ...] = (
+        ".anthropic.com",
+        ".claude.ai",
+        ".claude.com",
+    )
+    api_paths: Tuple[str, ...] = (
+        "/v1/messages",
+    )
+
+
+def utc_now_iso() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def ensure_dir(p: Path) -> None:
+    p.mkdir(parents=True, exist_ok=True)
+
+
+def write_text(p: Path, content: str) -> None:
+    ensure_dir(p.parent)
+    p.write_text(content, encoding="utf-8")
+
+
+def write_json(p: Path, obj: object) -> None:
+    ensure_dir(p.parent)
+    p.write_text(json.dumps(obj, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def normalize_domain(d: str) -> str:
+    d = d.strip().lower().rstrip(".")
+    if not d:
+        raise ValueError("Empty domain")
+    if "://" in d:
+        d = re.sub(r"^https?://", "", d)
+    d = d.split("/")[0]
+    return d
+
+
+def load_overrides(path: Optional[str]) -> Dict[str, object]:
+    if not path:
+        return {}
+    p = Path(path)
+    data = json.loads(p.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError("Override file must be a JSON object")
+    return data
+
+
+def build_config(overrides: Dict[str, object]) -> PackConfig:
+    base = PackConfig(build_time_utc=utc_now_iso())
+    d = asdict(base)
+
+    for k, v in overrides.items():
+        if k not in d:
+            raise ValueError(f"Unknown override key: {k}")
+        d[k] = v
+
+    d["domains"] = tuple(normalize_domain(x) for x in d["domains"])
+    d["suffixes_optional"] = tuple(str(x).strip().lower() for x in d["suffixes_optional"])
+    d["api_paths"] = tuple(str(x).strip() for x in d["api_paths"])
+
+    return PackConfig(**d)  # type: ignore[arg-type]
+
+
+def domain_or_list(domains: Sequence[str]) -> str:
+    return " OR ".join([f'"{d}"' for d in domains])
+
+
+def build_readme(cfg: PackConfig) -> str:
+    return textwrap.dedent(f"""\
+    # {cfg.pack_title}
+
+    Label: {cfg.org_label}
+    Pack: {cfg.pack_name}
+    Version: {cfg.version}
+    Built: {cfg.build_time_utc}
+
+    This pack detects Claude usage by matching known Claude and Anthropic endpoints in:
+    - DNS query logs (qname)
+    - TLS SNI fields (server name)
+    - HTTP host and URL host fields (proxy / web gateway logs)
+    - API path markers (when URL paths are logged)
+
+    Indicators
+    - High-confidence domains are stored in indicators/domains.txt
+    - Optional suffix matches are stored in indicators/suffixes_optional.txt
+    - API paths are stored in indicators/api_paths.txt
+
+    Output folders
+    - splunk/          SPL templates
+    - sentinel/        KQL templates
+    - crowdstrike/     Falcon Event Search templates (DNSRequest lineage-ready)
+    - suricata/        Suricata TLS SNI rules
+    - zeek/            Zeek notice policy (SSL and DNS)
+    - cisco/           Destination list for DNS controls / Secure DNS
+    - generic/         Vendor-neutral match logic and reference lists
+
+    Operational guidance
+    - Start with DNS + TLS SNI correlation. It is the most reliable signal for SaaS egress.
+    - Treat suffix-based matching as optional. It may increase false positives in shared environments.
+    - Prefer behavior-first correlation in production: user + host + process (when available) + egress destination.
+
+    Safety and governance
+    - Use for egress governance, audit evidence, and policy enforcement.
+    - Do not collect sensitive content. Only collect metadata required for detection and compliance.
+
+    """)
+
+
+def build_indicator_files(cfg: PackConfig) -> Dict[str, str]:
+    domains_txt = "\n".join(sorted(set(cfg.domains))) + "\n"
+    suffixes_txt = "\n".join(sorted(set(cfg.suffixes_optional))) + "\n"
+    paths_txt = "\n".join(sorted(set(cfg.api_paths))) + "\n"
+
+    indicator_json = {
+        "label": cfg.org_label,
+        "pack": cfg.pack_name,
+        "version": cfg.version,
+        "built": cfg.build_time_utc,
+        "confidence": cfg.indicator_confidence,
+        "domains": sorted(set(cfg.domains)),
+        "suffixes_optional": sorted(set(cfg.suffixes_optional)),
+        "api_paths": sorted(set(cfg.api_paths)),
+    }
+
+    return {
+        "indicators/domains.txt": domains_txt,
+        "indicators/suffixes_optional.txt": suffixes_txt,
+        "indicators/api_paths.txt": paths_txt,
+        "indicators/indicators.json": json.dumps(indicator_json, indent=2, sort_keys=True) + "\n",
+    }
+
+
+def build_splunk(cfg: PackConfig) -> str:
+    # Vendor-neutral SPL template with common field names and fallbacks.
+    # You should map your environment fields: dns_query, query, qname, dest_host, tls_sni, http_host, url, uri_path.
+    domains = sorted(set(cfg.domains))
+    suffixes = sorted(set(cfg.suffixes_optional))
+    api_paths = sorted(set(cfg.api_paths))
+
+    domain_match = " OR ".join([f'like(lower(dest), "%{d}%")' for d in domains])
+    suffix_match = " OR ".join([f'like(lower(dest), "%{s}")' for s in suffixes])
+    path_match = " OR ".join([f'like(lower(url_path), "%{p}%")' for p in api_paths])
+
+    return textwrap.dedent(f"""\
+    # {cfg.org_label}
+    # {cfg.pack_title} (Splunk SPL)
+    # Version {cfg.version} | Built {cfg.build_time_utc}
+    #
+    # Field mapping assumptions (adjust to your environment)
+    # - DNS: dns_query OR query OR qname
+    # - TLS: tls_sni OR sni OR server_name
+    # - HTTP: http_host OR host OR dest_host, plus url / uri / uri_path if available
+    #
+    # Output: destination, evidence_type, src, user, device, process, timestamps
+
+    | eval dns_q=coalesce(dns_query, query, qname)
+    | eval tls_sni_f=coalesce(tls_sni, sni, server_name)
+    | eval http_host_f=coalesce(http_host, host, dest_host, dest)
+    | eval url_f=coalesce(url, uri, request, http_request)
+    | eval url_path=lower(coalesce(uri_path, path, url_path))
+    | eval dest=lower(coalesce(dns_q, tls_sni_f, http_host_f))
+    | where isnotnull(dest)
+    | eval match_high=case(
+        {domain_match}, 1,
+        1==0, 0
+      )
+    | eval match_suffix_optional=case(
+        {suffix_match}, 1,
+        1==0, 0
+      )
+    | eval match_api_path=case(
+        {path_match}, 1,
+        1==0, 0
+      )
+    | where match_high=1 OR (match_suffix_optional=1 AND match_api_path=1)
+    | eval evidence_type=case(
+        isnotnull(dns_q), "dns",
+        isnotnull(tls_sni_f), "tls_sni",
+        isnotnull(http_host_f), "http_host",
+        1==1, "unknown"
+      )
+    | eval confidence=case(
+        match_high=1, "high",
+        match_suffix_optional=1 AND match_api_path=1, "medium",
+        1==1, "low"
+      )
+    | table _time evidence_type confidence dest src_ip dest_ip dest_port user host process_name process_path url_f url_path
+    | sort 0 - _time
+    """)
+
+
+def build_sentinel_kql(cfg: PackConfig) -> str:
+    domains = sorted(set(cfg.domains))
+    suffixes = sorted(set(cfg.suffixes_optional))
+    api_paths = sorted(set(cfg.api_paths))
+
+    domains_dyn = json.dumps(domains)
+    suffixes_dyn = json.dumps(suffixes)
+    paths_dyn = json.dumps(api_paths)
+
+    return textwrap.dedent(f"""\
+    // {cfg.org_label}
+    // {cfg.pack_title} (Microsoft Sentinel KQL)
+    // Version {cfg.version} | Built {cfg.build_time_utc}
+    //
+    // This template targets common Defender / Sentinel tables.
+    // Adjust tables and fields for your environment (DNS, proxy, firewall, endpoint).
+    //
+    // High confidence: domain in list
+    // Medium: suffix match AND api path marker (if URL path is present)
+
+    let ClaudeDomains = dynamic({domains_dyn});
+    let ClaudeSuffixesOptional = dynamic({suffixes_dyn});
+    let ClaudeApiPaths = dynamic({paths_dyn});
+
+    // DNS signal
+    let DNSHits = (
+        DnsEvents
+        | where Name has_any (ClaudeDomains) or Name endswith_any (ClaudeSuffixesOptional)
+        | project TimeGenerated, Evidence="dns", Destination=Name, SrcIp=ClientIP, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine
+    );
+
+    // Network signal (endpoint network telemetry)
+    let NetHits = (
+        DeviceNetworkEvents
+        | extend DestHost = tostring(RemoteUrl)
+        | extend UrlPath = tostring(parse_url(RemoteUrl).Path)
+        | extend DestHostLower = tolower(DestHost)
+        | where DestHostLower has_any (ClaudeDomains)
+            or (DestHostLower endswith_any (ClaudeSuffixesOptional) and UrlPath has_any (ClaudeApiPaths))
+        | project TimeGenerated, Evidence="device_network", Destination=DestHost, UrlPath, RemoteIP, RemotePort, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, AccountName
+    );
+
+    union DNSHits, NetHits
+    | extend Confidence = case(
+        Destination has_any (ClaudeDomains), "high",
+        Destination endswith_any (ClaudeSuffixesOptional), "medium",
+        "low"
+    )
+    | sort by TimeGenerated desc
+    """)
+
+
+def build_crowdstrike_event_search(cfg: PackConfig) -> str:
+    # CrowdStrike Falcon Event Search style (CSQL/CS query patterns)
+    # Uses DNSRequest with DomainName and optional process lineage join.
+    domains = sorted(set(cfg.domains))
+    clause = " OR ".join([f'DomainName="{d}"' for d in domains])
+
+    return textwrap.dedent(f"""\
+    # {cfg.org_label}
+    # {cfg.pack_title} (CrowdStrike Falcon Event Search template)
+    # Version {cfg.version} | Built {cfg.build_time_utc}
+    #
+    # Primary signal: DnsRequest events where DomainName matches known Claude/Anthropic endpoints.
+    # Optional enrichment: join ContextProcessId to ProcessRollup2 for parent/child lineage and command line.
+
+    event_simpleName=DnsRequest
+    | search ({clause})
+    | rename ContextProcessId as TargetProcessId
+    | join TargetProcessId [
+        search event_simpleName=ProcessRollup2
+        | fields TargetProcessId, ImageFileName, CommandLine, ParentBaseFileName, UserName
+      ]
+    | table timestamp, aid, ComputerName, UserName, ImageFileName, CommandLine, DomainName, ParentBaseFileName
+    | sort - timestamp
+    """)
+
+
+def build_suricata(cfg: PackConfig) -> str:
+    # TLS SNI matches for outbound traffic. Intended as alerting, not blocking.
+    # Note: requires Suricata TLS parser and visibility into SNI.
+    domains = sorted(set(cfg.domains))
+    rules = []
+    sid_base = 9900000
+    rev = 1
+
+    for i, d in enumerate(domains, start=1):
+        sid = sid_base + i
+        msg = f'{cfg.org_label} {cfg.pack_name} TLS SNI match: {d}'
+        # endswith is available in Suricata for tls.sni in many builds; keep generic with content + endswith.
+        rules.append(
+            f'alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"{msg}"; '
+            f'tls.sni; content:"{d}"; nocase; endswith; '
+            f'metadata:service tls, policy security-ips alert; '
+            f'sid:{sid}; rev:{rev};)'
+        )
+
+    header = textwrap.dedent(f"""\
+    # {cfg.org_label}
+    # {cfg.pack_title} (Suricata TLS SNI rules)
+    # Version {cfg.version} | Built {cfg.build_time_utc}
+    #
+    # Requirements
+    # - Suricata with TLS inspection capable of extracting SNI (no decryption required)
+    # - Appropriate HOME_NET / EXTERNAL_NET configuration
+    #
+    # Notes
+    # - SNI can be absent in some cases (ESNI/ECH, QUIC), treat as partial coverage
+    #
+    """)
+    return header + "\n".join(rules) + "\n"
+
+
+def build_zeek(cfg: PackConfig) -> str:
+    # Zeek policy that raises notices on SSL SNI and DNS queries.
+    # Requires Zeek ssl.log and dns.log.
+    domains = sorted(set(cfg.domains))
+    domains_set = ", ".join([f'"{d}"' for d in domains])
+
+    return textwrap.dedent(f"""\
+    # {cfg.org_label}
+    # {cfg.pack_title} (Zeek policy)
+    # Version {cfg.version} | Built {cfg.build_time_utc}
+
+    @load base/frameworks/notice
+
+    module ZeidDataClaudeDetect;
+
+    export {{
+        redef enum Notice::Type += {{
+            Claude_DNS_Query,
+            Claude_TLS_SNI
+        }};
+    }}
+
+    const claude_domains: set[string] = {{
+        {domains_set}
+    }};
+
+    function is_match(d: string): bool {{
+        if ( d == "" ) return F;
+        d = to_lower(d);
+        if ( d in claude_domains ) return T;
+        # Optional suffix matching can be added if desired:
+        # if ( /\\.anthropic\\.com$/ in d ) return T;
+        # if ( /\\.claude\\.ai$/ in d ) return T;
+        return F;
+    }}
+
+    event dns_request(c: connection, msg: dns_msg, query: string, qtype: count, qclass: count) {{
+        if ( is_match(query) ) {{
+            NOTICE([$note=Claude_DNS_Query,
+                    $conn=c,
+                    $msg=fmt("Claude/Anthropic DNS query: %s", query)]);
+        }}
+    }}
+
+    event ssl_established(c: connection) {{
+        if ( c?$ssl && c$ssl?$server_name ) {{
+            local sni = c$ssl$server_name;
+            if ( is_match(sni) ) {{
+                NOTICE([$note=Claude_TLS_SNI,
+                        $conn=c,
+                        $msg=fmt("Claude/Anthropic TLS SNI: %s", sni)]);
+            }}
+        }}
+    }}
+    """)
+
+
+def build_cisco_destination_list(cfg: PackConfig) -> str:
+    # Simple destination/domain list that can be imported into DNS controls or block/allow workflows.
+    # The exact import format varies by Cisco product (Umbrella, Secure Firewall, etc.).
+    lines = [
+        f"# {cfg.org_label}",
+        f"# {cfg.pack_title} (Cisco destination list)",
+        f"# Version {cfg.version} | Built {cfg.build_time_utc}",
+        "#",
+        "# Domains (one per line)",
+    ]
+    lines.extend(sorted(set(cfg.domains)))
+    return "\n".join(lines) + "\n"
+
+
+def build_generic_reference(cfg: PackConfig) -> str:
+    domains = sorted(set(cfg.domains))
+    suffixes = sorted(set(cfg.suffixes_optional))
+    paths = sorted(set(cfg.api_paths))
+
+    return textwrap.dedent(f"""\
+    {cfg.org_label}
+    {cfg.pack_title} (Generic Reference)
+    Version {cfg.version} | Built {cfg.build_time_utc}
+
+    High-confidence domain matches
+    {os.linesep.join(" - " + d for d in domains)}
+
+    Optional suffix matches (use with care; can increase false positives)
+    {os.linesep.join(" - " + s for s in suffixes)}
+
+    API path markers (only if URL paths are logged)
+    {os.linesep.join(" - " + p for p in paths)}
+
+    Matching guidance
+    - High confidence: exact domain match in DNS qname, TLS SNI, or HTTP host fields.
+    - Medium confidence: suffix match AND API path marker (/v1/messages) in the same request stream.
+    - Low confidence: suffix match only, without a supporting request path, process lineage, or user context.
+
+    Recommended correlation keys
+    - Time window: +/- 2 minutes
+    - Join keys:
+      - Endpoint: device_id + process_id
+      - Network: src_ip + dst_ip + dst_port (watch NAT)
+      - Identity: user + device + timestamp
+
+    Coverage caveats
+    - TLS SNI may be absent with ECH/ESNI or some QUIC flows.
+    - Some environments only log DNS or only log firewall flows; expect partial visibility.
+    """)
+
+
+def build_pack(cfg: PackConfig, out_dir: Path) -> None:
+    root = out_dir / cfg.pack_name
+    ensure_dir(root)
+
+    # Metadata
+    write_json(root / "metadata.json", asdict(cfg))
+
+    # Pack README
+    write_text(root / "README.md", build_readme(cfg))
+
+    # Indicators
+    indicator_files = build_indicator_files(cfg)
+    for rel, content in indicator_files.items():
+        write_text(root / rel, content)
+
+    # Vendor outputs
+    write_text(root / "splunk" / "claude_bot_detection.spl", build_splunk(cfg))
+    write_text(root / "sentinel" / "claude_bot_detection.kql", build_sentinel_kql(cfg))
+    write_text(root / "crowdstrike" / "claude_bot_dns_event_search.csql", build_crowdstrike_event_search(cfg))
+    write_text(root / "suricata" / "claude_bot_tls_sni.rules", build_suricata(cfg))
+    write_text(root / "zeek" / "zeiddata_claude_detect.zeek", build_zeek(cfg))
+    write_text(root / "cisco" / "destination_list.txt", build_cisco_destination_list(cfg))
+
+    # Generic
+    write_text(root / "generic" / "reference.txt", build_generic_reference(cfg))
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(
+        prog="zeiddata_labs_claude_pack.py",
+        description="Zeid Data Labs + Research: Multi-vendor Claude detection pack builder",
+    )
+    ap.add_argument(
+        "--out",
+        required=True,
+        help="Output directory where the pack folder will be created",
+    )
+    ap.add_argument(
+        "--overrides",
+        default=None,
+        help="Optional JSON file to override config (domains, version, suffixes, etc.)",
+    )
+    args = ap.parse_args()
+
+    overrides = load_overrides(args.overrides)
+    cfg = build_config(overrides)
+
+    out_dir = Path(args.out).expanduser().resolve()
+    build_pack(cfg, out_dir)
+
+    print(f"[OK] Built {cfg.pack_name} pack at: {out_dir / cfg.pack_name}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
