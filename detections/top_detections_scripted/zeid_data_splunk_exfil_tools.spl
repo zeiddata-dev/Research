@@ -1,0 +1,16 @@
+## Splunk: Possible bulk exfil tooling on endpoints (process telemetry required)
+## Data source examples: Sysmon EventCode=1, EDR process logs, Windows Security 4688
+
+(index=win* OR index=edr* OR index=sysmon*)
+(
+  (EventCode=1 OR EventID=1 OR EventCode=4688 OR EventID=4688)
+)
+| eval cmd=coalesce(CommandLine, ProcessCommandLine, process, ParentCommandLine)
+| eval image=coalesce(Image, NewProcessName, FileName, process_name)
+| where like(lower(image), "%rclone%")
+   OR like(lower(image), "%megacmd%")
+   OR like(lower(image), "%winscp%")
+   OR like(lower(image), "%ftp%")
+   OR (like(lower(image), "%curl%") AND like(lower(cmd), "%--upload%"))
+| stats count as hits values(cmd) as sample_cmds by host user image
+| sort - hits

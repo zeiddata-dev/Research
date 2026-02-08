@@ -1,0 +1,29 @@
+// Sentinel: Ransomware prep commands (tune allowlists for admin tools / maintenance windows)
+let lookback = 7d;
+let prep_terms = dynamic([
+  "vssadmin delete shadows",
+  "wmic shadowcopy delete",
+  "wbadmin delete",
+  "bcdedit /set",
+  "wevtutil cl",
+  "cipher /w:",
+  "fsutil usn deletejournal"
+]);
+
+union isfuzzy=true
+(
+  DeviceProcessEvents
+  | where Timestamp >= ago(lookback)
+  | extend Cmd = tostring(ProcessCommandLine)
+  | where Cmd has_any (prep_terms)
+  | project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine, InitiatingProcessFileName
+),
+(
+  SecurityEvent
+  | where TimeGenerated >= ago(lookback)
+  | where EventID == 4688
+  | extend Cmd = tostring(CommandLine)
+  | where Cmd has_any (prep_terms)
+  | project Timestamp=TimeGenerated, DeviceName=Computer, AccountName=SubjectUserName, FileName=NewProcessName, ProcessCommandLine=Cmd, InitiatingProcessFileName=ParentProcessName
+)
+| order by Timestamp desc
