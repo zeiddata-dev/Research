@@ -1,0 +1,13 @@
+// Sentinel: detect suspicious browser-launched scripting (common in infostealer delivery chains)
+let lookback = 7d;
+let browsers = dynamic(["chrome.exe","msedge.exe","firefox.exe","brave.exe","opera.exe"]);
+let script_engines = dynamic(["powershell.exe","pwsh.exe","wscript.exe","cscript.exe","mshta.exe","rundll32.exe"]);
+
+DeviceProcessEvents
+| where Timestamp >= ago(lookback)
+| where FileName in~ (script_engines)
+| where InitiatingProcessFileName in~ (browsers)
+| extend Cmd = tostring(ProcessCommandLine)
+| where Cmd has_any ("-enc","EncodedCommand","IEX","DownloadString","FromBase64String","Invoke-WebRequest","curl","wget")
+| project Timestamp, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine
+| order by Timestamp desc
