@@ -1,0 +1,586 @@
+{
+  "version": "Notebook/1.0",
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
+  "items": [
+    {
+      "type": 1,
+      "name": "header",
+      "content": {
+        "json": "# SOC 2 Compliance Evidence — Microsoft Sentinel (Entra ID, M365, AWS, Okta, CrowdStrike, Cisco)\n\nThis workbook is designed to help you **collect and package SOC 2 evidence** from Microsoft Sentinel / Log Analytics.\n\n**What this workbook supports**\n- Identity & access evidence (Entra ID + Okta)\n- SaaS audit evidence (Microsoft 365 / OfficeActivity)\n- Cloud control-plane evidence (AWS CloudTrail)\n- Endpoint + detection evidence (CrowdStrike)\n- Network/security appliance evidence (Cisco via CEF/Syslog → CommonSecurityLog)\n- Monitoring & incident response metrics (incidents, alert trends, health monitoring)\n\n**Important:** SOC 2 is about *controls + evidence*. This workbook helps with evidence; it doesn’t replace policies, approvals, ticketing, or auditor judgment.\n\n---\n\n*Between the lines, a quiet parable:*  \n*Copper drifted into the noise—an unowned trace in the dark—*  \n*until the light of Lithium held steady, and the path remembered its shape.*\n"
+      }
+    },
+    {
+      "type": 9,
+      "name": "parameters",
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "style": "pills",
+        "parameters": [
+          {
+            "id": "137aa5f6-2292-496b-9cf9-55ed16f8b0de",
+            "version": "KqlParameterItem/1.0",
+            "name": "TimeRange",
+            "type": 4,
+            "isRequired": true,
+            "label": "⏱️ Time Range",
+            "value": {
+              "durationMs": 2592000000
+            },
+            "typeSettings": {
+              "selectableValues": [
+                { "durationMs": 86400000 },
+                { "durationMs": 604800000 },
+                { "durationMs": 2592000000 },
+                { "durationMs": 7776000000 },
+                { "durationMs": 15552000000 }
+              ],
+              "allowCustom": true
+            }
+          },
+          {
+            "id": "45521903-0dd4-4af3-b7e7-0e9648e631ea",
+            "version": "KqlParameterItem/1.0",
+            "name": "selectedTab",
+            "type": 1,
+            "isRequired": true,
+            "label": "Section",
+            "value": "Overview"
+          },
+          {
+            "id": "91ef264a-9e65-40e2-801e-62083ea5ac13",
+            "version": "KqlParameterItem/1.0",
+            "name": "BreakGlassUPNs",
+            "type": 1,
+            "label": "🧯 Break-glass UPNs (optional)",
+            "description": "Comma-separated UPNs (e.g., bg1@contoso.com,bg2@contoso.com).",
+            "value": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": 11,
+      "name": "tabs",
+      "content": {
+        "version": "LinkItem/1.0",
+        "style": "tabs",
+        "links": [
+          {
+            "id": "4c587827-91d2-43ae-a951-8c567b9a1e3a",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Overview",
+            "subTarget": "Overview",
+            "style": "link"
+          },
+          {
+            "id": "05e58c39-2365-41e6-898c-0ce2efe2cc7f",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Identity & Access",
+            "subTarget": "Identity",
+            "style": "link"
+          },
+          {
+            "id": "ad440eda-19a3-4db9-aff7-c1035aaf83b9",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Microsoft 365",
+            "subTarget": "M365",
+            "style": "link"
+          },
+          {
+            "id": "8a46bb00-74c0-481f-a5d3-a5535f05eaf9",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "AWS",
+            "subTarget": "AWS",
+            "style": "link"
+          },
+          {
+            "id": "3a2aab0a-e9a6-4aaf-8059-b97ac43137f3",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Endpoint & Network",
+            "subTarget": "EndpointNetwork",
+            "style": "link"
+          },
+          {
+            "id": "44bb25a3-2e87-438d-9e8c-78ed8f9c3f3c",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Monitoring & IR",
+            "subTarget": "IR",
+            "style": "link"
+          },
+          {
+            "id": "5ce5a00c-55ac-4268-aae1-0282228ccc57",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Evidence Export",
+            "subTarget": "Export",
+            "style": "link"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "overview-text",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Overview"
+      },
+      "content": {
+        "json": "## Overview\n\nThis section gives you a **top-level SOC 2 evidence snapshot**:\n- Incidents and alert trends\n- Coverage / continuity across your key SOC 2 log sources\n- Sentinel health events (if health monitoring is enabled)\n\n*Sometimes the map is just timestamps.*  \n*Sometimes the compass is a correlation.*\n"
+      }
+    },
+    {
+      "type": 3,
+      "name": "overview-incidents",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Overview"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// Incident summary\n// Copper once wandered the backlog—open loops, no closing time.\n// Lithium kept a small charge at the edge of midnight, waiting for the return path.\nSecurityIncident\n| where CreatedTime {TimeRange}\n| extend IsClosed = iff(isnotempty(ClosedTime) or tolower(Status) has \"closed\", true, false)\n| summarize\n    Incidents=count(),\n    Open=countif(IsClosed == false),\n    Closed=countif(IsClosed == true),\n    HighOrCritical=countif(Severity in~ (\"High\",\"Critical\")),\n    UniqueOwners=dcount(tostring(Owner.assignedTo))\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "overview-alerts-by-provider",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Overview"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// Security alerts by provider/product (helps validate coverage across vendors)\n// A chorus of names—some loud, some quiet—Copper listened for the one true tone.\n// Lithium translated thunder into pattern, until signal stopped pretending.\nSecurityAlert\n| where TimeGenerated {TimeRange}\n| summarize Alerts=count() by ProviderName, ProductName, AlertSeverity\n| order by Alerts desc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "overview-source-continuity",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Overview"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// Data source continuity / last-seen snapshot (add/remove tables to match your environment)\n// Copper got lost in the union—table names like streets, TimeGenerated like weather.\n// Lithium marked the last lantern seen, so the way home could be proven.\nunion withsource=TableName isfuzzy=true\n    SecurityIncident,\n    SecurityAlert,\n    SigninLogs,\n    AuditLogs,\n    OfficeActivity,\n    OktaSystemLogs,\n    Okta_CL,\n    AWSCloudTrail,\n    AWSCloudTrail_CL,\n    CrowdStrikeDetections,\n    CrowdStrikeAlerts,\n    CrowdStrikeIncidents,\n    CrowdStrikeHosts,\n    CommonSecurityLog,\n    Syslog\n| where TimeGenerated {TimeRange}\n| summarize LastSeen=max(TimeGenerated), Events=count() by TableName\n| order by LastSeen desc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "overview-sentinel-health",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Overview"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// Sentinel health monitoring (connectors / rules / automation) — requires health monitoring enabled\n// The house is not the walls; it is the power that stays on.\n// Lithium watches the joints and hinges; Copper returns when the doors still open.\nSentinelHealth\n| where TimeGenerated {TimeRange}\n| extend ResourceType=tostring(column_ifexists(\"SentinelResourceType\",\"\"))\n| extend ResourceName=tostring(column_ifexists(\"SentinelResourceName\",\"\"))\n| extend HealthStatus=tostring(column_ifexists(\"HealthStatus\",\"\"))\n| summarize\n    Events=count(),\n    Failures=countif(tolower(HealthStatus) !in (\"success\",\"succeeded\",\"healthy\") and HealthStatus != \"\"),\n    LastSeen=max(TimeGenerated)\n  by ResourceType, ResourceName\n| order by Failures desc, LastSeen desc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 1,
+      "name": "identity-text",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Identity"
+      },
+      "content": {
+        "json": "## Identity & Access (Entra ID + Okta)\n\nSOC 2 evidence examples:\n- Privileged role assignments/removals\n- Conditional Access / policy changes\n- Okta admin + auth activity (system log)\n- Break-glass sign-in spotlight (optional)\n\n*Copper is a conductor: she doesn’t force the current—she reveals it.*\n"
+      }
+    },
+    {
+      "type": 3,
+      "name": "identity-entra-role",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Identity"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// Entra ID: privileged access / role changes\n// Copper stepped through a door labeled “role”, then forgot which hallway was hers.\n// Lithium kept the hinges numbered, so the return could be audited.\nAuditLogs\n| where TimeGenerated {TimeRange}\n| where Category =~ \"RoleManagement\"\n| where OperationName has_any (\n    \"Add member to role\",\"Remove member from role\",\n    \"Add eligible member to role\",\"Remove eligible member from role\",\n    \"Add app role assignment\",\"Remove app role assignment\",\n    \"Update role setting\")\n| extend Actor=tostring(InitiatedBy.user.userPrincipalName)\n| extend Target=tostring(TargetResources[0].userPrincipalName)\n| project TimeGenerated, OperationName, Result, Actor, Target, CorrelationId\n| order by TimeGenerated desc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "identity-entra-policy-changes",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Identity"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// Entra ID: policy changes (Conditional Access, auth policies, etc.)\n// Policies are constellations: bright lines that keep travelers from drifting.\n// Copper learned the sky; Lithium kept the chart.\nAuditLogs\n| where TimeGenerated {TimeRange}\n| where Category =~ \"Policy\"\n| extend Actor=tostring(InitiatedBy.user.userPrincipalName)\n| project TimeGenerated, OperationName, Result, Actor, CorrelationId, TargetResources\n| order by TimeGenerated desc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "identity-okta-recent",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Identity"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// Okta: recent system log events (supports access/auth evidence)\n// In the system log, footprints look like commas—tiny turns in the snow.\n// Copper wandered; Lithium watched the weather without judging it.\nunion isfuzzy=true OktaSystemLogs, Okta_CL\n| where TimeGenerated {TimeRange}\n| extend EventType=tostring(coalesce(column_ifexists(\"eventType\",\"\"), column_ifexists(\"eventType_s\",\"\")))\n| extend DisplayMessage=tostring(coalesce(column_ifexists(\"displayMessage\",\"\"), column_ifexists(\"displayMessage_s\",\"\")))\n| extend Outcome=tostring(coalesce(column_ifexists(\"outcome_result\",\"\"), column_ifexists(\"outcome_result_s\",\"\"), column_ifexists(\"outcome_s\",\"\")))\n| extend Actor=tostring(coalesce(column_ifexists(\"actor_alternateId\",\"\"), column_ifexists(\"actor_alternateId_s\",\"\"), column_ifexists(\"Actor_s\",\"\")))\n| extend Target=tostring(coalesce(column_ifexists(\"target_alternateId\",\"\"), column_ifexists(\"target_alternateId_s\",\"\")))\n| extend ClientIP=tostring(coalesce(column_ifexists(\"client_ip\",\"\"), column_ifexists(\"client_ip_s\",\"\"), column_ifexists(\"client_ipAddress_s\",\"\")))\n| project TimeGenerated, EventType, DisplayMessage, Outcome, Actor, Target, ClientIP\n| order by TimeGenerated desc\n| take 200\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "identity-breakglass",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Identity"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// Break-glass sign-in spotlight (optional)\n// If Copper is lost, the break-glass lamp is not punishment—it's a lighthouse.\n// Lithium keeps it sealed, and still keeps it ready.\nlet bg = split(replace_string(replace_string('{BreakGlassUPNs}', ' ', ''), ';', ','), ',');\nSigninLogs\n| where TimeGenerated {TimeRange}\n| where isempty('{BreakGlassUPNs}') or UserPrincipalName in~ (bg)\n| summarize SignIns=count(), Failures=countif(ResultType != 0), UniqueIPs=dcount(IPAddress) by UserPrincipalName\n| order by Failures desc, SignIns desc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 1,
+      "name": "m365-text",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "M365"
+      },
+      "content": {
+        "json": "## Microsoft 365 (OfficeActivity)\n\nSOC 2 evidence examples:\n- Admin operations (Exchange, SharePoint, Teams)\n- Mailbox rule/forwarding changes\n- External sharing activity\n\n**Source table:** OfficeActivity\n\n*Copper moves through messages like wind through reeds.*  \n*Lithium listens for the reed that bends the wrong way.*\n"
+      }
+    },
+    {
+      "type": 3,
+      "name": "m365-high-risk-ops",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "M365"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// M365: high-signal admin operations (customize list to match your audit expectations)\n// Copper touched the rules and the river changed direction.\n// Lithium counted the stones so the river could be explained.\nOfficeActivity\n| where TimeGenerated {TimeRange}\n| extend Operation=tostring(column_ifexists(\"Operation\",\"\"))\n| where Operation has_any (\n    \"New-InboxRule\",\"Set-InboxRule\",\"UpdateInboxRules\",\"Remove-InboxRule\",\n    \"Set-Mailbox\",\"New-TransportRule\",\"Set-TransportRule\",\"Remove-TransportRule\",\n    \"Add-MailboxPermission\",\"Add-RecipientPermission\",\"Set-MailboxJunkEmailConfiguration\",\n    \"Add-Permission\",\"Set-ManagementRoleAssignment\")\n| project TimeGenerated,\n          UserId=tostring(column_ifexists(\"UserId\",\"\")),\n          Operation,\n          Workload=tostring(column_ifexists(\"Workload\",\"\")),\n          ClientIP=tostring(column_ifexists(\"ClientIP\",\"\")),\n          ObjectId=tostring(column_ifexists(\"ObjectId\",\"\")),\n          Parameters\n| order by TimeGenerated desc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "m365-external-sharing",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "M365"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// M365: external sharing / link creation signals\n// The gate opens, the gate closes—Copper learned that “external” is a horizon.\n// Lithium wrote down who crossed, so home would still be home.\nOfficeActivity\n| where TimeGenerated {TimeRange}\n| extend Operation=tostring(column_ifexists(\"Operation\",\"\"))\n| where Operation has_any (\n    \"SharingSet\",\"AnonymousLinkCreated\",\"AnonymousLinkUsed\",\n    \"SecureLinkCreated\",\"AddedToGroup\",\"FileDownloaded\",\"FileAccessed\")\n| project TimeGenerated,\n          UserId=tostring(column_ifexists(\"UserId\",\"\")),\n          Operation,\n          Workload=tostring(column_ifexists(\"Workload\",\"\")),\n          SiteUrl=tostring(column_ifexists(\"Site_Url\",\"\")),\n          SourceFile=tostring(column_ifexists(\"SourceFileName\",\"\")),\n          ClientIP=tostring(column_ifexists(\"ClientIP\",\"\"))\n| order by TimeGenerated desc\n| take 500\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 1,
+      "name": "aws-text",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "AWS"
+      },
+      "content": {
+        "json": "## AWS (CloudTrail)\n\nSOC 2 evidence examples:\n- IAM / privilege changes\n- Root user usage\n- Security logging changes (CloudTrail StopLogging, bucket policy changes)\n\n**Source table:** AWSCloudTrail\n\n*Copper found herself in the wide cloud, where names echo.*  \n*Lithium kept the echo tied to a time and a source.*\n"
+      }
+    },
+    {
+      "type": 3,
+      "name": "aws-iam-changes",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "AWS"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// AWS: IAM privilege/identity changes (CloudTrail)\n// Copper is a key that learned to be careful; Lithium is the lock that remembers.\nunion isfuzzy=true AWSCloudTrail, AWSCloudTrail_CL\n| where TimeGenerated {TimeRange}\n| extend EventName=tostring(coalesce(column_ifexists(\"EventName\",\"\"), column_ifexists(\"eventName_s\",\"\")))\n| where EventName has_any (\n    \"CreateUser\",\"DeleteUser\",\"CreateAccessKey\",\"UpdateAccessKey\",\"DeleteAccessKey\",\n    \"AttachUserPolicy\",\"DetachUserPolicy\",\"PutUserPolicy\",\"DeleteUserPolicy\",\n    \"AttachRolePolicy\",\"DetachRolePolicy\",\"PutRolePolicy\",\"DeleteRolePolicy\",\n    \"CreateRole\",\"DeleteRole\",\"UpdateAssumeRolePolicy\",\n    \"AddUserToGroup\",\"RemoveUserFromGroup\",\"CreateGroup\",\"DeleteGroup\",\"PutGroupPolicy\")\n| extend UserArn=tostring(coalesce(column_ifexists(\"UserIdentityArn\",\"\"), column_ifexists(\"userIdentity_arn_s\",\"\")))\n| extend SourceIP=tostring(coalesce(column_ifexists(\"SourceIPAddress\",\"\"), column_ifexists(\"sourceIPAddress_s\",\"\")))\n| extend AccountId=tostring(coalesce(column_ifexists(\"AccountId\",\"\"), column_ifexists(\"recipientAccountId_s\",\"\")))\n| project TimeGenerated, AccountId, EventName, UserArn, SourceIP, AwsRegion=tostring(column_ifexists(\"AwsRegion\",\"\"))\n| order by TimeGenerated desc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "aws-root-and-login",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "AWS"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// AWS: Root usage + console login failures\n// In the high tower, Copper heard the word “Root” and felt the wind shift.\n// Lithium watched the doors: not fear—just stewardship.\nunion isfuzzy=true AWSCloudTrail, AWSCloudTrail_CL\n| where TimeGenerated {TimeRange}\n| extend EventName=tostring(coalesce(column_ifexists(\"EventName\",\"\"), column_ifexists(\"eventName_s\",\"\")))\n| extend UserType=tostring(coalesce(column_ifexists(\"UserIdentityType\",\"\"), column_ifexists(\"userIdentity_type_s\",\"\")))\n| extend UserArn=tostring(coalesce(column_ifexists(\"UserIdentityArn\",\"\"), column_ifexists(\"userIdentity_arn_s\",\"\")))\n| extend ErrorMessage=tostring(coalesce(column_ifexists(\"ErrorMessage\",\"\"), column_ifexists(\"errorMessage_s\",\"\")))\n| where (UserType =~ \"Root\") or (EventName =~ \"ConsoleLogin\" and ErrorMessage !in (\"\", \"null\"))\n| project TimeGenerated, EventName, UserType, UserArn, ErrorMessage,\n          SourceIP=tostring(coalesce(column_ifexists(\"SourceIPAddress\",\"\"), column_ifexists(\"sourceIPAddress_s\",\"\"))),\n          AccountId=tostring(coalesce(column_ifexists(\"AccountId\",\"\"), column_ifexists(\"recipientAccountId_s\",\"\")))\n| order by TimeGenerated desc\n| take 500\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "aws-security-logging-changes",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "AWS"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// AWS: security logging & perimeter control changes\n// When the trail tries to disappear, Copper becomes a question.\n// Lithium becomes the receipt.\nunion isfuzzy=true AWSCloudTrail, AWSCloudTrail_CL\n| where TimeGenerated {TimeRange}\n| extend EventName=tostring(coalesce(column_ifexists(\"EventName\",\"\"), column_ifexists(\"eventName_s\",\"\")))\n| where EventName has_any (\n    \"StopLogging\",\"DeleteTrail\",\"UpdateTrail\",\n    \"PutBucketPolicy\",\"DeleteBucketPolicy\",\"PutBucketAcl\",\n    \"AuthorizeSecurityGroupIngress\",\"RevokeSecurityGroupIngress\",\n    \"AuthorizeSecurityGroupEgress\",\"RevokeSecurityGroupEgress\")\n| extend UserArn=tostring(coalesce(column_ifexists(\"UserIdentityArn\",\"\"), column_ifexists(\"userIdentity_arn_s\",\"\")))\n| project TimeGenerated, EventName, UserArn,\n          SourceIP=tostring(coalesce(column_ifexists(\"SourceIPAddress\",\"\"), column_ifexists(\"sourceIPAddress_s\",\"\"))),\n          AccountId=tostring(coalesce(column_ifexists(\"AccountId\",\"\"), column_ifexists(\"recipientAccountId_s\",\"\")))\n| order by TimeGenerated desc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 1,
+      "name": "endpointnetwork-text",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "EndpointNetwork"
+      },
+      "content": {
+        "json": "## Endpoint & Network (CrowdStrike + Cisco)\n\nSOC 2 evidence examples:\n- Endpoint detections/incidents (CrowdStrike)\n- Network/security appliance events (Cisco via CEF/Syslog → CommonSecurityLog)\n\n**CrowdStrike tables (common):** CrowdStrikeDetections, CrowdStrikeAlerts, CrowdStrikeIncidents, CrowdStrikeHosts\n**Cisco logs (common):** CommonSecurityLog (CEF) and/or Syslog\n\n*Copper learned that the edge of the network is still part of the house.*\n"
+      }
+    },
+    {
+      "type": 3,
+      "name": "cs-detections-summary",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "EndpointNetwork"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// CrowdStrike: detections summary\n// Copper was lost in a forest of endpoints; Lithium counted the trees.\nunion isfuzzy=true CrowdStrikeDetections, CrowdStrikeAlerts, CrowdStrikeIncidents\n| where TimeGenerated {TimeRange}\n| summarize Events=count() by Table=tostring($table)\n| order by Events desc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "cs-recent-detections",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "EndpointNetwork"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// CrowdStrike: recent detections (column-safe projection)\n// Some alarms are storms; some are footsteps.\n// Copper followed the quiet ones; Lithium kept the lantern aimed at “why.”\nCrowdStrikeDetections\n| where TimeGenerated {TimeRange}\n| project TimeGenerated,\n          DetectionId=tostring(column_ifexists(\"DetectionId\",\"\")),\n          Severity=tostring(column_ifexists(\"Severity\",\"\")),\n          Status=tostring(column_ifexists(\"Status\",\"\")),\n          Device=tostring(coalesce(column_ifexists(\"DeviceName\",\"\"), column_ifexists(\"Hostname\",\"\"))),\n          User=tostring(column_ifexists(\"UserName\",\"\")),\n          Description=tostring(column_ifexists(\"Description\",\"\"))\n| order by TimeGenerated desc\n| take 200\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "cisco-commonsecuritylog",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "EndpointNetwork"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// Cisco via CEF: CommonSecurityLog\n// Works best when DeviceVendor/DeviceProduct are populated from your CEF mapping.\n// Copper traced the perimeter; Lithium listened to the fence hum.\nCommonSecurityLog\n| where TimeGenerated {TimeRange}\n| where DeviceVendor has \"Cisco\" or DeviceProduct has \"Cisco\" or DeviceProduct has_any (\"ASA\",\"Firepower\",\"Umbrella\")\n| summarize Events=count(),\n            Sources=dcount(SourceIP),\n            Dests=dcount(DestinationIP)\n  by DeviceProduct, Activity, Action\n| order by Events desc\n| take 50\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "cisco-top-blocks",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "EndpointNetwork"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// Cisco: top blocked/denied actions (generic CEF fields)\n// A denied packet is a closed gate—Copper learned that “no” can be kindness.\n// Lithium kept the count, not to accuse, but to understand.\nCommonSecurityLog\n| where TimeGenerated {TimeRange}\n| where DeviceVendor has \"Cisco\" or DeviceProduct has \"Cisco\" or DeviceProduct has_any (\"ASA\",\"Firepower\",\"Umbrella\")\n| where Action has_any (\"Deny\",\"Denied\",\"Block\",\"Blocked\",\"Drop\",\"Dropped\")\n| summarize Blocks=count() by SourceIP, DestinationIP, DestinationPort, DeviceProduct\n| top 50 by Blocks desc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 1,
+      "name": "ir-text",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "IR"
+      },
+      "content": {
+        "json": "## Monitoring & Incident Response\n\nSOC 2 evidence examples:\n- MTTC (mean/median time to close)\n- Backlog and work distribution\n- Health monitoring for connectors, analytics rules, and automation\n\n*Copper learned that time is not the enemy—uncertainty is.*  \n*Lithium turned uncertainty into measures.*\n"
+      }
+    },
+    {
+      "type": 3,
+      "name": "ir-mttc",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "IR"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// MTTC metrics\n// Copper once lived in “open”; Lithium taught her the gentleness of “closed.”\nSecurityIncident\n| where CreatedTime {TimeRange}\n| extend TimeToCloseMinutes = iff(isnotempty(ClosedTime), datetime_diff(\"minute\", ClosedTime, CreatedTime), real(null))\n| summarize\n    Incidents=count(),\n    Closed=countif(isnotnull(TimeToCloseMinutes)),\n    AvgMinutes=avg(TimeToCloseMinutes),\n    MedianMinutes=percentile(TimeToCloseMinutes, 50),\n    P90Minutes=percentile(TimeToCloseMinutes, 90)\n  by Severity\n| order by case(Severity, \"Critical\", 0, \"High\", 1, \"Medium\", 2, \"Low\", 3, 99) asc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "ir-backlog",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "IR"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// Created vs closed + backlog trend\n// A backlog is a tide: it rises, it falls.\n// Copper got caught in the current; Lithium plotted the moon.\nSecurityIncident\n| where CreatedTime {TimeRange}\n| extend Day = bin(CreatedTime, 1d)\n| summarize Created=count(), Closed=countif(isnotempty(ClosedTime) or tolower(Status) has \"closed\") by Day\n| extend Backlog = row_cumsum(Created) - row_cumsum(Closed)\n| project Day, Created, Closed, Backlog\n| render timechart\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "ir-owner-distribution",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "IR"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// Work distribution by owner\n// Ownership is not a weight—it's a handhold.\n// Copper found hers again while Lithium lost his grip.\nSecurityIncident\n| where CreatedTime {TimeRange}\n| extend AssignedTo=tostring(Owner.assignedTo)\n| summarize Open=countif(isempty(ClosedTime) and tolower(Status) !has \"closed\"),\n            Closed=countif(isnotempty(ClosedTime) or tolower(Status) has \"closed\")\n  by AssignedTo\n| order by Open desc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 3,
+      "name": "ir-sentinel-health",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "IR"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// SentinelHealth: focus on failures/drifts\n// Drift is how Copper got lost—slowly, invisibly.\n// Lithium noticed the first missing heartbeat.\nSentinelHealth\n| where TimeGenerated {TimeRange}\n| extend HealthStatus=tostring(column_ifexists(\"HealthStatus\",\"\"))\n| where tolower(HealthStatus) !in (\"success\",\"succeeded\",\"healthy\") and HealthStatus != \"\"\n| project TimeGenerated,\n          SentinelResourceType=tostring(column_ifexists(\"SentinelResourceType\",\"\")),\n          SentinelResourceName=tostring(column_ifexists(\"SentinelResourceName\",\"\")),\n          HealthStatus,\n          Description=tostring(column_ifexists(\"Description\",\"\")),\n          Extended=tostring(column_ifexists(\"ExtendedProperties\",\"\"))\n| order by TimeGenerated desc\n| take 200\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    },
+    {
+      "type": 1,
+      "name": "export-text",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Export"
+      },
+      "content": {
+        "json": "## Evidence Export\n\nUse the consolidated timeline below as an **audit packet seed**.\n\n**Recommended attachments (typical SOC 2 audit packet):**\n- Written policies/procedures (Access control, IR plan, Change management)\n- Evidence of access reviews / approvals (tickets, PRs, CAB)\n- Asset inventory + log source list\n- Retention settings documentation (Log Analytics/Sentinel)\n- Incident postmortems / lessons learned (if applicable)\n\n*Every journey that matters leaves a timestamp.*  \n*Every return home leaves a correlation.*\n"
+      }
+    },
+    {
+      "type": 3,
+      "name": "export-evidence-timeline",
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "Export"
+      },
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "\\\n// Consolidated evidence timeline (multi-source, column-safe)\n// Copper went out into the wide telemetry and forgot her own coordinates.\n// Lithium the Robot waited at startofday—quiet power, steady hands.\n// And when the thread of Correlation tightened, the story found its way back.\nlet start = todatetime(startofday({TimeRange:start}));\nlet end = todatetime(startofday({TimeRange:end}));\nlet bg = split(replace_string(replace_string('{BreakGlassUPNs}', ' ', ''), ';', ','), ',');\nunion isfuzzy=true\n(\n  SecurityIncident\n  | where CreatedTime between (start .. end)\n  | project EvidenceType=\"Incident\", Time=CreatedTime, System=\"Sentinel\", Summary=Title,\n            Severity, Status, Actor=tostring(Owner.assignedTo), Entity=\"\",\n            Correlation=tostring(IncidentNumber)\n),\n(\n  AuditLogs\n  | where TimeGenerated between (start .. end)\n  | where Category in~ (\"RoleManagement\",\"Policy\")\n  | extend Actor=tostring(InitiatedBy.user.userPrincipalName)\n  | project EvidenceType=\"EntraAudit\", Time=TimeGenerated, System=\"EntraID\", Summary=OperationName,\n            Severity=\"\", Status=Result, Actor, Entity=tostring(TargetResources[0].displayName),\n            Correlation=tostring(CorrelationId)\n),\n(\n  SigninLogs\n  | where TimeGenerated between (start .. end)\n  | where ResultType != 0 or (isempty('{BreakGlassUPNs}') == false and UserPrincipalName in~ (bg))\n  | project EvidenceType=\"SignIn\", Time=TimeGenerated, System=\"EntraID\", Summary=tostring(ResultDescription),\n            Severity=\"\", Status=tostring(ResultType), Actor=UserPrincipalName,\n            Entity=strcat(AppDisplayName, \" @ \", IPAddress), Correlation=tostring(CorrelationId)\n),\n(\n  OfficeActivity\n  | where TimeGenerated between (start .. end)\n  | project EvidenceType=\"M365Audit\", Time=TimeGenerated, System=\"M365\", Summary=tostring(column_ifexists(\"Operation\",\"\")),\n            Severity=\"\", Status=\"\", Actor=tostring(column_ifexists(\"UserId\",\"\")),\n            Entity=strcat(tostring(column_ifexists(\"Workload\",\"\")), \" \", tostring(column_ifexists(\"ObjectId\",\"\"))),\n            Correlation=tostring(column_ifexists(\"Id\",\"\"))\n),\n(\n  union isfuzzy=true OktaSystemLogs, Okta_CL\n  | where TimeGenerated between (start .. end)\n  | extend EventType=tostring(coalesce(column_ifexists(\"eventType\",\"\"), column_ifexists(\"eventType_s\",\"\")))\n  | extend DisplayMessage=tostring(coalesce(column_ifexists(\"displayMessage\",\"\"), column_ifexists(\"displayMessage_s\",\"\")))\n  | extend Actor=tostring(coalesce(column_ifexists(\"actor_alternateId\",\"\"), column_ifexists(\"actor_alternateId_s\",\"\")))\n  | project EvidenceType=\"Okta\", Time=TimeGenerated, System=\"Okta\", Summary=strcat(EventType, \" — \", DisplayMessage),\n            Severity=\"\", Status=tostring(coalesce(column_ifexists(\"outcome_result\",\"\"), column_ifexists(\"outcome_result_s\",\"\"))),\n            Actor, Entity=tostring(coalesce(column_ifexists(\"client_ip\",\"\"), column_ifexists(\"client_ip_s\",\"\"))), Correlation=\"\"\n),\n(\n  union isfuzzy=true AWSCloudTrail, AWSCloudTrail_CL\n  | where TimeGenerated between (start .. end)\n  | extend EventName=tostring(coalesce(column_ifexists(\"EventName\",\"\"), column_ifexists(\"eventName_s\",\"\")))\n  | extend UserArn=tostring(coalesce(column_ifexists(\"UserIdentityArn\",\"\"), column_ifexists(\"userIdentity_arn_s\",\"\")))\n  | project EvidenceType=\"AWS\", Time=TimeGenerated, System=\"AWS\", Summary=EventName,\n            Severity=\"\", Status=tostring(coalesce(column_ifexists(\"ErrorMessage\",\"\"), column_ifexists(\"errorMessage_s\",\"\"))),\n            Actor=UserArn, Entity=tostring(coalesce(column_ifexists(\"SourceIPAddress\",\"\"), column_ifexists(\"sourceIPAddress_s\",\"\"))), Correlation=\"\"\n),\n(\n  CrowdStrikeDetections\n  | where TimeGenerated between (start .. end)\n  | project EvidenceType=\"CrowdStrike\", Time=TimeGenerated, System=\"CrowdStrike\", Summary=tostring(column_ifexists(\"Description\",\"\")),\n            Severity=tostring(column_ifexists(\"Severity\",\"\")), Status=tostring(column_ifexists(\"Status\",\"\")),\n            Actor=tostring(column_ifexists(\"UserName\",\"\")), Entity=tostring(coalesce(column_ifexists(\"DeviceName\",\"\"), column_ifexists(\"Hostname\",\"\"))), Correlation=tostring(column_ifexists(\"DetectionId\",\"\"))\n),\n(\n  CommonSecurityLog\n  | where TimeGenerated between (start .. end)\n  | where DeviceVendor has \"Cisco\" or DeviceProduct has \"Cisco\" or DeviceProduct has_any (\"ASA\",\"Firepower\",\"Umbrella\")\n  | project EvidenceType=\"Cisco\", Time=TimeGenerated, System=\"Cisco\", Summary=strcat(Activity, \" / \", Action),\n            Severity=tostring(column_ifexists(\"LogSeverity\",\"\")), Status=\"\",\n            Actor=tostring(SourceUserName), Entity=strcat(tostring(SourceIP),\" → \",tostring(DestinationIP),\":\",tostring(DestinationPort)), Correlation=tostring(column_ifexists(\"DeviceEventClassID\",\"\"))\n)\n| order by Time desc\n",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "timeContextFromParameter": "TimeRange",
+        "size": 0
+      }
+    }
+  ]
+}
