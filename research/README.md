@@ -21,9 +21,6 @@ This repo is designed for operators who need determinism, traceability, and depl
 - `templates/`  
   Audit-ready scaffolding: evidence bundles, chain-of-custody, governance checklists, reporting structures.
 
-- `drops/`  
-  Public release bundles (date-prefixed) intended for rapid adoption and easy sharing.
-
 - `media/`  
   Public diagrams, screenshots, and share assets referenced by docs and drops.
 
