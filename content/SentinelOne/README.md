@@ -1,159 +1,200 @@
-# SOC 2 Compliance Evidence — Microsoft Sentinel Workbook (Multi‑Source)
+# Zeid Data — SentinelOne Content
 
-This repo artifact contains a Microsoft Sentinel / Log Analytics **workbook** designed to help you **collect and package SOC 2 evidence** across these sources:
+Defensive, evidence-first content for operating and validating detections in SentinelOne Singularity environments.
 
-- **Entra ID** (AuditLogs, SigninLogs)
-- **Microsoft 365** (OfficeActivity)
-- **AWS** (CloudTrail)
-- **Okta** (Okta System Log)
-- **CrowdStrike** (detections / alerts)
-- **Cisco** (network/security device logs via CEF/Syslog → CommonSecurityLog)
+This folder is built for practitioners who need repeatable detection engineering workflows, audit-friendly investigation notes, and practical playbooks that map telemetry to triage, containment, and recovery.
 
-> **Note:** SOC 2 is ultimately about *controls + evidence*. This workbook supports evidence collection and visibility, but it does not replace policies, approvals, ticketing, or auditor judgment.
+Guiding principle: If it didn’t generate evidence, it didn’t happen.
 
 ---
 
-## Files
+## What’s in this section
 
-- `sentinel_soc2_workbook_multi_source.workbook`
-  - Workbook JSON you can import directly into Microsoft Sentinel Workbooks (Advanced Editor).
-- `sentinel_soc2_workbook_multi_source_arm.json`
-  - ARM template to deploy the workbook as an Azure resource (`Microsoft.Insights/workbooks`).
+You will typically find content like:
 
----
+1) Detections / Analytics
+- Detection logic and operator guidance
+- Tuning notes and common false positives
+- Safe validation steps (no malware required)
+- ATT&CK mapping and confidence notes
+- Evidence requirements (what to export and preserve)
 
-## What the workbook shows
+2) Hunting
+- Hunt ideas that translate to SentinelOne investigations
+- Queries, filters, and pivot strategies
+- “What to look for next” decision trees
 
-### Tabs
+3) Threat Notes
+- Tradecraft summaries aligned to observable behaviors
+- Indicator handling guidance (scope, expiry, and context)
+- Links to public references where applicable
 
-- **Overview**
-  - Incident summary
-  - Alerts by provider/product/severity
-  - **Data source continuity / last‑seen** across your SOC 2 log sources
-  - Sentinel health (if `SentinelHealth` is enabled)
+4) Playbooks
+- Triage checklists (first 5 minutes, first hour, first day)
+- Containment and response actions with impact notes
+- Remediation and recovery steps
+- Post-incident evidence bundle templates
 
-- **Identity & Access (Entra ID + Okta)**
-  - Entra role assignment changes (privileged access)
-  - Entra policy changes (Conditional Access / auth policies)
-  - Okta system log recent activity
-  - Optional break‑glass sign‑in spotlight
-
-- **Microsoft 365 (OfficeActivity)**
-  - High‑signal admin operations (mailbox rules, permissions, transport rules, etc.)
-  - External sharing / link creation signals
-
-- **AWS (CloudTrail)**
-  - IAM / privilege changes
-  - Root usage & console logins
-  - Security logging changes (StopLogging, bucket policy / trail changes)
-
-- **Endpoint & Network (CrowdStrike + Cisco)**
-  - CrowdStrike detections summary + recent detections
-  - Cisco CEF events + top blocked/denied actions
-
-- **Monitoring & IR**
-  - MTTC (mean/median/p90 time‑to‑close) by severity
-  - Backlog trend
-  - Work distribution by owner
-  - Sentinel health (connectors / analytics / automation)
-
-- **Evidence Export**
-  - Consolidated, exportable timeline across all supported sources (incidents, Entra, M365, Okta, AWS, CrowdStrike, Cisco)
+5) Reporting / Evidence Packs (optional)
+- Audit-ready report templates
+- Suggested KPIs (MTTD, MTTR, prevalence, top detections)
+- Export guidance for defensible documentation
 
 ---
 
-## Required data (tables)
+## Recommended folder structure
 
-The workbook is written to be **column-safe** and **table-safe** when possible:
+sentinelone/
+  README.md
+  detections/
+    <detection_name>/
+      README.md
+      detection.md
+      validation.md
+      tuning.md
+      attck_mapping.yaml
+      evidence/
+        fields.md
+        sample_artifacts/
+  hunting/
+    README.md
+    hunts/
+      <hunt_name>.md
+    pivot_guides/
+      process_tree.md
+      network_pivots.md
+      persistence_pivots.md
+  playbooks/
+    <scenario_name>/
+      README.md
+      triage.md
+      containment.md
+      eradication.md
+      recovery.md
+      evidence_bundle.md
+  reports/
+    templates/
+      incident_summary.md
+      evidence_index.md
+      executive_one_pager.md
 
-### Primary tables
-
-- Sentinel incidents & alerts
-  - `SecurityIncident`
-  - `SecurityAlert`
-
-- Entra ID
-  - `SigninLogs`
-  - `AuditLogs`
-
-- Microsoft 365
-  - `OfficeActivity`
-
-- Okta
-  - `OktaSystemLogs` *(preferred)*
-  - `Okta_CL` *(fallback for environments that ingest to a custom table)*
-
-- AWS
-  - `AWSCloudTrail` *(preferred)*
-  - `AWSCloudTrail_CL` *(fallback custom table)*
-
-- CrowdStrike
-  - `CrowdStrikeDetections` *(used directly in multiple panels)*
-  - (optional) `CrowdStrikeAlerts`, `CrowdStrikeIncidents`, `CrowdStrikeHosts`
-
-- Cisco / network
-  - `CommonSecurityLog` *(CEF)*
-  - (optional) `Syslog`
-
-If a vendor connector writes to **different custom tables** in your environment, you can adjust the queries (see HOWTO).
-
----
-
-## Parameters
-
-- **TimeRange**: evidence window (set it to your audit period / monthly evidence window)
-- **Section**: tab selector
-- **BreakGlassUPNs** *(optional)*: comma-separated UPN list to spotlight emergency access usage
+Use this as a guideline. Keep it simple and consistent.
 
 ---
 
-## SOC 2 alignment (practical mapping)
+## Naming conventions
 
-This workbook is built to help you gather evidence commonly used for:
+Use stable, searchable names:
+- sentinelone-endpoint-<behavior>-<platform>
+- Example: sentinelone-endpoint-suspicious-powershell-windows
 
-- **Security monitoring & incident response** (incidents, alerts, MTTC, backlog)
-- **Logical access** (role/policy changes, sign-in failures, break-glass usage)
-- **Change management** (AWS & M365 admin actions, CloudTrail logging changes)
-- **Logging & monitoring continuity** (last-seen coverage across critical sources)
-
-Your auditor may map these to Trust Services Criteria in different ways. Pair exports with:
-
-- IR plan + on-call procedures
-- Access review evidence (tickets/approvals)
-- Change approvals (PRs/CAB/tickets)
-- Retention configuration documentation
+Avoid putting dates in folder names unless necessary. Put version/date inside documents instead.
 
 ---
 
-## Quickstart
+## Quick start workflow
 
-1. Ensure connectors are enabled and data is flowing (Entra ID, OfficeActivity, AWS, Okta, CrowdStrike, Cisco CEF).
-2. Import the workbook JSON (`.workbook`) into Sentinel Workbooks.
-3. Set **TimeRange** to your evidence window.
-4. Use **Evidence Export** tab → export to CSV for your audit packet.
+Step 1: Pick your starting point
+- If you are building or refining logic, start in detections/
+- If you are responding to an alert pattern, start in playbooks/
+- If you are exploring unknown activity, start in hunting/
 
-For detailed steps, see **HOWTO.md**.
+Step 2: Confirm assumptions
+Every item should clearly state:
+- Required OS coverage (Windows/macOS/Linux)
+- Required visibility/telemetry and feature dependencies
+- Known gaps and “will not detect” conditions
+
+Step 3: Validate safely
+Use validation.md to confirm the behavior is observable without introducing malware. Validation should be reproducible in a lab and minimally disruptive.
+
+Step 4: Tune with evidence
+Tuning is not “make it quiet.” Tuning is “reduce noise without reducing security.”
+All exclusions should include:
+- justification
+- scope (narrowest possible)
+- owner
+- review/expiration date
+- evidence that the change reduces false positives without masking true positives
+
+Step 5: Preserve evidence
+If you can’t prove it later, it didn’t happen. Capture the minimum viable evidence bundle before making disruptive response changes.
 
 ---
 
-## Troubleshooting
+## Evidence-first standards (required)
 
-- **“Failed to resolve table …”**
-  - The connector isn’t enabled, data hasn’t arrived yet, or your environment uses a different table name.
-  - Fix by enabling the connector or updating the query to your table name.
+Every detection/playbook should answer these questions:
 
-- **No results**
-  - Expand **TimeRange**.
-  - Confirm the workspace being queried is the one receiving the logs.
+- What does this detect or address?
+- Why does it matter (risk/impact)?
+- What telemetry is required?
+- How do I validate it safely?
+- How do I triage it (what to check first)?
+- What are common false positives and how do we tune them?
+- What evidence must be preserved and how should it be exported?
 
-- **SentinelHealth is empty**
-  - Health monitoring may not be enabled, or your tenant/workspace doesn’t emit that table.
+Minimum evidence bundle guidance (adapt to your environment):
+- Host identity: hostname, asset ID, IPs, OS, agent version
+- Time window: first seen, last seen, timezone, event sequence notes
+- Process context: process tree, parent/child, full command lines, user context
+- File context: paths, hashes, signer info (if available), creation/modification times
+- Network context: destination domains/IPs, ports, protocols, JA3/TLS notes if available
+- Persistence context: services, autoruns, scheduled tasks, launch agents, registry keys
+- Analyst notes: decision log, why actions were taken, what was ruled out
 
 ---
 
-## Security / privacy notes
+## SentinelOne environment notes
 
-- Evidence exports may contain usernames, IPs, and device names.
-- Use least privilege when sharing exports.
-- Consider redaction for auditor sharing if needed.
+SentinelOne deployments vary by:
+- agent versions and OS mix
+- policy settings (prevention and response actions)
+- retention, export access, and visibility
+- feature availability by license tier
 
+For every artifact, document:
+- minimum requirements and assumptions
+- what data fields are expected
+- any limitations observed during testing
+
+---
+
+## Safety and scope
+
+This repository content is defensive:
+- No instructions intended to enable harm, compromise systems, or evade security controls
+- Validation guidance must be non-destructive and appropriate for lab testing
+- Any content discussing attacker techniques must be framed as detection, response, and safe simulation only
+
+---
+
+## Contribution guidelines
+
+PRs welcome. When adding a new detection or playbook, include at minimum:
+- README.md overview (purpose, scope, assumptions, required telemetry)
+- detection.md or triage.md (operator steps)
+- validation.md (safe validation steps)
+- tuning.md (false positives, exclusions, and strategy)
+- attck_mapping.yaml (technique mapping and confidence)
+- evidence/fields.md (what evidence to export)
+
+Quality checklist:
+- Clear goal and scope
+- Repeatable steps
+- Safe validation
+- Explicit assumptions
+- Practical tuning guidance
+- Evidence bundle requirements
+- Change notes or versioning inside the doc
+
+---
+
+## Licensing and attribution
+
+Unless otherwise noted, content follows the repository license.
+If using external research, cite sources and summarize in your own words. Avoid copying large verbatim sections.
+
+---
+
+Zeid Data
