@@ -1,4 +1,4 @@
-# Zeid Data Research Report — CVE-2025-68645 (2025–2026): Zimbra ZCS /h/rest RFI — exploit-attempt detection without PoC
+# Zeid Data Research Report — Black Basta (2022–2026): BYOVD + noisy lateral movement patterns
 
 **Version:** 0.1
 **Date:** 2026-02-10 (America/Chicago)
@@ -7,9 +7,11 @@
 
 ---
 
+> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
+
 ## 1) What this is (in plain words)
-- CVE-2025-68645 is described as a remote file inclusion issue affecting Synacor Zimbra Collaboration Suite (ZCS) via the /h/rest endpoint; CISA KEV listing indicates active exploitation.
--
+- Black Basta is known for double-extortion and has been linked to defense evasion patterns including BYOVD (bring-your-own-vulnerable-driver) techniques in some reporting.
+- Even if the brand shifts, the playbooks (credential theft → lateral movement → backup/EDR disruption → encryption) stay basically the same.
 -
 
 ## 2) Why it matters (threat + business risk)
@@ -46,9 +48,9 @@
 - H3: Identity and network anomalies cluster tightly in time (minutes to hours).
 
 ### 5.2 High-signal detections (vendor-agnostic)
-- Web logs: requests to /h/rest with anomalous parameters, traversal-like patterns, or file inclusion markers; baseline normal /h/rest usage first.
-- Auth mismatch: unauthenticated access to endpoints that normally follow login flows; correlate with sudden 5xx errors and webshell-like artifacts.
-- Post-exploit: outbound from mail server to rare destinations; suspicious child processes spawned by mailbox services.
+- BYOVD-ish pattern (defensive): unsigned/suspicious driver loads + endpoint protection tamper events, followed by sudden increase in SMB admin share traffic.
+- Identity spray + lateral movement: spikes in failed logons across many hosts/users, then a small set of successful logons to servers.
+- Backup targeting: network connections to backup infra from non-backup admin accounts, plus new firewall rule changes opening management ports.
 
 ### 5.3 Quick queries (starter templates)
 **Splunk-ish (pseudo):**
@@ -120,7 +122,10 @@ When the alert fires, your “Zeid Data receipts” should include:
 - **Buildability:** 8/10 — single engineer can ship MVP in 2 weeks with synthetic support.
 
 ## 11) Sources (receipts)
-- [The Hacker News: KEV update list including Zimbra CVE-2025-68645 (Jan 23, 2026)](https://thehackernews.com/2026/01/cisa-updates-kev-catalog-with-four.html)
+- [Wired: Black Basta gang decline + affiliate migration (Apr 2025)](https://www.wired.com/story/black-basta-ransomware-gang/)
+- [Barracuda: Lessons from Black Basta’s collapse (Feb 2, 2026)](https://blog.barracuda.com/2026/02/02/lessons-from-black-basta-s-collapse)
+- [Security.com: Black Basta BYOVD behavior (Feb 2026)](https://www.security.com/threat-intelligence/black-basta-ransomware-byovd)
+- [Group-IB notes (general ransomware notes page)](https://www.group-ib.com/resources/ransomware-notes/)
 
 ---
 *Zeid Data Research Labs — ship detections, ship receipts, stay audit-ready.*

@@ -1,4 +1,4 @@
-# Zeid Data Research Report — Black Basta (2022–2026): BYOVD + noisy lateral movement patterns
+# Zeid Data Research Report — CL0P (Clop) data-extortion campaigns (2019–2026): vuln-led mass exfil signals
 
 **Version:** 0.1
 **Date:** 2026-02-10 (America/Chicago)
@@ -7,9 +7,11 @@
 
 ---
 
+> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
+
 ## 1) What this is (in plain words)
-- Black Basta is known for double-extortion and has been linked to defense evasion patterns including BYOVD (bring-your-own-vulnerable-driver) techniques in some reporting.
-- Even if the brand shifts, the playbooks (credential theft → lateral movement → backup/EDR disruption → encryption) stay basically the same.
+- Multiple 2025 reports describe CL0P as a major driver of large-scale data-theft/extortion via vulnerability-led campaigns (often 'mass compromise' waves).
+- This style produces strong network artifacts: rapid outbound exfil from specific app servers, new egress paths to file-sharing/CDN infrastructure, and short-lived surges tied to a disclosed CVE window.
 -
 
 ## 2) Why it matters (threat + business risk)
@@ -46,9 +48,9 @@
 - H3: Identity and network anomalies cluster tightly in time (minutes to hours).
 
 ### 5.2 High-signal detections (vendor-agnostic)
-- BYOVD-ish pattern (defensive): unsigned/suspicious driver loads + endpoint protection tamper events, followed by sudden increase in SMB admin share traffic.
-- Identity spray + lateral movement: spikes in failed logons across many hosts/users, then a small set of successful logons to servers.
-- Backup targeting: network connections to backup infra from non-backup admin accounts, plus new firewall rule changes opening management ports.
+- Mass-exfil pivot: identify sudden 'new top talkers' in NetFlow + proxy logs from a single app tier (e.g., managed file transfer / ERP / web apps).
+- CVE-window correlation: alert when outbound transfer volume spikes within X days of a vendor disclosure affecting a known deployed product.
+- Ransom note is not your first signal here—treat 'unusual bulk egress' as the primary early warning.
 
 ### 5.3 Quick queries (starter templates)
 **Splunk-ish (pseudo):**
@@ -120,10 +122,10 @@ When the alert fires, your “Zeid Data receipts” should include:
 - **Buildability:** 8/10 — single engineer can ship MVP in 2 weeks with synthetic support.
 
 ## 11) Sources (receipts)
-- [Wired: Black Basta gang decline + affiliate migration (Apr 2025)](https://www.wired.com/story/black-basta-ransomware-gang/)
-- [Barracuda: Lessons from Black Basta’s collapse (Feb 2, 2026)](https://blog.barracuda.com/2026/02/02/lessons-from-black-basta-s-collapse)
-- [Security.com: Black Basta BYOVD behavior (Feb 2026)](https://www.security.com/threat-intelligence/black-basta-ransomware-byovd)
-- [Group-IB notes (general ransomware notes page)](https://www.group-ib.com/resources/ransomware-notes/)
+- [GuidePoint GRIT Q1 2025 Ransomware & Cyber Threat Report [PDF] (Apr 7, 2025)](https://www.guidepointsecurity.com/wp-content/uploads/2025/04/GRIT-2025-Q1-Ransomware-Cyber-Threat-Report.pdf)
+- [Optiv: First Quarter 2025 Ransomware Trends (Jul 3, 2025)](https://www.optiv.com/insights/discover/blog/first-quarter-2025-ransomware-trends)
+- [Veeam: mass data exfiltration campaigns Q4 2025 (Dec 2025)](https://www.veeam.com/blog/mass-data-exfiltration-campaigns-q4-2025.html)
+- [ReliaQuest: Ransomware & cyber extortion Q2 2025 (Jul 3, 2025)](https://reliaquest.com/blog/ransomware-cyber-extortion-threat-intel-q2-2025/)
 
 ---
 *Zeid Data Research Labs — ship detections, ship receipts, stay audit-ready.*

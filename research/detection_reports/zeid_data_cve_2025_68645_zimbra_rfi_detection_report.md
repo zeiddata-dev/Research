@@ -1,4 +1,4 @@
-# Zeid Data Research Report — CVE-2025-34026 (2025–2026): Versa Concerto SD-WAN auth bypass — admin-plane anomaly detection
+# Zeid Data Research Report — CVE-2025-68645 (2025–2026): Zimbra ZCS /h/rest RFI — exploit-attempt detection without PoC
 
 **Version:** 0.1
 **Date:** 2026-02-10 (America/Chicago)
@@ -7,8 +7,10 @@
 
 ---
 
+> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
+
 ## 1) What this is (in plain words)
-- CVE-2025-34026 is described as an authentication bypass in Versa Concerto SD-WAN orchestration that enables access to administrative endpoints; KEV indicates exploitation in the wild.
+- CVE-2025-68645 is described as a remote file inclusion issue affecting Synacor Zimbra Collaboration Suite (ZCS) via the /h/rest endpoint; CISA KEV listing indicates active exploitation.
 -
 -
 
@@ -46,9 +48,9 @@
 - H3: Identity and network anomalies cluster tightly in time (minutes to hours).
 
 ### 5.2 High-signal detections (vendor-agnostic)
-- Admin endpoint access from new sources: unexpected IPs, geos, or ASN-to-admin URLs; alert on first-time admin sessions.
-- Token/session weirdness: sessions created without preceding auth events; mismatched user-agent strings for admin consoles.
-- Change control: config pushes, new users, and policy exports outside approved windows.
+- Web logs: requests to /h/rest with anomalous parameters, traversal-like patterns, or file inclusion markers; baseline normal /h/rest usage first.
+- Auth mismatch: unauthenticated access to endpoints that normally follow login flows; correlate with sudden 5xx errors and webshell-like artifacts.
+- Post-exploit: outbound from mail server to rare destinations; suspicious child processes spawned by mailbox services.
 
 ### 5.3 Quick queries (starter templates)
 **Splunk-ish (pseudo):**
@@ -120,7 +122,7 @@ When the alert fires, your “Zeid Data receipts” should include:
 - **Buildability:** 8/10 — single engineer can ship MVP in 2 weeks with synthetic support.
 
 ## 11) Sources (receipts)
-- [The Hacker News: KEV update list including Versa Concerto CVE-2025-34026 (Jan 23, 2026)](https://thehackernews.com/2026/01/cisa-updates-kev-catalog-with-four.html)
+- [The Hacker News: KEV update list including Zimbra CVE-2025-68645 (Jan 23, 2026)](https://thehackernews.com/2026/01/cisa-updates-kev-catalog-with-four.html)
 
 ---
 *Zeid Data Research Labs — ship detections, ship receipts, stay audit-ready.*

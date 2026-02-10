@@ -1,4 +1,4 @@
-# Zeid Data Research Report — Qilin (2022–2026): full-spectrum extortion + high-pressure harassment signals
+# Zeid Data Research Report — CVE-2025-34026 (2025–2026): Versa Concerto SD-WAN auth bypass — admin-plane anomaly detection
 
 **Version:** 0.1
 **Date:** 2026-02-10 (America/Chicago)
@@ -7,9 +7,11 @@
 
 ---
 
+> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
+
 ## 1) What this is (in plain words)
-- 2025 research highlights Qilin as a fast-rising operation emphasizing 'pressure' tactics alongside classic extortion (e.g., regulatory complaint threats, contacting stakeholders).
-- This implies expanded telemetry: comms-channel abuse, identity abuse, and broader outbound destinations during the intimidation phase.
+- CVE-2025-34026 is described as an authentication bypass in Versa Concerto SD-WAN orchestration that enables access to administrative endpoints; KEV indicates exploitation in the wild.
+-
 -
 
 ## 2) Why it matters (threat + business risk)
@@ -46,9 +48,9 @@
 - H3: Identity and network anomalies cluster tightly in time (minutes to hours).
 
 ### 5.2 High-signal detections (vendor-agnostic)
-- Comms flooding precursor: sudden spikes in outbound SMTP/HTTP to mail/marketing platforms, SMS gateways, or customer-contact tooling from non-approved hosts.
-- Leak-prep staging: internal file shares → compression activity → outbound large transfers; monitor 7zip/winrar + high data volume egress.
-- External pressure ops: monitor compromised accounts logging into SaaS admin panels and creating new forwarding/auto-reply rules or export jobs.
+- Admin endpoint access from new sources: unexpected IPs, geos, or ASN-to-admin URLs; alert on first-time admin sessions.
+- Token/session weirdness: sessions created without preceding auth events; mismatched user-agent strings for admin consoles.
+- Change control: config pushes, new users, and policy exports outside approved windows.
 
 ### 5.3 Quick queries (starter templates)
 **Splunk-ish (pseudo):**
@@ -120,10 +122,7 @@ When the alert fires, your “Zeid Data receipts” should include:
 - **Buildability:** 8/10 — single engineer can ship MVP in 2 weeks with synthetic support.
 
 ## 11) Sources (receipts)
-- [Check Point Research: State of Ransomware Q2 2025 (Jul 31, 2025)](https://research.checkpoint.com/2025/the-state-of-ransomware-q2-2025/)
-- [Dragos: Industrial Ransomware Analysis Q2 2025 (Aug 14, 2025)](https://www.dragos.com/blog/dragos-industrial-ransomware-analysis-q2-2025)
-- [ReliaQuest: Ransomware & cyber extortion Q2 2025 (Jul 3, 2025)](https://reliaquest.com/blog/ransomware-cyber-extortion-threat-intel-q2-2025/)
-- [Reuters: Qilin claims hack on Asahi Group (Oct 7, 2025)](https://www.reuters.com/world/asia-pacific/cybercriminals-claim-hack-japans-asahi-group-2025-10-07/)
+- [The Hacker News: KEV update list including Versa Concerto CVE-2025-34026 (Jan 23, 2026)](https://thehackernews.com/2026/01/cisa-updates-kev-catalog-with-four.html)
 
 ---
 *Zeid Data Research Labs — ship detections, ship receipts, stay audit-ready.*

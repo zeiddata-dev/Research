@@ -7,6 +7,8 @@
 
 ---
 
+> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
+
 ## 1) What this is (in plain words)
 - Akira is a high-volume ransomware/extortion operation active since 2023; the Nov 13, 2025 #StopRansomware advisory update documents new TTPs and defensive guidance.
 - The advisory describes initial access via exploitation of internet-facing systems (T1190) and spearphishing attachments/links (T1566.001/.002), plus heavy use of PowerShell and remote service execution.
