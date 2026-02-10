@@ -7,8 +7,6 @@
 
 ---
 
-> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
-
 ## 1) What this is (in plain words)
 - Multiple 2025 reports describe CL0P as a major driver of large-scale data-theft/extortion via vulnerability-led campaigns (often 'mass compromise' waves).
 - This style produces strong network artifacts: rapid outbound exfil from specific app servers, new egress paths to file-sharing/CDN infrastructure, and short-lived surges tied to a disclosed CVE window.

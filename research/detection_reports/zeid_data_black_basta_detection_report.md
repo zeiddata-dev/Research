@@ -7,8 +7,6 @@
 
 ---
 
-> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
-
 ## 1) What this is (in plain words)
 - Black Basta is known for double-extortion and has been linked to defense evasion patterns including BYOVD (bring-your-own-vulnerable-driver) techniques in some reporting.
 - Even if the brand shifts, the playbooks (credential theft → lateral movement → backup/EDR disruption → encryption) stay basically the same.

@@ -7,8 +7,6 @@
 
 ---
 
-> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
-
 ## 1) What this is (in plain words)
 - CVE-2025-22225 is part of a VMware ESXi/Workstation/Fusion vulnerability trio; reporting notes CISA updated KEV to confirm ransomware use and that exploitation toolkits were observed in January 2026.
 -

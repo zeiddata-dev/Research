@@ -7,8 +7,6 @@
 
 ---
 
-> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
-
 ## 1) What this is (in plain words)
 - CVE-2025-8110 affects Gogs (self-hosted Git service) and involves improper symbolic link handling in the PutContents API; public sources describe active exploitation and mass compromise of exposed instances.
 - Detection focus: HTTP API misuse patterns + post-compromise webshell/persistence behavior + outbound C2/exfil from a 'should-be-boring' Git server.

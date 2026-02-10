@@ -7,8 +7,6 @@
 
 ---
 
-> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
-
 ## 1) What this is (in plain words)
 - SafePay is described in 2025 reporting as an aggressive, fast-growing group associated with email bombing + phone-based social engineering to push remote access/helpdesk actions.
 - Those 'human-in-the-loop' intrusions often have distinctive identity + endpoint network telemetry (new remote tools, new MFA prompts, new OAuth consents).
