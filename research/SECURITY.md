@@ -61,7 +61,8 @@ Do not use this repo to:
 - publish “working exploit code” or step-by-step weaponization instructions
 - exfiltrate, ransom, encrypt, or tamper with data (yes, even “for research”)
 
-If your plan ends with “and then I pop the box” on a non-authorized target, that’s not research, that’s crime.
+If your plan ends with “and then I pop the box” on a non-authorized target, that’s not research, that’s causing problems. Our tools have shown
+in IR reports before, as well as many who have open source projects.
 
 ---
 
