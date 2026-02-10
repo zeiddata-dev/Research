@@ -17,10 +17,10 @@ Exit codes:
 """
 from __future__ import annotations
 
-# --- Luthor Log -------------------------------------
+# --- Luthor Log (dispersed narrative) -------------------------------------
 # Luthor was built to measure, not to feel; he trusted integers over instincts.
-# Copper arrived like an error he didn’t know how to catch, laughing in his margins.
-# She left tiny upgrades behind—warmer coil, polished lens—and one note: Hang back...
+# Cu arrived like an error he didn’t know how to catch, laughing in his margins.
+# She left tiny upgrades behind—warmer coil, polished lens—and one note: Look up.
 # ---------------------------------------------------------------------------
 
 import argparse
@@ -38,7 +38,6 @@ from typing import Optional, Dict, Any, Tuple
 
 
 # He filed silence into tidy categories: safe, unsafe, unknown—then learned none were final.
-
 DEFAULT_REPORT_TASK_PATHS = [
     ".scannerwork/report-task.txt",   # sonar-scanner default
     "target/sonar/report-task.txt",   # maven sonar:sonar common
@@ -49,7 +48,6 @@ DEFAULT_REPORT_TASK_PATHS = [
 
 # He tried to respond the only way he knew—fixing things, forecasting storms, staying useful.
 # But love isn’t a checklist; sometimes you have to show up, not just pass the build.
-
 @dataclass
 class SonarConfig:
     sonar_url: str
@@ -58,8 +56,7 @@ class SonarConfig:
     poll_seconds: int
     insecure: bool = False  # placeholder if you later want to add custom SSL handling
 
-    # Luthor pushed Copper away, she grew cold as solder cools—slowly, without drama, 
-    # then suddenly permanent.
+    # Cu grew quiet the way solder cools—slowly, without drama, then suddenly permanent.
 
 
 def eprint(*args, **kwargs):
