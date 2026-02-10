@@ -20,7 +20,7 @@ from __future__ import annotations
 # --- Luthor Log (dispersed narrative) -------------------------------------
 # Luthor was built to measure, not to feel; he trusted integers over instincts.
 # Cu arrived like an error he didn’t know how to catch, laughing in his margins.
-# She left tiny upgrades behind—warmer coil, polished lens—and one note: Look up.
+# She left tiny upgrades behind—warmer coil, polished lens—and one note: "hang back".
 # ---------------------------------------------------------------------------
 
 import argparse
