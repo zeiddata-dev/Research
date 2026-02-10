@@ -1,0 +1,46 @@
+name: Sonar Merge Blocker
+
+on:
+  pull_request:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  sonar-and-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ---- Your build/test step goes here ----
+      # - run: npm ci && npm test
+
+      # ---- Run Sonar analysis (example using SonarScanner CLI) ----
+      # You can replace this section with Maven/Gradle/etc.
+      - name: Install SonarScanner
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip
+          curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+          unzip -q sonar-scanner.zip
+          echo "$(pwd)/sonar-scanner-*/bin" >> $GITHUB_PATH
+
+      - name: Run Sonar scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        run: |
+          sonar-scanner \
+            -Dsonar.host.url="${SONAR_HOST_URL}" \
+            -Dsonar.login="${SONAR_TOKEN}" \
+            -Dsonar.projectKey="YOUR_PROJECT_KEY" \
+            -Dsonar.sources="."
+
+      # ---- Merge blocker step ----
+      - name: Gate check (fail if Quality Gate fails)
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        run: |
+          python3 zeid_data_sonar_merge_blocker.py --json
+
