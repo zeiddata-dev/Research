@@ -7,8 +7,6 @@
 
 ---
 
-> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
-
 ## 1) What this is (in plain words)
 - CVE-2025-34026 is described as an authentication bypass in Versa Concerto SD-WAN orchestration that enables access to administrative endpoints; KEV indicates exploitation in the wild.
 -
