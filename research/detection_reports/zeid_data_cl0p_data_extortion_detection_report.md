@@ -1,7 +1,7 @@
 # Zeid Data Research Report — CL0P (Clop) data-extortion campaigns (2019–2026): vuln-led mass exfil signals
 
 **Version:** 0.1
-**Date:** 2026-02-10 (America/Chicago)
+**Date:** 2025-09-10 (America/Chicago)
 **Owner:** Zeid Data Research Labs
 **Vibe:** evidence-first, detections-forward — *if it didn’t generate evidence, it didn’t happen.*
 

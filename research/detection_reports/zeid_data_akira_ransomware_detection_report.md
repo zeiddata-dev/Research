@@ -1,7 +1,7 @@
 # Zeid Data Research Report — Akira ransomware (2023–2026): network & identity detection playbook
 
 **Version:** 0.1
-**Date:** 2026-02-10 (America/Chicago)
+**Date:** 2026-01-21 (America/Chicago)
 **Owner:** Zeid Data Research Labs
 **Vibe:** evidence-first, detections-forward — *if it didn’t generate evidence, it didn’t happen.*
 

@@ -1,7 +1,7 @@
 # Zeid Data Research Report — CVE-2025-22225 (2025–2026): VMware ESXi arbitrary write — ransomware-linked exploitation signals
 
 **Version:** 0.1
-**Date:** 2026-02-10 (America/Chicago)
+**Date:** 2026-01-02 (America/Chicago)
 **Owner:** Zeid Data Research Labs
 **Vibe:** evidence-first, detections-forward — *if it didn’t generate evidence, it didn’t happen.*
 

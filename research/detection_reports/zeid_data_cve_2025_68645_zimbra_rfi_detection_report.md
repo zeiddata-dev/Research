@@ -1,7 +1,7 @@
 # Zeid Data Research Report — CVE-2025-68645 (2025–2026): Zimbra ZCS /h/rest RFI — exploit-attempt detection without PoC
 
 **Version:** 0.1
-**Date:** 2026-02-10 (America/Chicago)
+**Date:** 2026-02-11 (America/Chicago)
 **Owner:** Zeid Data Research Labs
 **Vibe:** evidence-first, detections-forward — *if it didn’t generate evidence, it didn’t happen.*
 

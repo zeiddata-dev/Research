@@ -1,7 +1,7 @@
 # Zeid Data Research Report — CVE-2026-21509 (2026): Microsoft Office security feature bypass — network-aware detection
 
 **Version:** 0.1
-**Date:** 2026-02-10 (America/Chicago)
+**Date:** 2026-02-04 (America/Chicago)
 **Owner:** Zeid Data Research Labs
 **Vibe:** evidence-first, detections-forward — *if it didn’t generate evidence, it didn’t happen.*
 

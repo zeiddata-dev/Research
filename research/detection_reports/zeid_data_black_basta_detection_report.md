@@ -1,10 +1,9 @@
 # Zeid Data Research Report — Black Basta (2022–2026): BYOVD + noisy lateral movement patterns
 
 **Version:** 0.1
-**Date:** 2026-02-10 (America/Chicago)
+**Date:** 2026-02-16 (America/Chicago)
 **Owner:** Zeid Data Research Labs
-**Vibe:** evidence-first, detections-forward — *if it didn’t generate evidence, it didn’t happen.*
-
+**Vibe:** evidence-first, detections-forward — *if it didn’t generate evidence, it didn’t happen.
 ---
 
 ## 1) What this is (in plain words)
