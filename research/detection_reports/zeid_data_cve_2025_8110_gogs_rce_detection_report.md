@@ -1,4 +1,4 @@
-# Zeid Data Research Report — SafePay (2024–2026): spam/vishing-assisted ransomware intrusion signals
+# Zeid Data Research Report — CVE-2025-8110 (2025–2026): Gogs PutContents symlink bypass — exploitation evidence & detection
 
 **Version:** 0.1
 **Date:** 2026-02-10 (America/Chicago)
@@ -7,9 +7,11 @@
 
 ---
 
+> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
+
 ## 1) What this is (in plain words)
-- SafePay is described in 2025 reporting as an aggressive, fast-growing group associated with email bombing + phone-based social engineering to push remote access/helpdesk actions.
-- Those 'human-in-the-loop' intrusions often have distinctive identity + endpoint network telemetry (new remote tools, new MFA prompts, new OAuth consents).
+- CVE-2025-8110 affects Gogs (self-hosted Git service) and involves improper symbolic link handling in the PutContents API; public sources describe active exploitation and mass compromise of exposed instances.
+- Detection focus: HTTP API misuse patterns + post-compromise webshell/persistence behavior + outbound C2/exfil from a 'should-be-boring' Git server.
 -
 
 ## 2) Why it matters (threat + business risk)
@@ -46,9 +48,9 @@
 - H3: Identity and network anomalies cluster tightly in time (minutes to hours).
 
 ### 5.2 High-signal detections (vendor-agnostic)
-- Email-bomb → helpdesk takeover chain: watch for large inbound email bursts, followed by password reset attempts, followed by new device registrations or MFA method changes.
-- Remote tooling spike: AnyDesk/ScreenConnect/TeamViewer-style outbound sessions from user workstations that have never used them before.
-- High-confidence: new admin consent/OAuth app installs close in time to vishing events.
+- Web/API layer: alert on unusual volume of PutContents (write) operations, especially to unexpected paths or from new/untrusted IPs.
+- Server role mismatch: Git server initiating outbound connections to code repos, paste sites, or cloud storage it never touched before.
+- Credential pivot: new SSH keys or service tokens created shortly after suspicious API writes.
 
 ### 5.3 Quick queries (starter templates)
 **Splunk-ish (pseudo):**
@@ -120,10 +122,10 @@ When the alert fires, your “Zeid Data receipts” should include:
 - **Buildability:** 8/10 — single engineer can ship MVP in 2 weeks with synthetic support.
 
 ## 11) Sources (receipts)
-- [Barracuda: SafePay email bombs, phone scams, big ransoms (Jul 25, 2025)](https://blog.barracuda.com/2025/07/25/safepay--email-bombs--phone-scams--and-really-big-ransoms)
-- [Flare: SafePay victims analysis (Jan 5, 2026)](https://flare.io/learn/resources/safepay-ransomware-victims-analysis/)
-- [ITPro: ransomware group fragmentation & SafePay momentum (Oct 2025)](https://www.itpro.com/security/rocketing-number-of-ransomware-groups-as-new-smaller-players-emerge)
-- [Check Point: SafePay overview (2025)](https://www.checkpoint.com/cyber-hub/threat-prevention/ransomware/safepay-ransomware/)
+- [Wiz Research: zero-day fueled Gogs compromise (Dec 10, 2025)](https://www.wiz.io/blog/wiz-research-gogs-cve-2025-8110-rce-exploit)
+- [GitHub Advisory: GHSA-mq8m-42gh-wq7r (Dec 10, 2025, updated Jan 20, 2026)](https://github.com/advisories/GHSA-mq8m-42gh-wq7r)
+- [NVD entry for CVE-2025-8110 (CNA: Wiz)](https://nvd.nist.gov/vuln/detail/CVE-2025-8110)
+- [Security Affairs coverage of KEV addition (Jan 12, 2026)](https://securityaffairs.com/186837/hacking/u-s-cisa-adds-a-flaw-in-gogs-to-its-known-exploited-vulnerabilities-catalog.html)
 
 ---
 *Zeid Data Research Labs — ship detections, ship receipts, stay audit-ready.*

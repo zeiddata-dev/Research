@@ -1,4 +1,4 @@
-# Zeid Data Research Report — CVE-2025-22225 (2025–2026): VMware ESXi arbitrary write — ransomware-linked exploitation signals
+# Zeid Data Research Report — Qilin (2022–2026): full-spectrum extortion + high-pressure harassment signals
 
 **Version:** 0.1
 **Date:** 2026-02-10 (America/Chicago)
@@ -7,9 +7,11 @@
 
 ---
 
+> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
+
 ## 1) What this is (in plain words)
-- CVE-2025-22225 is part of a VMware ESXi/Workstation/Fusion vulnerability trio; reporting notes CISA updated KEV to confirm ransomware use and that exploitation toolkits were observed in January 2026.
--
+- 2025 research highlights Qilin as a fast-rising operation emphasizing 'pressure' tactics alongside classic extortion (e.g., regulatory complaint threats, contacting stakeholders).
+- This implies expanded telemetry: comms-channel abuse, identity abuse, and broader outbound destinations during the intimidation phase.
 -
 
 ## 2) Why it matters (threat + business risk)
@@ -46,9 +48,9 @@
 - H3: Identity and network anomalies cluster tightly in time (minutes to hours).
 
 ### 5.2 High-signal detections (vendor-agnostic)
-- Management plane exposure: alert on any internet-exposed ESXi/Workstation services and inbound from untrusted geos; treat as 'stop-the-line'.
-- East-west blast radius: after compromise, expect rapid SMB/RDP/SSH movement from virtualization admin segments into file/backup domains.
-- Backups get hit: monitor for sudden auth failures/successes to backup consoles plus deletion/disable events.
+- Comms flooding precursor: sudden spikes in outbound SMTP/HTTP to mail/marketing platforms, SMS gateways, or customer-contact tooling from non-approved hosts.
+- Leak-prep staging: internal file shares → compression activity → outbound large transfers; monitor 7zip/winrar + high data volume egress.
+- External pressure ops: monitor compromised accounts logging into SaaS admin panels and creating new forwarding/auto-reply rules or export jobs.
 
 ### 5.3 Quick queries (starter templates)
 **Splunk-ish (pseudo):**
@@ -120,7 +122,10 @@ When the alert fires, your “Zeid Data receipts” should include:
 - **Buildability:** 8/10 — single engineer can ship MVP in 2 weeks with synthetic support.
 
 ## 11) Sources (receipts)
-- [Help Net Security: KEV ransomware flag & exploitation observations (Feb 5, 2026)](https://www.helpnetsecurity.com/2026/02/05/cisa-cve-2025-22225-ransomware-exploitation/)
+- [Check Point Research: State of Ransomware Q2 2025 (Jul 31, 2025)](https://research.checkpoint.com/2025/the-state-of-ransomware-q2-2025/)
+- [Dragos: Industrial Ransomware Analysis Q2 2025 (Aug 14, 2025)](https://www.dragos.com/blog/dragos-industrial-ransomware-analysis-q2-2025)
+- [ReliaQuest: Ransomware & cyber extortion Q2 2025 (Jul 3, 2025)](https://reliaquest.com/blog/ransomware-cyber-extortion-threat-intel-q2-2025/)
+- [Reuters: Qilin claims hack on Asahi Group (Oct 7, 2025)](https://www.reuters.com/world/asia-pacific/cybercriminals-claim-hack-japans-asahi-group-2025-10-07/)
 
 ---
 *Zeid Data Research Labs — ship detections, ship receipts, stay audit-ready.*

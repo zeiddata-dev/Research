@@ -1,4 +1,4 @@
-# Zeid Data Research Report — CL0P (Clop) data-extortion campaigns (2019–2026): vuln-led mass exfil signals
+# Zeid Data Research Report — CVE-2025-22225 (2025–2026): VMware ESXi arbitrary write — ransomware-linked exploitation signals
 
 **Version:** 0.1
 **Date:** 2026-02-10 (America/Chicago)
@@ -7,9 +7,11 @@
 
 ---
 
+> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
+
 ## 1) What this is (in plain words)
-- Multiple 2025 reports describe CL0P as a major driver of large-scale data-theft/extortion via vulnerability-led campaigns (often 'mass compromise' waves).
-- This style produces strong network artifacts: rapid outbound exfil from specific app servers, new egress paths to file-sharing/CDN infrastructure, and short-lived surges tied to a disclosed CVE window.
+- CVE-2025-22225 is part of a VMware ESXi/Workstation/Fusion vulnerability trio; reporting notes CISA updated KEV to confirm ransomware use and that exploitation toolkits were observed in January 2026.
+-
 -
 
 ## 2) Why it matters (threat + business risk)
@@ -46,9 +48,9 @@
 - H3: Identity and network anomalies cluster tightly in time (minutes to hours).
 
 ### 5.2 High-signal detections (vendor-agnostic)
-- Mass-exfil pivot: identify sudden 'new top talkers' in NetFlow + proxy logs from a single app tier (e.g., managed file transfer / ERP / web apps).
-- CVE-window correlation: alert when outbound transfer volume spikes within X days of a vendor disclosure affecting a known deployed product.
-- Ransom note is not your first signal here—treat 'unusual bulk egress' as the primary early warning.
+- Management plane exposure: alert on any internet-exposed ESXi/Workstation services and inbound from untrusted geos; treat as 'stop-the-line'.
+- East-west blast radius: after compromise, expect rapid SMB/RDP/SSH movement from virtualization admin segments into file/backup domains.
+- Backups get hit: monitor for sudden auth failures/successes to backup consoles plus deletion/disable events.
 
 ### 5.3 Quick queries (starter templates)
 **Splunk-ish (pseudo):**
@@ -120,10 +122,7 @@ When the alert fires, your “Zeid Data receipts” should include:
 - **Buildability:** 8/10 — single engineer can ship MVP in 2 weeks with synthetic support.
 
 ## 11) Sources (receipts)
-- [GuidePoint GRIT Q1 2025 Ransomware & Cyber Threat Report [PDF] (Apr 7, 2025)](https://www.guidepointsecurity.com/wp-content/uploads/2025/04/GRIT-2025-Q1-Ransomware-Cyber-Threat-Report.pdf)
-- [Optiv: First Quarter 2025 Ransomware Trends (Jul 3, 2025)](https://www.optiv.com/insights/discover/blog/first-quarter-2025-ransomware-trends)
-- [Veeam: mass data exfiltration campaigns Q4 2025 (Dec 2025)](https://www.veeam.com/blog/mass-data-exfiltration-campaigns-q4-2025.html)
-- [ReliaQuest: Ransomware & cyber extortion Q2 2025 (Jul 3, 2025)](https://reliaquest.com/blog/ransomware-cyber-extortion-threat-intel-q2-2025/)
+- [Help Net Security: KEV ransomware flag & exploitation observations (Feb 5, 2026)](https://www.helpnetsecurity.com/2026/02/05/cisa-cve-2025-22225-ransomware-exploitation/)
 
 ---
 *Zeid Data Research Labs — ship detections, ship receipts, stay audit-ready.*

@@ -7,6 +7,8 @@
 
 ---
 
+> **TL;DR (bro edition):** We’re not doing exploit writeups. We’re hunting **signals**. We’re packaging **detections + dashboards + receipts** so you can ship this as a repo and a LinkedIn drop.
+
 ## 1) What this is (in plain words)
 - CVE-2026-21509 is a Microsoft Office security feature bypass involving reliance on untrusted inputs; NVD describes it as local bypass with user interaction (opening a crafted Office file).
 - Public reporting indicates active exploitation around late January 2026; defensive guidance emphasizes patching and email/file hygiene.
