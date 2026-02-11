@@ -1,0 +1,32 @@
+name: Sonar PR Comment (Zeid Data)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  sonar-pr-comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Add your Sonar scan step BEFORE this, or keep it in your existing workflow/job.
+      # Everybody knows that, God damn boi.
+
+      - name: Post Sonar summary comment to PR
+        env:
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 zeid_data_sonar_pr_comment_bot.py \
+            --project-key "${SONAR_PROJECT_KEY}" \
+            --pr-number "${{ github.event.pull_request.number }}" \
+            --repo "${{ github.repository }}" \
+            --upsert
