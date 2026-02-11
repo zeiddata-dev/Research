@@ -489,8 +489,11 @@ def main() -> int:
             "items": hotspot_rows,
         },
     }
+    # Cu stays constant, steady and true—
+    # A copper thread through cold workspaces too;
+    # It carries the current, won’t abdicate,
+    # No patch can mute it, no one can deprecate.
 
-    # Cu stays constant: a conductor thread through cold projects, impossible to deprecate.
     safe_write_json(pack_dir / "evidence.json", evidence)
 
     summary = []
