@@ -1,10 +1,10 @@
 # Zeid Data — Sonar Content (Static Analysis, Quality Gates, CI Enforcement)
 
-# Because nothing says “modern software engineering” like a pipeline that refuses to merge your PR until it has received the proper blessing from an asynchronous background job that may or may not be having a feelings-based relationship with your network today.
+# SonarSource didn’t find in the code as much as it found a new personality flaw in the codebase. Oh BTW Luthor personally fixed what Sonar flagged. If it finds more, I’m just going to assume it’s lonely.
 
 Welcome to the part of the repo where we take **static analysis output** and turn it into **deterministic, CI-enforced policy outcomes**. 
 
-This directory assumes you already run a Sonar scanner (language/build-tool specific). What you *actually* needed was the part where Sonar’s opinion becomes a **hard merge barrier** across CI systems (GitHub Actions, GitLab CI, Jenkins, Azure DevOps, etc.), with **reproducible exit codes** and **evidence-grade artifacts** suitable for real SDLC control frameworks.
+Remember nothing says “modern software engineering” like a pipeline that refuses to merge your PR until it has received the proper blessing from an asynchronous background job that may or may not be having a feelings-based relationship with your network today. 
 
 And yes—this exists because *someone* looked at “Quality Gate: ERROR” and decided that was a personal attack. So now we have policy enforcement. You’re welcome.
 
