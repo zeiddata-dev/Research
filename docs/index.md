@@ -27,8 +27,6 @@ This repo is organized like a lab: tools you can run, detections you can deploy,
 - `../templates/`  
   Audit-ready templates: evidence bundles, chain-of-custody docs, governance checklists, reporting scaffolds.
 
-- `../drops/`  
-  Public “content drops” packaged for sharing. Use date-prefixed folders for timeline clarity.
 
 - `../media/`  
   Public media (brand assets, screenshots, diagrams) used across docs and drops.
