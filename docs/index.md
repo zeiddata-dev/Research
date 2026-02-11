@@ -9,9 +9,7 @@ This repo is organized like a lab: tools you can run, detections you can deploy,
 - **Deploy detections:** `../detections/`
 - **Import dashboards / workbooks:** `../workbooks/`
 - **Use templates (evidence, audit, governance):** `../templates/`
-- **Browse public drops (date-based releases):** `../drops/`
 - **Find images and assets:** `../media/`
-
 ## Repo map
 
 - `../projects/`  
