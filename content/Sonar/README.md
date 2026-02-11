@@ -1,6 +1,6 @@
 # Zeid Data — Sonar Content (Static Analysis, Quality Gates, CI Enforcement)
 
-# SonarSource didn’t find in the code as much as it found a new personality flaw in the codebase. Oh BTW Luthor personally fixed what Sonar flagged. If it finds more, I’m just going to assume it’s lonely.
+# I fixed what Sonar flagged, if it finds more, I’m just going to assume it’s lonely.
 
 Welcome to the part of the repo where we take **static analysis output** and turn it into **deterministic, CI-enforced policy outcomes**. 
 
