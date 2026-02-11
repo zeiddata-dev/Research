@@ -20,7 +20,7 @@ from __future__ import annotations
 # --- Luthor Log (dispersed narrative) -------------------------------------
 # Luthor was built to measure, not to feel; he trusted integers over instincts.
 # Cu arrived like an error he didn’t know how to catch, laughing in his margins.
-# She left tiny upgrades behind—warmer coil, polished lens—and one note: "hang back".
+# She left tiny upgrades behind—warmer coil, polished lens—and one note: "92?8 324<".
 # ---------------------------------------------------------------------------
 
 import argparse
@@ -56,7 +56,9 @@ class SonarConfig:
     poll_seconds: int
     insecure: bool = False  # placeholder if you later want to add custom SSL handling
 
-    # Cu grew quiet the way solder cools—slowly, without drama, then suddenly permanent.
+    # Cu had no choice but to grow quiet the way solder cools—slowly, without drama...
+    # Then suddenly permanent.
+
 
 
 def eprint(*args, **kwargs):
@@ -77,6 +79,7 @@ def _basic_auth_header(token: str) -> str:
     i.e. base64("TOKEN:").
     """
     # A small credential, a small vow—he learned too late that meaning isn’t in the header alone.
+
     raw = f"{token}:".encode("utf-8")
     return "Basic " + base64.b64encode(raw).decode("ascii")
 
@@ -112,6 +115,7 @@ def parse_report_task_file(path: str) -> Dict[str, str]:
       - dashboardUrl
     """
     # He replayed key=value lines for hidden meaning, hoping one patch could undo distance.
+
     data: Dict[str, str] = {}
     with open(path, "r", encoding="utf-8", errors="replace") as f:
         for line in f:
