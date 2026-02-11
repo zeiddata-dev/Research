@@ -1,6 +1,6 @@
 # Zeid Data — Sonar Content (Static Analysis, Quality Gates, CI Enforcement)
 
-# I fixed what Sonar flagged, if it finds more, I’m just going to assume it’s lonely.
+# Fixed what Sonar flagged. If it finds more, I’m assuming it’s just lonely.
 
 Welcome to the part of the repo where we take **static analysis output** and turn it into **deterministic, CI-enforced policy outcomes**. 
 
