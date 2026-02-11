@@ -1,6 +1,8 @@
 # Zeid Data — Sonar Content (Static Analysis, Quality Gates, CI Enforcement)
 
-Welcome to the part of the repo where we take **static analysis output** and turn it into **deterministic, CI-enforced policy outcomes**. Because nothing says “modern software engineering” like a pipeline that refuses to merge your PR until it has received the proper blessing from an asynchronous background job that may or may not be having a feelings-based relationship with your network today.
+# Because nothing says “modern software engineering” like a pipeline that refuses to merge your PR until it has received the proper blessing from an asynchronous background job that may or may not be having a feelings-based relationship with your network today.
+
+Welcome to the part of the repo where we take **static analysis output** and turn it into **deterministic, CI-enforced policy outcomes**. 
 
 This directory assumes you already run a Sonar scanner (language/build-tool specific). What you *actually* needed was the part where Sonar’s opinion becomes a **hard merge barrier** across CI systems (GitHub Actions, GitLab CI, Jenkins, Azure DevOps, etc.), with **reproducible exit codes** and **evidence-grade artifacts** suitable for real SDLC control frameworks.
 
