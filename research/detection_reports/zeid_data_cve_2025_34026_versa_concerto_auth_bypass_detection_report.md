@@ -9,8 +9,6 @@
 
 ## 1) What this is (in plain words)
 - CVE-2025-34026 is described as an authentication bypass in Versa Concerto SD-WAN orchestration that enables access to administrative endpoints; KEV indicates exploitation in the wild.
--
--
 
 ## 2) Why it matters (threat + business risk)
 - **Threat:** attackers want speed + scale + leverage (data theft, downtime, extortion).

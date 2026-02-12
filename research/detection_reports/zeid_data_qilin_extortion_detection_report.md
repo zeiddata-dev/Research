@@ -10,7 +10,6 @@
 ## 1) What this is (in plain words)
 - 2025 research highlights Qilin as a fast-rising operation emphasizing 'pressure' tactics alongside classic extortion (e.g., regulatory complaint threats, contacting stakeholders).
 - This implies expanded telemetry: comms-channel abuse, identity abuse, and broader outbound destinations during the intimidation phase.
--
 
 ## 2) Why it matters (threat + business risk)
 - **Threat:** attackers want speed + scale + leverage (data theft, downtime, extortion).

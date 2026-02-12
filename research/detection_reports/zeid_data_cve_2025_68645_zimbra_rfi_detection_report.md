@@ -9,8 +9,6 @@
 
 ## 1) What this is (in plain words)
 - CVE-2025-68645 is described as a remote file inclusion issue affecting Synacor Zimbra Collaboration Suite (ZCS) via the /h/rest endpoint; CISA KEV listing indicates active exploitation.
--
--
 
 ## 2) Why it matters (threat + business risk)
 - **Threat:** attackers want speed + scale + leverage (data theft, downtime, extortion).
