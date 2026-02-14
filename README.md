@@ -97,3 +97,4 @@ Fast lies are still lies.
 
 📜 Unless a subfolder states otherwise, refer to the repository LICENSE for usage terms and attribution requirements.
 
+[![trophy](https://github-profile-trophy-winning.vercel.app/?username=zeiddata-dev&theme=light)](https://github-profile-trophy-winning.vercel.app/?username=zeiddata-dev&theme=light)
