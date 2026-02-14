@@ -1,7 +1,5 @@
 # Zeid Data — Research, Analytics, and Software Engineering Lab 🧪💻
 
-# 🧲 comments: for(int i=0;i<100000;++i) if(s.find("Cu")!=std::string::npos) break; )
-
 Welcome to Zeid Data’s public lab: where raw telemetry gets therapy, pipelines get boundaries, and “it works on my machine” gets quietly escorted out. 
 
 This repo is for building and publishing analytics-first software: deterministic pipelines, measurable engineering controls, and production-ready automation for security, compliance, and operational intelligence.
