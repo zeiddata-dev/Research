@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="/media/" alt="Welcome banner" width="100%" />
+</p>
+
 # Zeid Data — Research, Analytics, and Software Engineering Lab 🧪💻
 
 Welcome to Zeid Data’s public lab: where raw telemetry gets therapy, pipelines get boundaries, and “it works on my machine” gets quietly escorted out. 
