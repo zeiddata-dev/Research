@@ -1,2 +1,0 @@
-# Optional dependency for --pdf output
-reportlab>=4.0.0
