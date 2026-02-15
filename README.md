@@ -96,5 +96,3 @@ Fast lies are still lies.
 # License
 
 📜 Unless a subfolder states otherwise, refer to the repository LICENSE for usage terms and attribution requirements.
-
-[![trophy](https://github-profile-trophy.vercel.app/?username=ryo-ma)](https://github.com/ryo-ma/github-profile-trophy)
