@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/media/" alt="Welcome banner" width="100%" />
+  <img src="./media/zd_banner_1.png" alt="Zeid Data Research Lab" width="100%">
 </p>
 
 # Zeid Data — Research, Analytics, and Software Engineering Lab 🧪💻
