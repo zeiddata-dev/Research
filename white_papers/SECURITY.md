@@ -6,7 +6,7 @@ This document is funny on purpose because it’s easier to remember. But it’s 
 
 ---
 
-## The vibe ✅
+## The Point ✅
 We publish research to help defenders:
 - understand real attacker behavior
 - validate detections
