@@ -2,7 +2,7 @@
   <img src="./media/zd_banner_3.png" alt="Zeid Data Research Lab" width="100%">
 </p>
 
-# Zeid Data — Research, Analytics, and Software Engineering Lab 🧪💻
+# Research, Analytics, and Software Engineering Lab 🧪💻
 
 Welcome to Zeid Data’s public lab: where raw telemetry gets therapy, pipelines get boundaries, and “it works on my machine” gets quietly escorted out. 
 
