@@ -96,7 +96,3 @@ Fast lies are still lies.
 # License
 
 📜 Unless a subfolder states otherwise, refer to the repository LICENSE for usage terms and attribution requirements.
-
-[![trophy](https://trophy.ryglcloud.net/?username=zeiddata-dev&theme=juicyfresh)](https://trophy.ryglcloud.net/?username=zeiddata-dev&theme=juicyfresh)
-
-https://trophy.ryglcloud.net/?username=zeiddata-dev&theme=juicyfresh
