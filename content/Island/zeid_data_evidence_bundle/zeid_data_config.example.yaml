@@ -1,0 +1,90 @@
+# zeid_data_config.example.yaml
+#
+# Minimal config for Island evidence collection.
+#
+# IMPORTANT:
+# - Confirm auth header + base_url for your tenant.
+# - Endpoints below are EXAMPLES. Replace with the endpoints present in your Island OpenAPI/docs.
+
+base_url: "https://management.island.io/api/external/v1/"
+
+auth:
+  # Environment variable that stores your API key
+  api_key_env: "ISLAND_API_KEY"
+  # Header name to send (common: Authorization or x-api-key)
+  header: "Authorization"
+  # If header is Authorization, the value is often "Bearer <key>"
+  prefix: "Bearer"
+
+http:
+  timeout_seconds: 30
+  verify_ssl: true
+  # Simple retry/backoff behavior for 429/5xx
+  max_retries: 6
+  backoff_seconds: 1.0
+
+collection:
+  # Default output directory structure under --out
+  data_dir: "data"
+  reports_dir: "reports"
+  # Optional default time window for logs (ISO8601). You can override with --since-hours
+  logs_start: null
+  logs_end: null
+
+# Define the endpoints you want exported.
+# Each endpoint is pulled and written to NDJSON/JSONL.
+endpoints:
+  # EXAMPLE: Users
+  - name: "users"
+    path: "users"
+    params:
+      limit: 200
+    output: "data/island_users.jsonl"
+    # If responses look like {"data": [...]} set item_path: "data"
+    item_path: null
+    mode: "list"
+
+  # EXAMPLE: Devices
+  - name: "devices"
+    path: "devices"
+    params:
+      limit: 200
+    output: "data/island_devices.jsonl"
+    item_path: null
+    mode: "list"
+
+  # EXAMPLE: Policies
+  - name: "policies"
+    path: "policies"
+    params:
+      limit: 200
+    output: "data/island_policies.jsonl"
+    item_path: null
+    mode: "list"
+
+  # EXAMPLE: Activity / Logs (often time-filtered)
+  - name: "activity_logs"
+    path: "logs"
+    params:
+      limit: 500
+      # these are placeholders; replace with real param names your API supports
+      start_time: "{{logs_start}}"
+      end_time: "{{logs_end}}"
+    output: "data/island_activity_logs.jsonl"
+    item_path: null
+    mode: "list"
+
+  # TEMPLATE: async export job pattern (if needed)
+  - name: "logs_export_job"
+    mode: "export_job"
+    # POST creates a job
+    job_create_path: "exports/logs"
+    job_create_body:
+      # placeholders
+      start_time: "{{logs_start}}"
+      end_time: "{{logs_end}}"
+    # GET polls job status (format with job_id)
+    job_status_path: "exports/logs/{job_id}"
+    # Field in status response containing a downloadable URL (signed URL or similar)
+    job_result_field: "download_url"
+    output: "data/island_logs_export.jsonl"
