@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Zeid Data Evidence Bundle Manifest",
+  "type": "object",
+  "required": [
+    "bundle_id",
+    "created_at",
+    "case_id",
+    "custodian",
+    "tool",
+    "source",
+    "files"
+  ],
+  "properties": {
+    "bundle_id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "case_id": {
+      "type": "string"
+    },
+    "custodian": {
+      "type": "string"
+    },
+    "tool": {
+      "type": "object",
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "base_url"
+      ],
+      "properties": {
+        "base_url": {
+          "type": "string"
+        },
+        "collection_metadata": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256",
+          "bytes"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          },
+          "bytes": {
+            "type": "integer"
+          },
+          "content_type_guess": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

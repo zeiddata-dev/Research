@@ -1,0 +1,4 @@
+# zeid_data_env.example
+# Copy to .env and set values. Do not commit real keys.
+
+ISLAND_API_KEY=replace_me
