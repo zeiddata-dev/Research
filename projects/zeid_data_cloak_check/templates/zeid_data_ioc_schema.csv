@@ -1,0 +1,5 @@
+indicator_type,indicator_value,first_seen,last_seen,confidence,source,notes
+domain,example.com,2026-02-19,2026-02-19,low,lab,"sample row"
+url,https://example.com/login,2026-02-19,2026-02-19,low,lab,"sample row"
+ip,203.0.113.10,2026-02-19,2026-02-19,low,lab,"sample row"
+hash,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,2026-02-19,2026-02-19,low,lab,"sample row"

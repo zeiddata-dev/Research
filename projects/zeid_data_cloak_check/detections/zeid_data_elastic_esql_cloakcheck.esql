@@ -1,0 +1,14 @@
+-- Zeid Data CloakCheck - Elastic ES|QL (starter)
+-- Requires fields similar to ECS:
+--   url.original, destination.domain, user.name, source.ip, http.response.status_code, http.response.body.bytes, @timestamp
+
+FROM logs-*
+| WHERE http.response.status_code IN (301,302,303,307,308)
+| STATS redirects = COUNT(*),
+        domains = VALUES(destination.domain),
+        first_seen = MIN(@timestamp),
+        last_seen = MAX(@timestamp)
+  BY user.name, source.ip, url.original
+| EVAL duration_seconds = DATE_DIFF("seconds", first_seen, last_seen)
+| WHERE redirects >= 2 AND duration_seconds <= 30
+| SORT redirects DESC

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "fields": [
+    {
+      "name": "indicator_type",
+      "type": "string",
+      "allowed": [
+        "domain",
+        "url",
+        "ip",
+        "hash",
+        "email",
+        "path",
+        "header",
+        "ua"
+      ]
+    },
+    {
+      "name": "indicator_value",
+      "type": "string"
+    },
+    {
+      "name": "first_seen",
+      "type": "date"
+    },
+    {
+      "name": "last_seen",
+      "type": "date"
+    },
+    {
+      "name": "confidence",
+      "type": "string",
+      "allowed": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    {
+      "name": "source",
+      "type": "string"
+    },
+    {
+      "name": "notes",
+      "type": "string"
+    }
+  ]
+}
