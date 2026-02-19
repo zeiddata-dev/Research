@@ -1,0 +1,32 @@
+# Zeid Data CloakCheck - Splunk SPL starter queries
+# Assumptions: proxy/SWG logs indexed with fields like:
+#   src_user, src_ip, url, dest_domain, http_status, location, user_agent, bytes_out, bytes_in, _time
+# Adjust field names to your environment.
+
+# 1) Multi-hop redirects (>=2) within short window per user
+index=proxy (http_status=301 OR http_status=302 OR http_status=303 OR http_status=307 OR http_status=308)
+| stats count as redirect_count values(dest_domain) as domains values(location) as locations min(_time) as first_seen max(_time) as last_seen by src_user src_ip url
+| eval duration=last_seen-first_seen
+| where redirect_count>=2 AND duration<=30
+| sort -redirect_count
+
+# 2) Newly seen domains (requires datamodel or lookup baseline; here is a naive "rare in last 30d")
+index=proxy
+| eval day=strftime(_time,"%Y-%m-%d")
+| stats dc(src_user) as user_count count as hits by dest_domain
+| where user_count<=3 AND hits<=10
+| sort user_count hits
+
+# 3) Inconsistent content length (same URL, different clients)
+index=proxy
+| stats dc(user_agent) as ua_count min(bytes_in) as min_len max(bytes_in) as max_len values(user_agent) as uas by url
+| eval drift=max_len-min_len
+| where ua_count>=2 AND drift>5000
+| sort -drift
+
+# 4) Redirects to benign site for some clients but not others (heuristic)
+index=proxy (http_status=30* OR http_status=200)
+| eval is_benign=if(match(dest_domain,"google\.com|microsoft\.com|apple\.com|bing\.com"),1,0)
+| stats values(dest_domain) as domains max(is_benign) as seen_benign dc(dest_domain) as domain_var by url
+| where domain_var>=2 AND seen_benign=1
+| sort -domain_var

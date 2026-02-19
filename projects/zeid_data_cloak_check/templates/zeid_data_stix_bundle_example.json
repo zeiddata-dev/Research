@@ -1,0 +1,28 @@
+{
+  "type": "bundle",
+  "id": "bundle--11111111-2222-3333-4444-555555555555",
+  "objects": [
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+      "created": "2026-02-19T00:00:00Z",
+      "modified": "2026-02-19T00:00:00Z",
+      "name": "Suspicious cloaking domain",
+      "pattern_type": "stix",
+      "pattern": "[domain-name:value = 'example.com']",
+      "valid_from": "2026-02-19T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--ffffffff-1111-2222-3333-444444444444",
+      "created": "2026-02-19T00:00:00Z",
+      "modified": "2026-02-19T00:00:00Z",
+      "name": "Suspicious cloaking URL",
+      "pattern_type": "stix",
+      "pattern": "[url:value = 'https://example.com/login']",
+      "valid_from": "2026-02-19T00:00:00Z"
+    }
+  ]
+}

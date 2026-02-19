@@ -1,0 +1,32 @@
+title: Zeid Data - Cloaked Phishing Suspected (Redirect Drift / Low Prevalence)
+id: 2b5b5b7c-0f55-4c1a-9c6e-0b8d2b1d6b55
+status: experimental
+description: Detects suspicious multi-hop redirects and low-prevalence destination domains that may indicate cloaked phishing.
+author: Zeid Data Research Lab
+date: 2026-02-19
+logsource:
+  category: proxy
+  product: generic
+detection:
+  redirect_codes:
+    http.status|in:
+      - 301
+      - 302
+      - 303
+      - 307
+      - 308
+  condition: redirect_codes
+fields:
+  - user
+  - src_ip
+  - url
+  - http.status
+  - dest_domain
+falsepositives:
+  - Legitimate SSO flows
+  - CDN geo redirects
+  - Consent pages / language redirects
+level: medium
+tags:
+  - attack.initial_access
+  - attack.t1566

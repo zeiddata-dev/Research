@@ -1,0 +1,14 @@
+Zeid Data CloakCheck - Elastic (Kibana KQL) starters
+
+1) Redirect responses:
+http.response.status_code: (301 or 302 or 303 or 307 or 308)
+
+2) Multi-hop redirect chains (visualize by session/user + url):
+http.response.status_code: (301 or 302 or 303 or 307 or 308) and url.original: *
+
+3) Rare domains (requires aggregation in Lens):
+destination.domain: *  (then aggregate by destination.domain and filter low doc_count and low unique users)
+
+4) Content length drift (if you have http.response.body.bytes):
+http.response.body.bytes: * and url.original: *
+(then aggregate min/max bytes by url.original)

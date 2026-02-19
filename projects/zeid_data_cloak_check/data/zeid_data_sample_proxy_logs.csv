@@ -1,0 +1,9 @@
+timestamp,user,src_ip,url,status,dest_domain,location,user_agent,bytes_in
+2026-02-19T12:01:00Z,user2@corp.local,10.0.0.1,https://mail-redirect.example/track?id=abc,301,kit-cdn.example,https://kit-cdn.example/login,Chrome,22000
+2026-02-19T12:02:00Z,user3@corp.local,10.0.0.2,https://mail-redirect.example/track?id=abc,302,kit-cdn.example,https://kit-cdn.example/login,MobileSafari,22000
+2026-02-19T12:03:00Z,user1@corp.local,10.0.0.3,https://mail-redirect.example/track?id=abc,301,kit-cdn.example,https://kit-cdn.example/login,Chrome,22000
+2026-02-19T12:04:00Z,user2@corp.local,10.0.0.4,https://mail-redirect.example/track?id=abc,302,benign.example,https://benign.example/,MobileSafari,1200
+2026-02-19T12:05:00Z,user3@corp.local,10.0.0.5,https://mail-redirect.example/track?id=abc,301,kit-cdn.example,https://kit-cdn.example/login,Chrome,22000
+2026-02-19T12:06:00Z,user1@corp.local,10.0.0.6,https://mail-redirect.example/track?id=abc,302,kit-cdn.example,https://kit-cdn.example/login,MobileSafari,22000
+2026-02-19T12:07:00Z,user2@corp.local,10.0.0.7,https://mail-redirect.example/track?id=abc,301,kit-cdn.example,https://kit-cdn.example/login,Chrome,22000
+2026-02-19T12:08:00Z,user3@corp.local,10.0.0.8,https://mail-redirect.example/track?id=abc,302,benign.example,https://benign.example/,MobileSafari,1200

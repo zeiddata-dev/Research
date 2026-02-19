@@ -1,0 +1,31 @@
+// Zeid Data CloakCheck - Microsoft Sentinel (KQL) starter queries
+// Assumptions: logs in a table like CommonSecurityLog, or your proxy table.
+// Replace table/field names as needed.
+
+let RedirectCodes = dynamic([301,302,303,307,308]);
+
+// 1) Multi-hop redirects within 30 seconds (per user + URL)
+CommonSecurityLog
+| where DeviceAction in ("Allow","Allowed","Success") // adjust
+| extend StatusCode = toint(AdditionalExtensions["statusCode"])
+| where StatusCode in (RedirectCodes)
+| summarize RedirectCount=count(), Domains=make_set(DestinationHostName, 50), FirstSeen=min(TimeGenerated), LastSeen=max(TimeGenerated) 
+          by SourceUserID, SourceIP, RequestURL
+| extend Duration = datetime_diff("second", LastSeen, FirstSeen)
+| where RedirectCount >= 2 and Duration <= 30
+| order by RedirectCount desc
+
+// 2) Rare destination domains (small cohort)
+CommonSecurityLog
+| summarize Users=dcount(SourceUserID), Hits=count() by DestinationHostName
+| where Users <= 3 and Hits <= 10
+| order by Users asc, Hits asc
+
+// 3) Inconsistent response sizes for the same URL across clients
+CommonSecurityLog
+| extend RespBytes = tolong(AdditionalExtensions["responseBytes"])
+| extend UA = tostring(AdditionalExtensions["userAgent"])
+| summarize UAs=dcount(UA), MinLen=min(RespBytes), MaxLen=max(RespBytes), Samples=make_set(UA, 10) by RequestURL
+| extend Drift = MaxLen - MinLen
+| where UAs >= 2 and Drift > 5000
+| order by Drift desc
