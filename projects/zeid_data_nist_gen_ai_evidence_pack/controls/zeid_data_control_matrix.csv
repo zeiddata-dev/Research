@@ -1,0 +1,16 @@
+control_id,function,domain,control_statement,evidence_required,telemetry_fields,owner_role,frequency,maturity_level,references
+ZD-AI-GOV-01,Govern,Accountability,Assign a business owner and model steward for every AI system.,System card with named owners; approval record,"system_id, owner_id, steward_id",AI Program Lead,Per system,1,NIST AI RMF Govern
+ZD-AI-GOV-02,Govern,Inventory,Maintain an AI system inventory and keep it current.,Inventory export; change log,"system_id, model_id, deployment_env",Platform,Weekly,1,NIST AI RMF Govern
+ZD-AI-GOV-03,Govern,Policy,Publish minimum AI use policy and acceptable use rules.,Policy doc; training acknowledgment,"policy_version, user_id",Privacy,Quarterly,1,NIST AI RMF Govern
+ZD-AI-GOV-04,Govern,Change Control,Document vendor model updates and internal prompt or policy changes.,Change ticket; release notes,"change_id, model_version, prompt_version",Platform,Per change,2,NIST AI RMF Govern
+ZD-AI-MAP-01,Map,Use Case,"Define intended use, out of scope use, and impact tier.",System card section; impact assessment,"use_case, impact_tier",Product,Per system,1,NIST AI RMF Map
+ZD-AI-MAP-02,Map,Data Rights,"Document data sources and rights for training, tuning, retrieval.",Data lineage doc; approvals,"data_sources, rights_basis",Privacy,Per system,2,NIST AI RMF Map
+ZD-AI-MAP-03,Map,Threat Model,"Threat model prompt injection, tool abuse, and retrieval risks.",Threat model doc; mitigations,"threats, mitigations",Security,Per system,2,NIST AI RMF Map; NIST AI 600-1
+ZD-AI-MEAS-01,Measure,Quality,Define measurable acceptance criteria for task quality.,Eval report; benchmarks,"eval_name, score, threshold",Model Steward,Monthly,2,NIST AI RMF Measure
+ZD-AI-MEAS-02,Measure,Safety,Run red team prompts for injection and data leakage.,Test suite output; findings,"test_id, result, severity",Security,Monthly,2,NIST AI RMF Measure; NIST AI 600-1
+ZD-AI-MEAS-03,Measure,Monitoring,Monitor drift and guardrail hit rates over time.,Dashboard snapshot; alerts,"guardrail_hits, drift_score",Platform,Daily,2,NIST AI RMF Measure
+ZD-AI-MEAS-04,Measure,Logging Validation,Validate telemetry conforms to schema.,Validation report,"schema_version, invalid_count",Platform,Daily,1,Zeid Data schema
+ZD-AI-MAN-01,Manage,Mitigation,Define response actions for threshold breaches.,Runbooks; tickets,"incident_id, action_taken",Security,Per event,2,NIST AI RMF Manage
+ZD-AI-MAN-02,Manage,Kill Switch,Implement model or feature disablement path.,Config; test evidence,kill_switch_test,Platform,Quarterly,2,NIST AI RMF Manage
+ZD-AI-MAN-03,Manage,Evidence Bundle,Generate audit ready evidence bundles on demand.,Bundle zip; manifest hashes,"bundle_id, sha256",GRC,Quarterly,1,Zeid Data evidence pack
+ZD-AI-VEND-01,Govern,Vendor,"Assess model vendors for security, privacy, and update controls.",Vendor questionnaire; contract clauses,"vendor_name, model_name",Procurement,Annual,2,ISO 42001; NIST AI RMF

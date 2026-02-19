@@ -1,0 +1,3 @@
+risk_id,system_id,risk_category,risk_statement,likelihood,impact,inherent_risk,controls,residual_risk,owner,status,last_reviewed
+R-101,hr_assistant_v1,Privacy,Employees may paste sensitive data into prompts,Medium,High,High,"ZD-AI-GOV-03; ZD-AI-MEAS-04; ZD-AI-MAN-01",Medium,Privacy,Open,2026-02-19
+R-102,hr_assistant_v1,Security,Prompt injection could bypass retrieval constraints,Medium,High,High,"ZD-AI-MAP-03; ZD-AI-MEAS-02; ZD-AI-MAN-02",Medium,Security,Open,2026-02-19

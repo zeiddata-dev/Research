@@ -1,0 +1,2 @@
+risk_id,system_id,risk_category,risk_statement,likelihood,impact,inherent_risk,controls,residual_risk,owner,status,last_reviewed
+R-001,<system_id>,Security,Prompt injection could cause unauthorized tool calls.,Medium,High,High,ZD-AI-MAP-03; ZD-AI-MEAS-02; ZD-AI-MAN-02,Medium,Security,Open,2026-02-19

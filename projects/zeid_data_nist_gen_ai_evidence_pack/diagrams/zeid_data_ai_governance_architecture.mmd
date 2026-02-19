@@ -1,0 +1,18 @@
+%% Zeid Data AI Governance Monitoring Pack
+flowchart LR
+  U[Users / Services] --> G[AI Gateway
+policy checks + logging]
+  G --> M[Model Provider
+LLM API]
+  G --> R[Retrieval Sources
+KB, tickets, docs]
+  G --> L[Telemetry Stream
+JSON events]
+  L --> S[SIEM
+Splunk / Elastic / Sentinel]
+  S --> D[Dashboards + Alerts
+thresholds + owners]
+  S --> E[Evidence Generator
+bundle + manifest]
+  E --> A[Audit Ready Bundle
+zip + hashes]
