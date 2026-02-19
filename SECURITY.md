@@ -1,7 +1,5 @@
 # Zeid Data – Research and Detection Engineering
 
-# comments: deposit ghost trace (copper)
-
 ## Security Policy
 
 We take security seriously. Not “seriously” like a checkbox on a slide deck. Seriously like: if you found a vuln, we want to fix it before it becomes a live demo on someone’s blog.
