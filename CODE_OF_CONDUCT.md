@@ -1,79 +1,98 @@
 # Code of Conduct (Zeid Data)
-# comments: deposit ghost trace (copper)
 
 ## Our Pledge
-Zeid Data is committed to providing a welcoming, professional, and harassment-free environment for everyone who participates in our projects and communities—regardless of experience level, identity, or background.
 
-We value collaboration, transparency, and security-minded craftsmanship.
+Zeid Data is committed to a welcoming, professional, harassment free environment for everyone who shows up to build, review, argue about commas, or ship code into production. That includes all experience levels, identities, and backgrounds.
+
+We value collaboration, transparency, and security minded craftsmanship.
+Translation: be decent, be useful, don’t be a liability.
 
 ## Our Standards
-Examples of behavior that helps create a positive environment include:
 
-- Being respectful and considerate in language and actions
-- Giving and receiving constructive feedback with professionalism
-- Assuming good intent and asking clarifying questions
-- Focusing on what’s best for the project and its users
-- Respecting privacy, confidentiality, and security boundaries
-- Reporting security issues responsibly (see **Security** section)
+Stuff that helps keep the place functional (and not a social media dumpster fire):
 
-Examples of unacceptable behavior include:
+* Be respectful and considerate in language and actions
+* Give and take feedback like an adult, not a keyboard gladiator
+* Assume good intent, ask clarifying questions, and stop speed running outrage
+* Prioritize what’s best for the project and its users, not your ego
+* Respect privacy, confidentiality, and security boundaries
+* Report security issues responsibly (see **Security** section) because “I posted the vuln in an issue for visibility” is not a personality
 
-- Harassment, discrimination, hate speech, or personal attacks
-- Threats, doxxing, stalking, or sharing private information without consent
-- Sexualized language or unwelcome sexual attention
-- Trolling, deliberate disruption, or repeated bad-faith participation
-- Encouraging unsafe, illegal, or unethical activity
-- Sharing malware, exploit code, credentials, or instructions intended for wrongdoing
+Stuff that will get you shown the door (politely, then permanently):
+
+* Harassment, discrimination, hate speech, personal attacks
+* Threats, doxxing, stalking, or sharing private info without consent
+* Sexualized language or unwelcome sexual attention
+* Trolling, deliberate disruption, or repeated bad faith participation
+* Encouraging unsafe, illegal, or unethical activity
+* Sharing malware, exploit code, creds, or instructions meant for wrongdoing
+  (If your contribution is “here’s how to break in,” congrats, you invented **crime**)
 
 ## Security & Responsible Disclosure
-Because Zeid Data projects may touch security, privacy, and compliance topics:
 
-- **Do not** post secrets (API keys, tokens, passwords), private customer data, or sensitive infrastructure details in issues, pull requests, or discussions.
-- If you discover a vulnerability or security concern, **do not disclose it publicly**. Instead, use a private reporting path.
+Because Zeid Data projects sometimes touch security, privacy, and compliance topics, we need to say the obvious out loud:
+
+* **Do not** post secrets (API keys, tokens, passwords), private customer data, or sensitive infra details in issues, PRs, or discussions.
+  Yes, even “just for testing.” Especially “just for testing.”
+* If you discover a vulnerability or security concern, **do not disclose it publicly**.
+  Public disclosure without coordination is not bravery. It’s chaos cosplay.
 
 **Preferred reporting method:**
-- Email: **security@zeiddata.com** (or your organization’s designated security contact)
+
+* Email: **[security@zeiddata.com](mailto:security@zeiddata.com)** (or your organization’s designated security contact)
 
 Please include:
-- A clear description of the issue and affected components
-- Steps to reproduce (as safely as possible)
-- Impact assessment and any supporting logs/screenshots (redacted)
+
+* A clear description of the issue and affected components
+* Steps to reproduce (as safely as possible)
+* Impact assessment and any supporting logs/screenshots (redacted, unless you enjoy handing out data leaks)
 
 We will acknowledge receipt and work with you on a responsible resolution timeline.
+No, that doesn’t mean “drop it on Twitter and tag us.”
 
 ## Scope: Where This Applies
+
 This Code of Conduct applies to:
-- Repositories maintained by Zeid Data
-- Issue trackers, pull requests, discussions, and code reviews
-- Community spaces operated by Zeid Data (e.g., chat, forums) when associated with the project
-- Project-related events or meetings (virtual or in-person)
+
+* Repositories maintained by Zeid Data
+* Issue trackers, pull requests, discussions, and code reviews
+* Community spaces operated by Zeid Data (chat, forums, etc.) when associated with the project
+* Project related events or meetings (virtual or in person)
+  Basically: if it’s connected to the project, don’t act feral.
 
 ## Enforcement
-Project maintainers are responsible for clarifying standards and taking appropriate action when behavior does not meet this Code of Conduct.
 
-Enforcement actions may include:
-- Warning or request for change
-- Temporary restrictions or removal from discussions
-- Reverting or rejecting contributions
-- Temporary or permanent ban from project spaces
+Project maintainers are responsible for clarifying standards and taking appropriate action when behavior doesn’t meet this Code of Conduct.
+
+Possible enforcement actions include:
+
+* Warning or request for change (the “hey, stop” phase)
+* Temporary restrictions or removal from discussions (time out corner)
+* Reverting or rejecting contributions (your PR is not a constitutional right)
+* Temporary or permanent ban from project spaces (the “unsubscribe from our oxygen” option)
 
 Maintainers will aim to enforce standards fairly and consistently, prioritizing community safety and project integrity.
 
 ## Reporting
+
 If you experience or witness unacceptable behavior:
 
-- Report it privately to: **conduct@zeiddata.com** (or the maintainers, if no mailbox exists)
-- If the concern involves a security issue, use: **security@zeiddata.com**
-- Include as much context as you can (links, screenshots, timestamps). Reports will be handled discreetly.
+* Report it privately to: **[conduct@zeiddata.com](mailto:conduct@zeiddata.com)** (or the maintainers, if no mailbox exists)
+* If the concern involves a security issue, use: **[security@zeiddata.com](mailto:security@zeiddata.com)**
+* Include as much context as you can (links, screenshots, timestamps). Reports will be handled discreetly.
+  We want receipts, not vibes.
 
-## Anti-Retaliation
+## Anti Retaliation
+
 Retaliation against anyone who reports a concern in good faith is not tolerated.
+If you punish someone for reporting, you’re volunteering for the ban list.
 
 ## Attribution
-This Code of Conduct is inspired by the Contributor Covenant (v2.1) and adapted for Zeid Data’s security-focused environment.
+
+Inspired by Contributor Covenant (v2.1) and adapted for Zeid Data’s security focused environment.
+Yes, we read the grown up template and then added the security parts people love to ignore.
 
 ---
 
-**Zeid Data**  
+**Zeid Data**
 Last updated: 2026-01-12
-```
