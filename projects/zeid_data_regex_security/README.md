@@ -6,11 +6,8 @@ Because apparently `just a little regex` keeps ending up in security critical pa
 
 ## What’s Included 📦
 
-* `zeid_data_regex_education_post.md`
+* `zeid_data_regex_education.md`
   Full cybersecurity education post in plain English with toy examples
-
-* `zeid_data_github_info_section.md`
-  Technical README section with code snippets
 
 * `zeid_data_regex_security_research.md`
   Research notes and defensive rationale
