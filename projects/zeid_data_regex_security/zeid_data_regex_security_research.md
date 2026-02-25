@@ -146,8 +146,6 @@ If nobody can answer those questions, the regex is probably under reviewed.
 ## Deliverables in This Bundle 📦
 
 - `zeid_data_regex_education_post.md`
-- `zeid_data_linkedin_post.md`
-- `zeid_data_github_readme_section.md`
 - `zeid_data_broken_vs_safe_regex_examples.md`
 - `zeid_data_regex_safety_tester.py`
 - `zeid_data_README.md`
