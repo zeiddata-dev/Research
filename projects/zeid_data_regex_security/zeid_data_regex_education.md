@@ -249,6 +249,3 @@ During code review this week, find **one regex** in your environment and ask:
 Add tests. Add timing checks. Add logs.
 
 Because "it's just regex" is how tiny mistakes get promoted into incident tickets 🚨
-
-```
-```
