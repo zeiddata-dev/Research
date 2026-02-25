@@ -143,19 +143,6 @@ If nobody can answer those questions, the regex is probably under reviewed.
 
 ---
 
-## Deliverables in This Bundle 📦
-
-- `zeid_data_regex_education_post.md`
-- `zeid_data_broken_vs_safe_regex_examples.md`
-- `zeid_data_regex_safety_tester.py`
-- `zeid_data_README.md`
-- `zeid_data_HOWTO.md`
-- `zeid_data_LICENSE.md`
-
-This bundle is built for education, code review support, and CI friendly sanity checks. It is not an exploitation kit, and it is not intended to be used as one.
-
----
-
 ## Notes on the Included Script 🧾
 
 The included script uses **heuristics plus toy benchmarking** to help identify regex patterns that may be risky.
