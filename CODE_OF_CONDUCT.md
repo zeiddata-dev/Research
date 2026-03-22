@@ -1,4 +1,4 @@
-# Code of Conduct (Zeid Data)
+# Code of Conduct (Zeid Data Labs)
 
 ## Our Pledge
 
