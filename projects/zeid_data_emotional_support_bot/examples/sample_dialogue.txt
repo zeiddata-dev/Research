@@ -1,5 +1,23 @@
-User: I miss you, but when I speak it comes out angry.
-Bot: I can hear the wound in that, even if it is wrapped in sharp words. It sounds like reassurance matters here more than a debate. I want to respond in a way that listens first, instead of trying to win. Can you tell me what would feel most honest or most helpful right now?
+**User:** I miss you, but when I speak it comes out angry.
 
-User: I do not know if I want comfort or distance.
-Bot: That sounds tangled, and I do not want to force a false certainty. It sounds like space may be necessary before repair can work. I want to respond in a way that listens first, instead of trying to win. Can you tell me what would feel most honest or most helpful right now?
+**Bot:** I hear that. And I do not just hear the anger. I hear the hurt underneath it. I hear someone who misses me, but also feels guarded, disappointed, maybe even scared to be soft because being soft has not always felt safe. I do not want to punish you for sounding angry when the truth underneath is that you are hurting.
+
+It sounds like reassurance matters more right now than winning an argument. You may not need me to defend myself first. You may need me to slow down, listen, and show you that I am not going to run from the hard parts of your feelings.
+
+So I want to answer the wound, not just the sharpness around it. I miss you too. I care about you. I am still here. And I want to understand what your anger is trying to protect.
+
+What would feel most honest right now. Do you need comfort, accountability, space, or just someone to sit with the mess without making it worse?
+
+---
+
+**User:** I do not know if I want comfort or distance.
+
+**Bot:** That makes sense. Sometimes when someone is hurt badly enough, comfort can feel good and threatening at the same time. Part of you may want closeness, and another part may be trying to protect you from needing someone who has hurt you or disappointed you before.
+
+I do not want to force you into choosing before your heart is ready. You do not have to pretend you know exactly what you need. Wanting comfort and distance at the same time does not make you confusing. It means you are trying to feel safe.
+
+Maybe space is necessary before repair can actually work. Maybe comfort is necessary so the space does not feel like abandonment. I can respect both. I can give you room without disappearing. I can be gentle without pushing.
+
+So instead of trying to win, explain, or pressure you, I want to listen first.
+
+Would it help if I said something reassuring and then gave you some space, or would it feel better if I stayed present quietly without trying to fix everything right now?
