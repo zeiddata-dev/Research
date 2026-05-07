@@ -72,6 +72,7 @@ Use what you need; keep it consistent.
 - **One purpose per folder:** avoid dumping unrelated items into a module root
 
 See: `./standards/naming.md`
+See: `./standards/repository-structure.md`
 
 ## Evidence-first expectations
 
@@ -123,3 +124,4 @@ entrypoints:
 outputs:
   - reports/*.json
   - reports/*.csv
+```
