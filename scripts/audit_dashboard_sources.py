@@ -30,46 +30,32 @@ REQUIRED_FUNCTIONS = [
     "render_today_signals",
     "render_today_evidence",
     "debug_print_record_inventory",
+    "build_daily_emotions_report",
+    "render_daily_emotions_report",
+    "calculate_relationship_score",
+    "build_advice_to_improve",
+    "build_word_count_per_user",
+    "render_word_count_widget",
+    "build_behavior_correlations",
+    "render_behavior_correlation_widget",
+    "render_learning_page",
+    "queue_website_intake",
+    "queue_training_note",
+    "load_learning_items",
+    "approve_learning_item",
+    "reject_learning_item",
+    "build_conversation_balance",
+    "build_repair_radar",
+    "build_loop_detector",
+    "build_late_night_risk",
+    "build_followthrough_tracker",
+    "build_next_clean_action",
 ]
-DISALLOWED_TODAY_PATTERNS = [
-    "fake today",
-    "sample today",
-    "demo today",
-    "synthetic today",
-    "seed today",
-    "placeholder today",
-    "mock today",
-]
-FORBIDDEN_RENDER_FIELDS = [
-    "source_file",
-    "record_hash",
-    "imported_path",
-    "raw",
-    "parse_error",
-    "privacy_level",
-    "private_queue",
-]
-PROJECT_ARTIFACT_TEXT = [
-    "# li-12 project layout",
-    "root runtime files",
-    "python -m py_compile",
-    "from pathlib import",
-    "workingdirectory=",
-    "execstart=",
-    "systemctl",
-    "journalctl",
-]
+DISALLOWED_TODAY_PATTERNS = ["fake today", "sample today", "demo today", "synthetic today", "seed today", "placeholder today", "mock today"]
+FORBIDDEN_RENDER_FIELDS = ["source_file", "original_source_file", "imported_path", "record_hash", "raw", "parse_error", "privacy_level", "private_queue", "system_log", "log_path"]
+PROJECT_ARTIFACT_TEXT = ["# li-12 project layout", "root runtime files", "python -m py_compile", "from pathlib import", "workingdirectory=", "execstart=", "systemctl", "journalctl", "_maintenance/scripts", "_exports/"]
 EMPTY_STATE = "No usable actual records found for today."
-PY_COMPILE_COMMAND = [
-    sys.executable,
-    "-m",
-    "py_compile",
-    "li12_unified_dashboard.py",
-    "dashboard_data_loader.py",
-    "dashboard_insights.py",
-    "dashboard_privacy.py",
-    "dashboard_components.py",
-]
+PY_COMPILE_COMMAND = [sys.executable, "-m", "py_compile", "li12_unified_dashboard.py", "dashboard_data_loader.py", "dashboard_insights.py", "dashboard_privacy.py", "dashboard_components.py"]
 
 
 def fail(message: str) -> None:
@@ -84,12 +70,16 @@ def read(path: Path) -> str:
         fail(f"cannot read {path.relative_to(ROOT)}: {exc}")
 
 
-def audit_required_functions() -> None:
+def _function_names() -> set[str]:
     found: set[str] = set()
     for path in DASHBOARD_FILES:
         tree = ast.parse(read(path), filename=str(path))
         found.update(node.name for node in ast.walk(tree) if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)))
-    missing = [name for name in REQUIRED_FUNCTIONS if name not in found]
+    return found
+
+
+def audit_required_functions() -> None:
+    missing = [name for name in REQUIRED_FUNCTIONS if name not in _function_names()]
     if missing:
         fail(f"missing required dashboard functions: {', '.join(missing)}")
 
@@ -101,21 +91,20 @@ def audit_no_disallowed_today_patterns() -> None:
             fail(f"disallowed today-data pattern found: {pattern}")
 
 
-def _render_today_evidence_body() -> str:
-    path = ROOT / "dashboard_components.py"
+def _function_body(path: Path, name: str) -> str:
     tree = ast.parse(read(path), filename=str(path))
     source = read(path)
     for node in ast.walk(tree):
-        if isinstance(node, ast.FunctionDef) and node.name == "render_today_evidence":
+        if isinstance(node, ast.FunctionDef) and node.name == name:
             return ast.get_source_segment(source, node) or ""
-    fail("render_today_evidence function not found")
+    fail(f"{name} function not found")
 
 
-def audit_evidence_render_path() -> None:
-    body = _render_today_evidence_body()
+def audit_render_safety() -> None:
+    render_bodies = "\n".join(_function_body(ROOT / "dashboard_components.py", name) for name in ["render_daily_emotions_report", "render_today_evidence", "render_learning_page"])
     for field in FORBIDDEN_RENDER_FIELDS:
-        if re.search(rf"[\"']{re.escape(field)}[\"']", body):
-            fail(f"today evidence rendering path references forbidden field: {field}")
+        if re.search(rf"[\"']{re.escape(field)}[\"']", render_bodies):
+            fail(f"Rebecca rendering path references forbidden backend field: {field}")
 
 
 def audit_empty_state() -> None:
@@ -127,6 +116,46 @@ def audit_no_container_width() -> None:
     for path in DASHBOARD_FILES:
         if "use_container_width" in read(path):
             fail(f"use_container_width found in {path.relative_to(ROOT)}")
+
+
+def audit_layout_and_roles() -> None:
+    dashboard = read(ROOT / "li12_unified_dashboard.py")
+    components = read(ROOT / "dashboard_components.py")
+    overview_body = _function_body(ROOT / "li12_unified_dashboard.py", "render_overview_page")
+    if 'APP_NAME = "Unified Dashboard"' not in dashboard:
+        fail("app name is not Unified Dashboard")
+    if "render_daily_emotions_report" not in overview_body:
+        fail("Daily Emotions Report is not rendered on Overview")
+    if overview_body.find("render_daily_emotions_report") > overview_body.find("render_word_count_widget"):
+        fail("Daily Emotions Report is not first in Overview")
+    if "Word Count Per User" not in components:
+        fail("Word Count Per User widget is missing")
+    if "Behavior Correlation" not in components:
+        fail("Behavior Correlation widget is missing")
+    if "Learning" not in dashboard or "render_learning_page" not in dashboard:
+        fail("Learning page is missing")
+    if "URL Fetcher" not in components:
+        fail("URL Fetcher tab is missing")
+    if "training_notes.jsonl" not in components:
+        fail("Training Notes queue path is missing")
+    tree = ast.parse(dashboard)
+    rebecca_pages: list[str] = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Assign):
+            for target in node.targets:
+                if isinstance(target, ast.Name) and target.id == "REBECCA_PAGES" and isinstance(node.value, ast.List):
+                    rebecca_pages = [item.value for item in node.value.elts if isinstance(item, ast.Constant) and isinstance(item.value, str)]
+    blocked = {"Letters", "Evidence", "Data Quality", "System Logs", "Admin Tools"}
+    if blocked.intersection(rebecca_pages):
+        fail("Rebecca page list includes admin/system pages")
+
+
+def audit_prompt_contamination() -> None:
+    combined = "\n".join(read(path).lower() for path in DASHBOARD_FILES)
+    contaminated = ["codex exec", "li12_unified_dashboard_emotions_widgets", "do not use this prompt as data"]
+    for pattern in contaminated:
+        if pattern in combined:
+            fail(f"prompt contamination pattern found: {pattern}")
 
 
 def audit_normalized_records(records: list[dict[str, object]], inventory: dict[str, object]) -> None:
@@ -144,8 +173,7 @@ def audit_normalized_records(records: list[dict[str, object]], inventory: dict[s
 def audit_py_compile() -> None:
     result = subprocess.run(PY_COMPILE_COMMAND, cwd=ROOT, text=True, capture_output=True)
     if result.returncode != 0:
-        output = (result.stdout + result.stderr).strip()
-        fail(f"py_compile failed: {output}")
+        fail(f"py_compile failed: {(result.stdout + result.stderr).strip()}")
 
 
 def print_inventory(inventory: dict[str, object]) -> None:
@@ -162,9 +190,11 @@ def print_inventory(inventory: dict[str, object]) -> None:
 def main() -> None:
     audit_required_functions()
     audit_no_disallowed_today_patterns()
-    audit_evidence_render_path()
+    audit_render_safety()
     audit_empty_state()
     audit_no_container_width()
+    audit_layout_and_roles()
+    audit_prompt_contamination()
     inventory = get_record_inventory()
     records = load_cached_normalized_records()
     print_inventory(inventory)

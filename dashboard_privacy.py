@@ -11,12 +11,15 @@ from typing import Any
 
 FORBIDDEN_DASHBOARD_KEYS = {
     "source_file",
+    "original_source_file",
     "record_hash",
     "imported_path",
     "raw",
     "parse_error",
     "privacy_level",
     "private_queue",
+    "system_log",
+    "log_path",
     "backend",
     "backend_fields",
     "debug",
