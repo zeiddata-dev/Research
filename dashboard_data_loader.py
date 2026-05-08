@@ -47,6 +47,8 @@ SYSTEM_ARTIFACT_PATTERNS = (
     "python -m py_compile",
     "grep -r",
     "# li-12 project layout",
+    "_maintenance/scripts",
+    "_exports/",
     "generated:",
     "root runtime files",
     "workingdirectory=",
