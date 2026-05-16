@@ -13,6 +13,13 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
+<!-- ZEID DATA TAGS START -->
+### Tags
+
+![zeid-data](https://img.shields.io/badge/zeid%20data-0B5FFF?style=flat-square) ![public-safe](https://img.shields.io/badge/public%20safe-166534?style=flat-square) ![research](https://img.shields.io/badge/research-1F6FEB?style=flat-square) ![documentation](https://img.shields.io/badge/documentation-334155?style=flat-square) ![operating-guidance](https://img.shields.io/badge/operating%20guidance-334155?style=flat-square) ![standards](https://img.shields.io/badge/standards-334155?style=flat-square) ![docs](https://img.shields.io/badge/docs-334155?style=flat-square) ![guides](https://img.shields.io/badge/guides-334155?style=flat-square)
+
+<!-- ZEID DATA TAGS END -->
+
 <h1 align="center">Zeid Data</h1>
 
 <p align="center">

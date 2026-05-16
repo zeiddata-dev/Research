@@ -13,6 +13,13 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
+<!-- ZEID DATA TAGS START -->
+### Tags
+
+![zeid-data](https://img.shields.io/badge/zeid%20data-0B5FFF?style=flat-square) ![public-safe](https://img.shields.io/badge/public%20safe-166534?style=flat-square) ![research](https://img.shields.io/badge/research-1F6FEB?style=flat-square) ![content](https://img.shields.io/badge/content-334155?style=flat-square) ![vendor-content](https://img.shields.io/badge/vendor%20content-334155?style=flat-square) ![governance](https://img.shields.io/badge/governance-6F42C1?style=flat-square) ![evidence-assets](https://img.shields.io/badge/evidence%20assets-334155?style=flat-square) ![sentinelone](https://img.shields.io/badge/sentinelone-334155?style=flat-square) ![endpoint-security](https://img.shields.io/badge/endpoint%20security-334155?style=flat-square) ![soc](https://img.shields.io/badge/soc-334155?style=flat-square) ![soc2-content](https://img.shields.io/badge/soc2%20content-334155?style=flat-square)
+
+<!-- ZEID DATA TAGS END -->
+
 # SOC 2 Compliance Evidence — Microsoft Sentinel Workbook (Multi‑Source)
 
 This repo artifact contains a Microsoft Sentinel / Log Analytics **workbook** designed to help you **collect and package SOC 2 evidence** across these sources:

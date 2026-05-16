@@ -13,6 +13,13 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
+<!-- ZEID DATA TAGS START -->
+### Tags
+
+![zeid-data](https://img.shields.io/badge/zeid%20data-0B5FFF?style=flat-square) ![public-safe](https://img.shields.io/badge/public%20safe-166534?style=flat-square) ![research](https://img.shields.io/badge/research-1F6FEB?style=flat-square) ![workbooks](https://img.shields.io/badge/workbooks-00C7E5?style=flat-square) ![dashboards](https://img.shields.io/badge/dashboards-334155?style=flat-square) ![visual-analytics](https://img.shields.io/badge/visual%20analytics-334155?style=flat-square) ![security-operations](https://img.shields.io/badge/security%20operations-334155?style=flat-square) ![playbooks](https://img.shields.io/badge/playbooks-334155?style=flat-square) ![incident-response](https://img.shields.io/badge/incident%20response-334155?style=flat-square) ![security-operations-playbooks](https://img.shields.io/badge/security%20operations%20playbooks-334155?style=flat-square) ![microsoft](https://img.shields.io/badge/microsoft-334155?style=flat-square)
+
+<!-- ZEID DATA TAGS END -->
+
 # Zeid Data Security Playbooks — Microsoft
 
 **Authorized SOC use only. Use only on systems/data you own or have explicit permission to analyze.**

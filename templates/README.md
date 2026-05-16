@@ -13,6 +13,13 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
+<!-- ZEID DATA TAGS START -->
+### Tags
+
+![zeid-data](https://img.shields.io/badge/zeid%20data-0B5FFF?style=flat-square) ![public-safe](https://img.shields.io/badge/public%20safe-166534?style=flat-square) ![research](https://img.shields.io/badge/research-1F6FEB?style=flat-square) ![templates](https://img.shields.io/badge/templates-334155?style=flat-square) ![reporting](https://img.shields.io/badge/reporting-334155?style=flat-square) ![documentation](https://img.shields.io/badge/documentation-334155?style=flat-square)
+
+<!-- ZEID DATA TAGS END -->
+
 # Zeid Data - Security Templates (Quick Guide)
 
 This folder contains **ready-to-copy templates** you can use to standardize security work across teams—without reinventing the wheel each time.

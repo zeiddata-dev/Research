@@ -13,6 +13,13 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
+<!-- ZEID DATA TAGS START -->
+### Tags
+
+![zeid-data](https://img.shields.io/badge/zeid%20data-0B5FFF?style=flat-square) ![public-safe](https://img.shields.io/badge/public%20safe-166534?style=flat-square) ![research](https://img.shields.io/badge/research-1F6FEB?style=flat-square) ![projects](https://img.shields.io/badge/projects-334155?style=flat-square) ![prototypes](https://img.shields.io/badge/prototypes-334155?style=flat-square) ![tools](https://img.shields.io/badge/tools-334155?style=flat-square) ![active](https://img.shields.io/badge/active-334155?style=flat-square) ![zeid-data-cloak-check](https://img.shields.io/badge/zeid%20data%20cloak%20check-334155?style=flat-square)
+
+<!-- ZEID DATA TAGS END -->
+
 # Zeid Data CloakCheck Pack
 
 > Cloaked phishing via server side filtering: the kit looked at you, decided you weren’t worth scamming, and served you the kiddie menu. Congrats, you “never saw the real page.” 🥰

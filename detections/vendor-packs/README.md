@@ -13,6 +13,13 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
+<!-- ZEID DATA TAGS START -->
+### Tags
+
+![zeid-data](https://img.shields.io/badge/zeid%20data-0B5FFF?style=flat-square) ![public-safe](https://img.shields.io/badge/public%20safe-166534?style=flat-square) ![research](https://img.shields.io/badge/research-1F6FEB?style=flat-square) ![detections](https://img.shields.io/badge/detections-334155?style=flat-square) ![detection-engineering](https://img.shields.io/badge/detection%20engineering-FFB800?style=flat-square) ![blue-team](https://img.shields.io/badge/blue%20team-0969DA?style=flat-square) ![security-analytics](https://img.shields.io/badge/security%20analytics-334155?style=flat-square) ![vendor-packs](https://img.shields.io/badge/vendor%20packs-334155?style=flat-square)
+
+<!-- ZEID DATA TAGS END -->
+
 # Detections
 
 This folder contains Zeid Data detection engineering content: vendor-specific hunting packs, platform-ready rules/queries, and standardized detection formats. The intent is to provide deployable detections that are evidence-first, operationally realistic, and easy to tune.

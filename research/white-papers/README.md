@@ -13,6 +13,13 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
+<!-- ZEID DATA TAGS START -->
+### Tags
+
+![zeid-data](https://img.shields.io/badge/zeid%20data-0B5FFF?style=flat-square) ![public-safe](https://img.shields.io/badge/public%20safe-166534?style=flat-square) ![research](https://img.shields.io/badge/research-1F6FEB?style=flat-square) ![white-papers](https://img.shields.io/badge/white%20papers-334155?style=flat-square) ![technical-writing](https://img.shields.io/badge/technical%20writing-334155?style=flat-square)
+
+<!-- ZEID DATA TAGS END -->
+
 # Zeid Data Research
 
 Zeid Data Research is a technical repository of defensive security engineering artifacts: reproducible investigations, CVE and malware analysis, detection engineering packs, and audit-grade evidence scaffolding.

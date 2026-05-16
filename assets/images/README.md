@@ -13,6 +13,13 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
+<!-- ZEID DATA TAGS START -->
+### Tags
+
+![zeid-data](https://img.shields.io/badge/zeid%20data-0B5FFF?style=flat-square) ![public-safe](https://img.shields.io/badge/public%20safe-166534?style=flat-square) ![research](https://img.shields.io/badge/research-1F6FEB?style=flat-square) ![images](https://img.shields.io/badge/images-334155?style=flat-square)
+
+<!-- ZEID DATA TAGS END -->
+
 # Zeid Data Media
 
 This folder contains **public, non-sensitive** assets used across the Zeid Data GitHub repositories and documentation. Keep visuals centralized, reusable, and linkable so projects, research modules, and drops can reference the same source of truth.
