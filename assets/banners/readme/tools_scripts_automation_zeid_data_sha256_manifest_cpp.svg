@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" role="img" aria-label="Zeid Data Sha256 Manifest Cpp banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#031326"/><stop offset="58%" stop-color="#040B14"/><stop offset="100%" stop-color="#07111D"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#59E38C"/><stop offset="100%" stop-color="#1DE9B6"/></linearGradient>
+    <filter id="glow" x="-45%" y="-45%" width="190%" height="190%"><feGaussianBlur stdDeviation="8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      .brand { fill: #59E38C; font: 500 22px Inter, Segoe UI, Arial, sans-serif; letter-spacing: 10px; }
+      .title { fill: #F6FAFF; font-family: Inter, Segoe UI, Arial, sans-serif; font-weight: 800; }
+      .subtitle { fill: #B7C2D3; font: 400 28px Inter, Segoe UI, Arial, sans-serif; }
+      .pill { fill: #59E38C; font: 500 26px Inter, Segoe UI, Arial, sans-serif; }
+      .frame { fill: none; stroke: rgba(112,170,255,.30); stroke-width: 2; animation: framePulse 4.8s ease-in-out infinite; }
+      .divider { stroke: rgba(112,170,255,.38); stroke-width: 2; }
+      .mesh { animation: drift 11s ease-in-out infinite; }
+      .shine { animation: shimmer 6s linear infinite; }
+      .beam { animation: beam 3.8s ease-in-out infinite; }
+      @keyframes framePulse { 0%,100% { opacity:.72; } 50% { opacity:1; } }
+      @keyframes drift { 0%,100% { transform: translate(0,0); } 50% { transform: translate(10px,-6px); } }
+      @keyframes shimmer { 0% { transform: translateX(-260px); opacity:0; } 42% { opacity:.0; } 55% { opacity:.42; } 100% { transform: translateX(1700px); opacity:0; } }
+      @keyframes beam { 0%,100% { opacity:.38; } 50% { opacity:.95; } }
+    </style>
+  </defs>
+  <rect width="1600" height="520" rx="30" fill="url(#bg)"/>
+  <rect x="20" y="20" width="1560" height="480" rx="24" class="frame"/>
+  <g opacity=".22"><rect x="1280" y="48" width="36" height="390" rx="3" fill="#0F2033"/><rect x="1328" y="48" width="36" height="390" rx="3" fill="#0F2033"/><rect x="1376" y="48" width="36" height="390" rx="3" fill="#0F2033"/><rect x="1424" y="48" width="36" height="390" rx="3" fill="#0F2033"/><rect x="1472" y="48" width="36" height="390" rx="3" fill="#0F2033"/><rect x="1520" y="48" width="36" height="390" rx="3" fill="#0F2033"/></g>
+  <ellipse cx="208" cy="407" rx="128" ry="11" fill="#59E38C" opacity=".6" filter="url(#glow)" class="beam"/>
+  <g transform="translate(82 88)"><path d="M98 0 L235 82 L164 144 L235 206 L98 288 L98 226 L171 164 L98 104 Z" fill="url(#accent)"/><path d="M98 0 L30 82 L30 206 L98 288 L98 226 L58 194 L58 94 L98 62 Z" fill="url(#accent)" opacity=".88"/><path d="M235 82 L235 206 L164 288 L164 226 L206 194 L206 94 L164 62 Z" fill="url(#accent)" opacity=".62"/></g>
+  <line x1="390" y1="105" x2="390" y2="420" class="divider"/>
+  <g transform="translate(500 78)"><path d="M20 0 L40 12 L40 35 L20 47 L0 35 L0 12 Z" fill="none" stroke="#59E38C" stroke-width="2"/><path d="M12 29 L28 18 L20 18 L26 8" fill="none" stroke="#59E38C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><text x="62" y="32" class="brand">ZEID DATA</text></g>
+  <text x="500" y="130" class="title" font-size="56">Zeid Data Sha256 Manifest</text><text x="500" y="194" class="title" font-size="56">Cpp</text>
+  <rect x="500" y="252" width="86" height="6" rx="3" fill="url(#accent)"/>
+  <text x="500" y="282" class="subtitle">Automation helpers, validators, collectors, and repeatable</text><text x="500" y="320" class="subtitle">operations.</text>
+  <g transform="translate(500 392)"><rect x="0" y="0" width="190" height="58" rx="18" fill="rgba(6,16,29,.58)" stroke="rgba(112,170,255,.27)"/><path d="M30 20 h22 l8 8 h52 v18 h-82 z" fill="none" stroke="#59E38C" stroke-width="2.4" stroke-linejoin="round"/><text x="82" y="38" class="pill">cpp</text></g>
+  <g class="mesh" opacity=".92"><circle cx="1125" cy="355" r="5" fill="#59E38C"/><circle cx="1190" cy="312" r="4" fill="#1DE9B6"/><circle cx="1252" cy="373" r="4" fill="#59E38C"/><circle cx="1322" cy="300" r="5" fill="#1DE9B6"/><circle cx="1388" cy="358" r="4" fill="#59E38C"/><circle cx="1455" cy="318" r="4" fill="#1DE9B6"/><circle cx="1510" cy="374" r="5" fill="#59E38C"/><line x1="1125" y1="355" x2="1190" y2="312" stroke="#59E38C" stroke-opacity=".52"/><line x1="1190" y1="312" x2="1252" y2="373" stroke="#1DE9B6" stroke-opacity=".52"/><line x1="1252" y1="373" x2="1322" y2="300" stroke="#59E38C" stroke-opacity=".52"/><line x1="1322" y1="300" x2="1388" y2="358" stroke="#1DE9B6" stroke-opacity=".52"/><line x1="1388" y1="358" x2="1455" y2="318" stroke="#59E38C" stroke-opacity=".52"/><line x1="1455" y1="318" x2="1510" y2="374" stroke="#1DE9B6" stroke-opacity=".52"/><line x1="1125" y1="355" x2="1510" y2="374" stroke="#59E38C" stroke-opacity=".20"/></g>
+  <rect x="-260" y="0" width="240" height="520" fill="url(#accent)" opacity=".08" class="shine"/>
+</svg>

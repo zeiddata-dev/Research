@@ -1,6 +1,19 @@
+<!-- ZEID DATA README HERO START -->
 <p align="center">
-  <img src="./assets/images/zd_banner_3.png" alt="Zeid Data Research Lab" width="100%">
+  <img src="assets/banners/readme/root.svg" alt="Zeid Data Research" width="100%">
 </p>
+
+<p align="center">
+  <a href="content"><img alt="Content" src="https://img.shields.io/badge/Content-00B8A9?style=for-the-badge&logo=bookstack&logoColor=white"></a>
+  <a href="detections"><img alt="Detections" src="https://img.shields.io/badge/Detections-FFB800?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="docs"><img alt="Docs" src="https://img.shields.io/badge/Docs-1F6FEB?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
+  <a href="projects"><img alt="Projects" src="https://img.shields.io/badge/Projects-7B61FF?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="scripts"><img alt="Scripts" src="https://img.shields.io/badge/Scripts-2EA043?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="workbooks"><img alt="Workbooks" src="https://img.shields.io/badge/Workbooks-00C7E5?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="https://zeiddata.com"><img alt="Website" src="https://img.shields.io/badge/Website-00B8A9?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
+  <a href="./SECURITY.md"><img alt="Security" src="https://img.shields.io/badge/Security-D83B01?style=for-the-badge&logo=shield&logoColor=white"></a>
+</p>
+<!-- ZEID DATA README HERO END -->
 
 <h1 align="center">Zeid Data Research</h1>
 
