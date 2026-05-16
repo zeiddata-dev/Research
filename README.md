@@ -2,10 +2,6 @@
   <img src="./media/zd_banner_3.png" alt="Zeid Data Research Lab" width="100%">
 </p>
 
-<p align="center">
-  <img src="./media/zeid_data_lab_console.svg" alt="Animated Zeid Data lab console" width="100%">
-</p>
-
 <h1 align="center">Zeid Data Research</h1>
 
 <p align="center">

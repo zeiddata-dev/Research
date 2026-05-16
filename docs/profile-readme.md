@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/zeiddata-dev/Research/main/media/zeid_data_lab_console.svg" alt="Zeid Data lab console" width="100%">
+  <img src="https://raw.githubusercontent.com/zeiddata-dev/Research/main/media/zd_banner_3.png" alt="Zeid Data Research Lab" width="100%">
 </p>
 
 <h1 align="center">Zeid Data</h1>
