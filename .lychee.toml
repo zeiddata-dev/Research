@@ -12,4 +12,6 @@ exclude = [
   "^https://img\\.shields\\.io/",
   "^https://github\\.com/zeiddata-dev/Research/actions/workflows/",
   "^https://raw\\.githubusercontent\\.com/"
+  "^https://www\\.sophos\\.com/en-us/blog/microsoft-office-vulnerability-cve-2026-21509-in-active-exploitation",
+  "^https://www\\.reuters\\.com/world/asia-pacific/cybercriminals-claim-hack-japans-asahi-group-2025-10-07/",
 ]
