@@ -1,6 +1,6 @@
 <!-- ZEID DATA README HERO START -->
 <p align="center">
-  <img src="../../../assets/banners/readme/tools_scripts_automation.svg" alt="Automation" width="100%">
+  <img src="../../../assets/banners/readme/scripts.png" alt="Zeid Data scripts banner" width="100%">
 </p>
 
 <p align="center">

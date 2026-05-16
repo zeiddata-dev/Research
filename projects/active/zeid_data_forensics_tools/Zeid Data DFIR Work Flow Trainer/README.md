@@ -1,6 +1,6 @@
 <!-- ZEID DATA README HERO START -->
 <p align="center">
-  <img src="../../../../assets/banners/readme/projects_active_zeid_data_forensics_tools_zeid_data_dfir_work_flow_trainer.svg" alt="Zeid Data DFIR Work Flow Trainer" width="100%">
+  <img src="../../../../assets/banners/readme/projects.png" alt="Zeid Data projects banner" width="100%">
 </p>
 
 <p align="center">

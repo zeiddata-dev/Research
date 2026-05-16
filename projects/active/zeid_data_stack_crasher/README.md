@@ -1,6 +1,6 @@
 <!-- ZEID DATA README HERO START -->
 <p align="center">
-  <img src="../../../assets/banners/readme/projects_active_zeid_data_stack_crasher.svg" alt="Zeid Data Stack Crasher" width="100%">
+  <img src="../../../assets/banners/readme/projects.png" alt="Zeid Data projects banner" width="100%">
 </p>
 
 <p align="center">

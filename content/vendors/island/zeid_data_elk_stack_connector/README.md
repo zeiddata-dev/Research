@@ -1,6 +1,6 @@
 <!-- ZEID DATA README HERO START -->
 <p align="center">
-  <img src="../../../../assets/banners/readme/content_vendors_island_zeid_data_elk_stack_connector.svg" alt="Island · Zeid Data ELK Stack Connector" width="100%">
+  <img src="../../../../assets/banners/readme/content.png" alt="Zeid Data island banner" width="100%">
 </p>
 
 <p align="center">
