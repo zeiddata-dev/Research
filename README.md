@@ -2,101 +2,138 @@
   <img src="./media/zd_banner_3.png" alt="Zeid Data Research Lab" width="100%">
 </p>
 
-# Research, Analytics, and Software Engineering Lab 🧪💻
+<p align="center">
+  <img src="./media/zeid_data_lab_console.svg" alt="Animated Zeid Data lab console" width="100%">
+</p>
 
-Welcome to Zeid Data’s public lab: where raw telemetry gets therapy, pipelines get boundaries, and “it works on my machine” gets quietly escorted out. 
+<h1 align="center">Zeid Data Research</h1>
 
-This repo is for building and publishing analytics-first software: deterministic pipelines, measurable engineering controls, and production-ready automation for security, compliance, and operational intelligence.
+<p align="center">
+  Security research, detection engineering, data tooling, automation, and experiments.
+  <br>
+  Built for receipts, not vibes. The robot is friendly. The pipeline is not.
+</p>
 
-# What this repo contains
+<p align="center">
+  <a href="./projects">Projects</a> ·
+  <a href="./detections">Detections</a> ·
+  <a href="./malware">Malware Research</a> ·
+  <a href="./scripts">Scripts</a> ·
+  <a href="./docs">Docs</a> ·
+  <a href="./workbooks">Workbooks</a> ·
+  <a href="./SECURITY.md">Security</a>
+</p>
 
-🤖 Analytics modules that convert chaotic telemetry into canonical, queryable datasets
-Schema-first normalization, enrichment, scoring, reporting — aka: turning logs into a personality you can query.
+<p align="center">
+  <img alt="MIT License" src="https://img.shields.io/badge/license-MIT-22c55e?style=for-the-badge">
+  <img alt="Research Lab" src="https://img.shields.io/badge/research-lab-38bdf8?style=for-the-badge">
+  <img alt="Security Tools" src="https://img.shields.io/badge/security-tools-f97316?style=for-the-badge">
+  <img alt="Evidence First" src="https://img.shields.io/badge/evidence-first-a855f7?style=for-the-badge">
+</p>
 
-💻 Software tooling designed for CI/CD
-Non-interactive execution, explicit exit codes, stable outputs, artifact generation — because CI is not your friend and never will be.
+---
 
-📈 Detection + governance analytics treated like products
-Interfaces, schemas, tests, versioning, release discipline — yes, even for “just a query.”
+## What this repo is
 
-🧾 Evidence-oriented deliverables
-Machine-readable outputs, reproducible runs, traceable inputs/assumptions — receipts, not recollections.
+This is the public Zeid Data research lab for security-focused software, analytics workflows, detection engineering, malware research notes, automation scripts, templates, white papers, and workbook artifacts.
 
-🛑 Merge-gate enforcement utilities
-Like zeid_data_sonar_merge_blocker.py for Quality Gate blocking and evidence-grade output.
-If the gate says no, it means no.
+The operating model is simple:
 
-# Engineering model
+```text
+collect -> normalize -> analyze -> validate -> document -> ship with receipts
+```
 
-🧠 Analytics as software
-Contracts, schemas, determinism, tests, CI enforcement, versioned releases.
-Feelings are not a dependency.
+If a tool cannot explain what it read, what it changed, and what evidence supports the output, it gets escorted back to the lab bench by a disappointed robot.
 
-⚙️ Pipeline shape
-ingest → normalize → enrich → compute → emit → validate
-Therapy for data: acknowledge, process, produce receipts, confirm reality.
+## Lab map
 
-🔍 Observability by default
-Structured logs, counters, timing, explicit failure modes.
-If it breaks, we want a timestamp and a confession.
+| Area | What it is for | Link |
+|---|---|---|
+| Projects | Broader software and research projects | [`projects/`](./projects) |
+| Security detections | Rules, detection engineering content, and defensive analytics | [`detections/`](./detections) |
+| Malware research | Malware analysis and defensive research material | [`malware/`](./malware) |
+| Scripts | Automation, validators, collectors, helpers, and repeatable tooling | [`scripts/`](./scripts) |
+| Documentation | Design notes, references, constraints, and operating guidance | [`docs/`](./docs) |
+| Templates | Reusable report, workflow, and documentation templates | [`templates/`](./templates) |
+| White papers | Longer-form research and technical writing | [`white_papers/`](./white_papers) |
+| Workbooks | Dashboard or workbook-style artifacts | [`workbooks/`](./workbooks) |
+| Media | Repo-local visual assets and banners | [`media/`](./media) |
+| Content | Public-facing content and supporting material | [`content/`](./content) |
 
-✅ Deterministic acceptance
-Stable formatting/order, golden fixtures, regression tests, measurable thresholds.
-We don’t do “close enough.” We do “diff-able.”
+## Featured operating principles
 
-📦 Output-first design
-Results are machine-consumable (JSON/CSV), traceable, and suitable for downstream automation.
-Humans can read it too, but that’s not the target audience.
+<details open>
+<summary><strong>Evidence first</strong></summary>
 
-# Repo layout conventions
+Outputs should be traceable to inputs. Prefer structured results, stable schemas, reproducible runs, and documented assumptions over hand-wavy "seems fine" engineering.
+</details>
 
-🗂️ docs/ — design notes, assumptions, constraints, references, operational guidance
+<details>
+<summary><strong>Defensive and authorized</strong></summary>
 
-🗺️ schemas/ or taxonomy/ — canonical field definitions, mappings, normalization contracts
+Security material in this repository is intended for authorized research, defensive testing, privacy review, detection engineering, and audit workflows. It is not a guide for credential theft, unauthorized access, stealth, evasion, abuse, or bypassing protections.
+</details>
 
-📊 analytics/ or detections/ — queries, rules, scoring logic, quality gates, KPIs
+<details>
+<summary><strong>Automation with guardrails</strong></summary>
 
-🛠️ scripts/ — collectors, validators, transformers, report generators, CI helpers
+Scripts should be non-interactive where possible, explicit about inputs and outputs, safe to run in controlled environments, and clear about failure modes. If a command can break something, it should say what it touches before it touches it.
+</details>
 
-🧪 tests/ — fixtures, golden outputs, regression suites, end-to-end validation harnesses
+<details>
+<summary><strong>Robot humor, human accountability</strong></summary>
 
-🧫 examples/ — sanitized sample data, configs, reproducible test cases
+The lab voice can be weird. The engineering cannot be. Jokes are allowed. Fake claims are not.
+</details>
 
-📈 workbooks/ — dashboard/workbook artifacts in platform-native formats
+## How to use this repo
 
-# Quick start
+Start by inspecting the area that matches your goal.
 
-🚀 Pick a module aligned to your objective (analytics, tooling, workbooks, research)
+```bash
+git clone https://github.com/zeiddata-dev/Research.git
+cd Research
 
-📘 Read the module README.md for input contracts, dependencies, and run interface
+find . -maxdepth 2 -name README.md -print | sort
+find . -maxdepth 2 -type f \( -name 'requirements*.txt' -o -name 'pyproject.toml' -o -name 'package.json' -o -name 'Makefile' \) -print | sort
+```
 
-🧪 Execute locally against fixtures/sample data first, then promote into CI once stable
+Then read the module-level documentation before running tools. Different folders may have different requirements, assumptions, and safety boundaries.
 
-🧱 Treat outputs as artifacts: store emitted JSON/CSV, logs, and run metadata alongside the build
-If you didn’t archive it, you’re just telling stories.
+## Quality bar
 
-# Quality and CI expectations
+Good additions should include:
 
-📌 Stable outputs: deterministic ordering, stable formatting, consistent schemas
+- A clear purpose.
+- Safe default behavior.
+- Public-safe documentation.
+- Reproducible commands or tests where applicable.
+- Machine-readable output when the artifact is meant for automation.
+- Explicit assumptions and limits.
+- No secrets, tokens, private URLs, private logs, or personal data.
 
-🚨 Actionable failures: explicit error messages, defined exit codes, no silent bypass
+## Security and responsible disclosure
 
-🔁 Test coverage: unit tests for transforms/parsers, integration tests for end-to-end runs
+Do not open public issues for sensitive vulnerabilities. Use the repository security policy for reporting guidance: [`SECURITY.md`](./SECURITY.md).
 
-🧰 CI compatibility: non-interactive execution, clean stdout/stderr, artifact outputs
+Security research in this repo should remain authorized, defensive, and privacy-preserving. The lab does not need surprise crimes in the test suite.
 
-🔒 Fail-closed behavior in protected contexts when results are inconclusive or dependencies are unavailable
-If we can’t prove it, we don’t ship it.
+## GitHub profile draft
 
-# Contributing
+This repository is not the special `.github` profile repository, so the reusable profile README draft lives here:
 
-🤝 PRs should include reproducible steps, explicit assumptions, tests/fixtures where applicable, and stable output formats
+[`docs/profile-readme.md`](./docs/profile-readme.md)
 
-🧾 Prefer machine-readable outputs and schema-first designs over ad-hoc parsing
+Copy that file into `.github/profile/README.md` in the Zeid Data GitHub profile repository when ready.
 
-⚡ Performance improvements welcome when paired with correctness tests and measurable impact
-Fast lies are still lies.
+## Maintainer notes
 
-# License
+- Keep links real.
+- Keep examples sanitized.
+- Keep claims tied to repo contents.
+- Keep generated assets local when practical.
+- Keep the robot jokes, but do not let them drive architecture.
 
-📜 Unless a subfolder states otherwise, refer to the repository LICENSE for usage terms and attribution requirements.
+## License
+
+This repository uses the MIT License unless a subfolder states otherwise. See [`LICENSE.md`](./LICENSE.md).
