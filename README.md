@@ -2,12 +2,13 @@
 ![Zeid Data root banner](assets/banners/readme/root.png)
 
 <p align="center">
-  <a href="content"><img alt="Content" src="https://img.shields.io/badge/Content-00B8A9?style=for-the-badge&logo=bookstack&logoColor=white"></a>
-  <a href="detections"><img alt="Detections" src="https://img.shields.io/badge/Detections-FFB800?style=for-the-badge&logo=github&logoColor=white"></a>
-  <a href="docs"><img alt="Docs" src="https://img.shields.io/badge/Docs-1F6FEB?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
-  <a href="projects"><img alt="Projects" src="https://img.shields.io/badge/Projects-7B61FF?style=for-the-badge&logo=github&logoColor=white"></a>
-  <a href="scripts"><img alt="Scripts" src="https://img.shields.io/badge/Scripts-2EA043?style=for-the-badge&logo=github&logoColor=white"></a>
-  <a href="workbooks"><img alt="Workbooks" src="https://img.shields.io/badge/Workbooks-00C7E5?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="./content"><img alt="Content" src="https://img.shields.io/badge/Content-00B8A9?style=for-the-badge&logo=bookstack&logoColor=white"></a>
+  <a href="./detections"><img alt="Detections" src="https://img.shields.io/badge/Detections-FFB800?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="./docs"><img alt="Docs" src="https://img.shields.io/badge/Docs-1F6FEB?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
+  <a href="./projects"><img alt="Projects" src="https://img.shields.io/badge/Projects-7B61FF?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="./research"><img alt="Research" src="https://img.shields.io/badge/Research-0B5FFF?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="./tools/scripts"><img alt="Scripts" src="https://img.shields.io/badge/Scripts-2EA043?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="./workbooks"><img alt="Workbooks" src="https://img.shields.io/badge/Workbooks-00C7E5?style=for-the-badge&logo=github&logoColor=white"></a>
   <a href="https://zeiddata.com"><img alt="Website" src="https://img.shields.io/badge/Website-00B8A9?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
   <a href="./SECURITY.md"><img alt="Security" src="https://img.shields.io/badge/Security-D83B01?style=for-the-badge&logo=shield&logoColor=white"></a>
 </p>
@@ -47,15 +48,6 @@
   Built for receipts, not vibes. The robot is friendly. The pipeline is not.
 </p>
 
-<p align="center">
-  <a href="./projects">Projects</a> ·
-  <a href="./detections">Detections</a> ·
-  <a href="./malware">Malware Research</a> ·
-  <a href="./scripts">Scripts</a> ·
-  <a href="./docs">Docs</a> ·
-  <a href="./workbooks">Workbooks</a> ·
-  <a href="./SECURITY.md">Security</a>
-</p>
 
 <p align="center">
   <img alt="MIT License" src="https://img.shields.io/badge/license-MIT-22c55e?style=for-the-badge">
@@ -78,20 +70,6 @@ collect -> normalize -> analyze -> validate -> document -> ship with receipts
 
 If a tool cannot explain what it read, what it changed, and what evidence supports the output, it gets escorted back to the lab bench by a disappointed robot.
 
-## Lab map
-
-| Area | What it is for | Link |
-|---|---|---|
-| Projects | Broader software and research projects | [`projects/`](./projects) |
-| Security detections | Rules, detection engineering content, and defensive analytics | [`detections/`](./detections) |
-| Malware research | Malware analysis and defensive research material | [`research/malware/`](./malware) |
-| Scripts | Automation, validators, collectors, helpers, and repeatable tooling | [`tools/scripts/`](./scripts) |
-| Documentation | Design notes, references, constraints, and operating guidance | [`docs/`](./docs) |
-| Templates | Reusable report, workflow, and documentation templates | [`templates/`](./templates) |
-| White papers | Longer-form research and technical writing | [`research/research/white-papers/`](./white_papers) |
-| Workbooks | Dashboard or workbook-style artifacts | [`workbooks/`](./workbooks) |
-| Media | Repo-local visual assets and banners | [`assets/images/`](./media) |
-| Content | Public-facing content and supporting material | [`content/`](./content) |
 
 ## Featured operating principles
 
