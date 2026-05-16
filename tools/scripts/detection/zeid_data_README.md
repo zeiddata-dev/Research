@@ -13,6 +13,13 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
+<!-- ZEID DATA TAGS START -->
+### Tags
+
+![zeid-data](https://img.shields.io/badge/zeid%20data-0B5FFF?style=flat-square) ![public-safe](https://img.shields.io/badge/public%20safe-166534?style=flat-square) ![research](https://img.shields.io/badge/research-1F6FEB?style=flat-square) ![automation](https://img.shields.io/badge/automation-2EA043?style=flat-square) ![scripts](https://img.shields.io/badge/scripts-334155?style=flat-square) ![cli-tools](https://img.shields.io/badge/cli%20tools-334155?style=flat-square) ![tooling](https://img.shields.io/badge/tooling-334155?style=flat-square) ![validators](https://img.shields.io/badge/validators-334155?style=flat-square) ![detection](https://img.shields.io/badge/detection-334155?style=flat-square)
+
+<!-- ZEID DATA TAGS END -->
+
 # Zeid Data Detection Scripts (Pack)
 
 This ZIP contains 10 detection/hunting scripts across common security stacks:

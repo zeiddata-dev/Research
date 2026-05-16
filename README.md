@@ -31,6 +31,13 @@
 
 <!-- ZEID DATA LAB MAP END -->
 
+<!-- ZEID DATA TAGS START -->
+### Tags
+
+![zeid-data](https://img.shields.io/badge/zeid%20data-0B5FFF?style=flat-square) ![public-safe](https://img.shields.io/badge/public%20safe-166534?style=flat-square) ![research](https://img.shields.io/badge/research-1F6FEB?style=flat-square) ![security-research](https://img.shields.io/badge/security%20research-0B5FFF?style=flat-square) ![detection-engineering](https://img.shields.io/badge/detection%20engineering-FFB800?style=flat-square) ![data-tooling](https://img.shields.io/badge/data%20tooling-334155?style=flat-square) ![automation](https://img.shields.io/badge/automation-2EA043?style=flat-square) ![malware-analysis](https://img.shields.io/badge/malware%20analysis-D83B01?style=flat-square) ![blue-team](https://img.shields.io/badge/blue%20team-0969DA?style=flat-square) ![governance](https://img.shields.io/badge/governance-6F42C1?style=flat-square) ![workbooks](https://img.shields.io/badge/workbooks-00C7E5?style=flat-square)
+
+<!-- ZEID DATA TAGS END -->
+
 
 <h1 align="center">Zeid Data Research</h1>
 

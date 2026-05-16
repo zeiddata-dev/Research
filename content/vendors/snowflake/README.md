@@ -13,6 +13,13 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
+<!-- ZEID DATA TAGS START -->
+### Tags
+
+![zeid-data](https://img.shields.io/badge/zeid%20data-0B5FFF?style=flat-square) ![public-safe](https://img.shields.io/badge/public%20safe-166534?style=flat-square) ![research](https://img.shields.io/badge/research-1F6FEB?style=flat-square) ![content](https://img.shields.io/badge/content-334155?style=flat-square) ![vendor-content](https://img.shields.io/badge/vendor%20content-334155?style=flat-square) ![governance](https://img.shields.io/badge/governance-6F42C1?style=flat-square) ![evidence-assets](https://img.shields.io/badge/evidence%20assets-334155?style=flat-square) ![snowflake](https://img.shields.io/badge/snowflake-334155?style=flat-square) ![data-security](https://img.shields.io/badge/data%20security-334155?style=flat-square) ![analytics](https://img.shields.io/badge/analytics-334155?style=flat-square) ![vendors](https://img.shields.io/badge/vendors-334155?style=flat-square)
+
+<!-- ZEID DATA TAGS END -->
+
 # Zeid Data Snowflake AI Governance & Compliance Query Pack
 
 

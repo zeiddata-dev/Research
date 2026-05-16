@@ -13,6 +13,13 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
+<!-- ZEID DATA TAGS START -->
+### Tags
+
+![zeid-data](https://img.shields.io/badge/zeid%20data-0B5FFF?style=flat-square) ![public-safe](https://img.shields.io/badge/public%20safe-166534?style=flat-square) ![research](https://img.shields.io/badge/research-1F6FEB?style=flat-square) ![detections](https://img.shields.io/badge/detections-334155?style=flat-square) ![detection-engineering](https://img.shields.io/badge/detection%20engineering-FFB800?style=flat-square) ![blue-team](https://img.shields.io/badge/blue%20team-0969DA?style=flat-square) ![security-analytics](https://img.shields.io/badge/security%20analytics-334155?style=flat-square) ![vendor-packs](https://img.shields.io/badge/vendor%20packs-334155?style=flat-square) ![claude-bot](https://img.shields.io/badge/claude%20bot-334155?style=flat-square)
+
+<!-- ZEID DATA TAGS END -->
+
 # Claude Bot Detection (Quick Guide)
 
 This folder contains simple, vendor-agnostic guidance to **spot and validate Claude (Anthropic) web/app traffic** using the telemetry you already collect (DNS, TLS, proxy, firewall, EDR).

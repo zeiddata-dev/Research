@@ -13,6 +13,13 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
+<!-- ZEID DATA TAGS START -->
+### Tags
+
+![zeid-data](https://img.shields.io/badge/zeid%20data-0B5FFF?style=flat-square) ![public-safe](https://img.shields.io/badge/public%20safe-166534?style=flat-square) ![research](https://img.shields.io/badge/research-1F6FEB?style=flat-square) ![workbooks](https://img.shields.io/badge/workbooks-00C7E5?style=flat-square) ![dashboards](https://img.shields.io/badge/dashboards-334155?style=flat-square) ![visual-analytics](https://img.shields.io/badge/visual%20analytics-334155?style=flat-square)
+
+<!-- ZEID DATA TAGS END -->
+
 # Zeid Data Workbooks
 
 Evidence-first workbooks, dashboards, and notebooks for Security Operations and compliance reporting.
