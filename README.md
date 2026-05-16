@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./media/zd_banner_3.png" alt="Zeid Data Research Lab" width="100%">
+  <img src="./assets/images/zd_banner_3.png" alt="Zeid Data Research Lab" width="100%">
 </p>
 
 <h1 align="center">Zeid Data Research</h1>
@@ -47,13 +47,13 @@ If a tool cannot explain what it read, what it changed, and what evidence suppor
 |---|---|---|
 | Projects | Broader software and research projects | [`projects/`](./projects) |
 | Security detections | Rules, detection engineering content, and defensive analytics | [`detections/`](./detections) |
-| Malware research | Malware analysis and defensive research material | [`malware/`](./malware) |
-| Scripts | Automation, validators, collectors, helpers, and repeatable tooling | [`scripts/`](./scripts) |
+| Malware research | Malware analysis and defensive research material | [`research/malware/`](./malware) |
+| Scripts | Automation, validators, collectors, helpers, and repeatable tooling | [`tools/scripts/`](./scripts) |
 | Documentation | Design notes, references, constraints, and operating guidance | [`docs/`](./docs) |
 | Templates | Reusable report, workflow, and documentation templates | [`templates/`](./templates) |
-| White papers | Longer-form research and technical writing | [`white_papers/`](./white_papers) |
+| White papers | Longer-form research and technical writing | [`research/research/white-papers/`](./white_papers) |
 | Workbooks | Dashboard or workbook-style artifacts | [`workbooks/`](./workbooks) |
-| Media | Repo-local visual assets and banners | [`media/`](./media) |
+| Media | Repo-local visual assets and banners | [`assets/images/`](./media) |
 | Content | Public-facing content and supporting material | [`content/`](./content) |
 
 ## Featured operating principles
@@ -118,7 +118,7 @@ Security research in this repo should remain authorized, defensive, and privacy-
 
 This repository is not the special `.github` profile repository, so the reusable profile README draft lives here:
 
-[`docs/profile-readme.md`](./docs/profile-readme.md)
+[`docs/guides/profile-readme.md`](./docs/guides/profile-readme.md)
 
 Copy that file into `.github/profile/README.md` in the Zeid Data GitHub profile repository when ready.
 
