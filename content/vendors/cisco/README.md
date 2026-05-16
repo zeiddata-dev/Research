@@ -1,6 +1,6 @@
 <!-- ZEID DATA README HERO START -->
 <p align="center">
-  <img src="../../../assets/banners/readme/content_vendors_cisco.svg" alt="Vendors · Cisco" width="100%">
+  <img src="../../../assets/banners/readme/content.png" alt="Zeid Data cisco banner" width="100%">
 </p>
 
 <p align="center">

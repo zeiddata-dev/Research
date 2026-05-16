@@ -1,6 +1,6 @@
 <!-- ZEID DATA README HERO START -->
 <p align="center">
-  <img src="../../../../assets/banners/readme/workbooks_dashboards_security_operations_playbooks_snowflake.svg" alt="Security Operations Playbooks · Snowflake" width="100%">
+  <img src="../../../../assets/banners/readme/content.png" alt="Zeid Data snowflake banner" width="100%">
 </p>
 
 <p align="center">

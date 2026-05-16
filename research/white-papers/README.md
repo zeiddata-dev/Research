@@ -1,6 +1,6 @@
 <!-- ZEID DATA README HERO START -->
 <p align="center">
-  <img src="../../assets/banners/readme/research_white_papers.svg" alt="White Papers" width="100%">
+  <img src="../../assets/banners/readme/white_papers.png" alt="Zeid Data white_papers banner" width="100%">
 </p>
 
 <p align="center">

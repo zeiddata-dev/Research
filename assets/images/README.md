@@ -1,6 +1,6 @@
 <!-- ZEID DATA README HERO START -->
 <p align="center">
-  <img src="../banners/readme/assets_images.svg" alt="Images" width="100%">
+  <img src="../banners/readme/root.png" alt="Zeid Data generic banner" width="100%">
 </p>
 
 <p align="center">

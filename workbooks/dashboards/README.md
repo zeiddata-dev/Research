@@ -1,6 +1,6 @@
 <!-- ZEID DATA README HERO START -->
 <p align="center">
-  <img src="../../assets/banners/readme/workbooks_dashboards.svg" alt="Dashboards" width="100%">
+  <img src="../../assets/banners/readme/workbooks.png" alt="Zeid Data workbooks banner" width="100%">
 </p>
 
 <p align="center">

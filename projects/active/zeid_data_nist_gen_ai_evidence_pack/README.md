@@ -1,6 +1,6 @@
 <!-- ZEID DATA README HERO START -->
 <p align="center">
-  <img src="../../../assets/banners/readme/projects_active_zeid_data_nist_gen_ai_evidence_pack.svg" alt="Zeid Data Nist Gen Ai Evidence Pack" width="100%">
+  <img src="../../../assets/banners/readme/projects.png" alt="Zeid Data projects banner" width="100%">
 </p>
 
 <p align="center">

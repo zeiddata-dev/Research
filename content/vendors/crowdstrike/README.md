@@ -1,6 +1,6 @@
 <!-- ZEID DATA README HERO START -->
 <p align="center">
-  <img src="../../../assets/banners/readme/content_vendors_crowdstrike.svg" alt="Vendors · Crowdstrike" width="100%">
+  <img src="../../../assets/banners/readme/content.png" alt="Zeid Data crowdstrike banner" width="100%">
 </p>
 
 <p align="center">
