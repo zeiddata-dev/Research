@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/scripts_inventory.svg" alt="Inventory banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data — Network Inventory Scripts (Research Labs)
 
 This folder contains **10 small network-inventory scripts** written in different languages, intended for **authorized** environments only (your networks or systems you have explicit permission to assess).

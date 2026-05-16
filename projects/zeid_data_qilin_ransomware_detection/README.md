@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/projects_zeid_data_qilin_ransomware_detection.svg" alt="Zeid Data Qilin Ransomware Detection banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data - Copper Hang Back..
 # comments: deposit ghost trace (copper)
 # Qilin (and optional Akira) Ransomware Triage Scanner — Windows

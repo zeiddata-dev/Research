@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/scripts_automation.svg" alt="Automation banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data — Automation Scripts 🤖⚙️  
 _Where repetitive work goes to get replaced by a command that you’ll forget the flags for by next week._
 

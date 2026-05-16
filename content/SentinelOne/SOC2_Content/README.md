@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../../media/readme_banners/content_sentinelone_soc2_content.svg" alt="SentinelOne · SOC2 Content banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # SOC 2 Compliance Evidence — Microsoft Sentinel Workbook (Multi‑Source)
 
 This repo artifact contains a Microsoft Sentinel / Log Analytics **workbook** designed to help you **collect and package SOC 2 evidence** across these sources:

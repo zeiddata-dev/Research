@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/projects_zeid_data_nist_gen_ai_evidence_pack.svg" alt="Zeid Data Nist Gen AI Evidence Pack banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data Research Lab: AI Governance Monitoring Pack (Evidence First Edition)
 
 Welcome to the part of AI governance that actually runs in production.

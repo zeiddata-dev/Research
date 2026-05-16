@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/content_cisco.svg" alt="Cisco Content banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data Cisco Free Content Pack
 
 Evidence-first detection content for Cisco telemetry. This folder is designed to help you turn Cisco logs into repeatable, audit-ready security detections and simple reporting outputs.

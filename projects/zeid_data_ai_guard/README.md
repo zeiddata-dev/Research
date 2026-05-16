@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/projects_zeid_data_ai_guard.svg" alt="Zeid Data AI Guard banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data — AIGO (AI Governance Evidence Toolkit)
 
 AIGO is a lightweight, dependency-light CLI that helps teams **operationalize AI governance as evidence**:

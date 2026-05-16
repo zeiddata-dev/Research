@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/projects_zeid_data_regex_security.svg" alt="Zeid Data Regex Security banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data Regex Security Education Bundle 🧪🛡️
 
 This package contains defensive education content and lightweight tooling to help teams understand and test regex related security risks.

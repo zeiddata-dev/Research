@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../../media/readme_banners/workbooks_security_operations_playbooks_splunk.svg" alt="Splunk banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data Security Playbooks — Splunk
 
 **Authorized SOC use only. Use only on systems/data you own or have explicit permission to analyze.**

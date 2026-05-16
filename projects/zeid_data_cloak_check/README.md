@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/projects_zeid_data_cloak_check.svg" alt="Zeid Data Cloak Check banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data CloakCheck Pack
 
 > Cloaked phishing via server side filtering: the kit looked at you, decided you weren’t worth scamming, and served you the kiddie menu. Congrats, you “never saw the real page.” 🥰

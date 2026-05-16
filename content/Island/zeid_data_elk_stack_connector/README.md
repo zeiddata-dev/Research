@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../../media/readme_banners/content_island_zeid_data_elk_stack_connector.svg" alt="Island · Zeid Data ELK Stack Connector banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data — Island → ELK Connector (HTTP Push)
 _If it happened in the browser and nobody logged it… congrats, it never happened._
 
