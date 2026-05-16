@@ -1,7 +1,5 @@
 <!-- ZEID DATA README HERO START -->
-<p align="center">
-  <img src="../banners/readme/root.png" alt="Zeid Data generic banner" width="100%">
-</p>
+![Zeid Data generic banner](../banners/readme/root.png)
 
 <p align="center">
   <a href="../../README.md"><img alt="Repo Root" src="https://img.shields.io/badge/Repo%20Root-0B5FFF?style=for-the-badge&logo=github&logoColor=white"></a>
