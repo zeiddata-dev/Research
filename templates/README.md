@@ -1,6 +1,6 @@
 <!-- ZEID DATA README BANNER START -->
 <p align="center">
-  <img src="../media/readme_banners/templates.svg" alt="Templates banner" width="100%">
+  <img src="../assets/banners/readme/templates.svg" alt="Templates banner" width="100%">
 </p>
 <!-- ZEID DATA README BANNER END -->
 
