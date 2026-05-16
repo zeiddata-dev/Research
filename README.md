@@ -13,6 +13,25 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
+<!-- ZEID DATA LAB MAP START -->
+## Lab Map
+
+| Area | What it is for |
+|---|---|
+| [Content](./content) | Vendor packs, field guides, governance content, and reusable evidence material. |
+| [Detections](./detections) | Detection rules, defensive analytics, signal logic, and security queries. |
+| [Docs](./docs) | Design notes, standards, implementation notes, and operating guidance. |
+| [Projects](./projects) | Project workspaces, prototypes, and active experiments. |
+| [Research](./research) | Research material, malware analysis, white papers, and experiments. |
+| [Scripts](./tools/scripts) | Automation helpers, validators, collectors, and repeatable operations. |
+| [Templates](./templates) | Reusable documentation, reporting, and delivery templates. |
+| [Workbooks](./workbooks) | Dashboard, workbook, and visual analytics artifacts. |
+| [Security Policy](./SECURITY.md) | Security reporting and supported vulnerability disclosure path. |
+| [License](./LICENSE.md) | Repository usage terms and attribution requirements. |
+
+<!-- ZEID DATA LAB MAP END -->
+
+
 <h1 align="center">Zeid Data Research</h1>
 
 <p align="center">
