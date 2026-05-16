@@ -14,6 +14,8 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
+[![Repo Quality](https://github.com/zeiddata-dev/Research/actions/workflows/repo-quality.yml/badge.svg)](https://github.com/zeiddata-dev/Research/actions/workflows/repo-quality.yml)
+
 <!-- ZEID DATA LAB MAP START -->
 ## Lab Map
 
