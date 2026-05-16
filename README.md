@@ -30,8 +30,6 @@
 | [License](./LICENSE.md) | Repository usage terms and attribution requirements. |
 
 <!-- ZEID DATA LAB MAP END -->
-
-
 <h1 align="center">Zeid Data Research</h1>
 
 <p align="center">
