@@ -1,5 +1,5 @@
 # Zeid Data Research link checker config.
-# Keep this strict for local/repo links, tolerant for noisy external services.
+# Strict enough for README navigation, tolerant of noisy external services.
 
 accept = [200, 204, 206, 301, 302, 429]
 max_retries = 2
@@ -11,8 +11,7 @@ exclude = [
   "^tel:",
   "^https://img\\.shields\\.io/",
   "^https://github\\.com/zeiddata-dev/Research/actions/workflows/",
-  "^https://raw\\.githubusercontent\\.com/"
+  "^https://raw\\.githubusercontent\\.com/",
   "^https://www\\.sophos\\.com/en-us/blog/microsoft-office-vulnerability-cve-2026-21509-in-active-exploitation",
   "^https://www\\.reuters\\.com/world/asia-pacific/cybercriminals-claim-hack-japans-asahi-group-2025-10-07/",
-  "^https://raw\\.githubusercontent\\.com/",
 ]
