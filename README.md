@@ -1,7 +1,5 @@
 <!-- ZEID DATA README HERO START -->
-<p align="center">
-  <img src="assets/banners/readme/root.png" alt="Zeid Data root banner" width="100%">
-</p>
+![Zeid Data root banner](assets/banners/readme/root.png)
 
 <p align="center">
   <a href="content"><img alt="Content" src="https://img.shields.io/badge/Content-00B8A9?style=for-the-badge&logo=bookstack&logoColor=white"></a>
