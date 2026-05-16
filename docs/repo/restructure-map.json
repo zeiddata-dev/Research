@@ -1,0 +1,2193 @@
+{
+  "tracked_files": 525,
+  "planned_moves": 509,
+  "kept_files": 16,
+  "reference_hits": {
+    "content/": [
+      "README.md",
+      "content/vendors/crowdstrike/README.md",
+      "docs/guides/standards/repository-structure.md",
+      "research/research/white-papers/detections/zeid_data_cl0p_data_extortion_detection_report.md"
+    ],
+    "assets/images/": [
+      "README.md",
+      "content/vendors/cisco/README.md",
+      "content/vendors/crowdstrike/CrowdStrike Falcon AI Governance/README.md",
+      "content/vendors/crowdstrike/CrowdStrike Falcon Audit Evidence & Noise Reduction/README.md",
+      "content/vendors/crowdstrike/CrowdStrike Falcon Claude Bot Detection/README.md",
+      "content/vendors/crowdstrike/README.md",
+      "content/vendors/island/README.md",
+      "content/vendors/island/zeid_data_elk_stack_connector/README.md",
+      "content/vendors/island/zeid_data_evidence_bundle/README.md",
+      "content/README.md",
+      "content/vendors/sentinelone/README.md",
+      "content/vendors/sentinelone/SOC2_Content/README.md",
+      "content/vendors/snowflake/README.md",
+      "content/vendors/README.md",
+      "content/vendors/Zeid Data Claude Bot Content/README.md",
+      "content/vendors/Zeid Data Splunk App - Exfil Watch/README.md",
+      "detections/vendor-packs/README.md",
+      "detections/vendor-packs/claude_bot/README.md",
+      "detections/vendor-packs/cve-2025-20393/README.md",
+      "detections/vendor-packs/cve-2025-40551/README.md",
+      "detections/vendor-packs/cve-2026-24423/README.md",
+      "detections/vendor-packs/cve-2026-24858/README.md",
+      "docs/guides/index.md",
+      "docs/guides/profile-readme.md",
+      "docs/guides/standards/repository-structure.md",
+      "docs/guides/taxonomy.md",
+      "research/research/malware/README.md",
+      "research/research/malware/claude/README.md",
+      "research/research/malware/promptflux_fruitshell/README.md",
+      "assets/images/README.md",
+      "projects/active/zeid_data_ai_guard/README.md",
+      "projects/active/zeid_data_bruteforce_ssh/README.md",
+      "projects/active/zeid_data_cloak_check/README.md",
+      "projects/active/zeid_data_forensics_tools/README.md",
+      "projects/active/zeid_data_forensics_tools/Zeid Data DFIR Work Flow Trainer/README.md",
+      "projects/active/zeid_data_gap_check/README.md",
+      "projects/active/zeid_data_net_ledger/README.md",
+      "projects/active/zeid_data_nist_gen_ai_evidence_pack/README.md",
+      "projects/active/zeid_data_qilin_ransomware_detection/README.md",
+      "projects/active/zeid_data_regex_security/README.md",
+      "projects/active/zeid_data_stack_crasher/README.md",
+      "tools/tools/scripts/README.md",
+      "tools/tools/scripts/automation/README.md",
+      "tools/tools/scripts/automation/zeid_data_backup_verify/README.md",
+      "tools/tools/scripts/automation/zeid_data_dns_audit/README.md",
+      "tools/tools/scripts/automation/zeid_data_eventlog_export/README.md",
+      "tools/tools/scripts/automation/zeid_data_host_reachability/README.md",
+      "tools/tools/scripts/automation/zeid_data_local_admin_audit/README.md",
+      "tools/tools/scripts/automation/zeid_data_log_summarizer_cpp/README.md",
+      "tools/tools/scripts/automation/zeid_data_route_snapshot/README.md"
+    ],
+    "tools/scripts/": [
+      "README.md",
+      "content/vendors/crowdstrike/CrowdStrike Falcon Audit Evidence & Noise Reduction/HOWTO.md",
+      "content/vendors/crowdstrike/CrowdStrike Falcon Audit Evidence & Noise Reduction/README.md",
+      "content/vendors/island/zeid_data_elk_stack_connector/HOWTO.md",
+      "content/vendors/island/zeid_data_elk_stack_connector/README.md",
+      "docs/guides/index.md",
+      "docs/guides/standards/repository-structure.md",
+      "docs/guides/taxonomy.md",
+      "research/research/malware/README.md",
+      "research/research/malware/claude/HOWTO.md",
+      "research/research/malware/claude/MANIFEST_SHA256.txt",
+      "research/research/malware/claude/README.md",
+      "research/research/malware/claude/tools/scripts/zeid_data_ci_block_risky_claude_config.ps1",
+      "research/research/malware/claude/tools/scripts/zeid_data_ci_block_risky_claude_config.sh",
+      "projects/active/zeid_data_cloak_check/HOWTO.md",
+      "projects/active/zeid_data_cloak_check/README.md",
+      "projects/active/zeid_data_cloak_check/zeid_data_cloak_checking_email.md",
+      "projects/active/zeid_data_nist_gen_ai_evidence_pack/HOWTO.md",
+      "projects/active/zeid_data_nist_gen_ai_evidence_pack/README.md",
+      "projects/active/zeid_data_nist_gen_ai_evidence_pack/tools/scripts/bundle_evidence.py",
+      "projects/active/zeid_data_nist_gen_ai_evidence_pack/tools/scripts/generate_coverage_report.py",
+      "projects/active/zeid_data_nist_gen_ai_evidence_pack/tools/scripts/validate_events.py",
+      "tools/tools/scripts/README.md",
+      "tools/tools/scripts/automation/README.md",
+      "research/research/white-papers/README.md"
+    ],
+    "research/malware/": [
+      "README.md",
+      "docs/guides/standards/naming.md",
+      "docs/guides/standards/repository-structure.md",
+      "docs/guides/taxonomy.md",
+      "research/research/malware/README.md",
+      "research/research/white-papers/README.md"
+    ],
+    "research/research/white-papers/": [
+      "README.md",
+      "docs/guides/standards/repository-structure.md"
+    ],
+    "workbooks/": [
+      "README.md",
+      "docs/guides/index.md",
+      "docs/guides/standards/naming.md",
+      "docs/guides/standards/repository-structure.md",
+      "docs/guides/taxonomy.md",
+      "research/research/malware/README.md",
+      "research/research/white-papers/README.md"
+    ],
+    "detections/": [
+      "README.md",
+      "content/vendors/sentinelone/README.md",
+      "content/vendors/sentinelone/SOC2_Content/HOWTO.md",
+      "content/vendors/sentinelone/SOC2_Content/Zeid Data_sentinel_soc2_workbook_multi_source_arm.json",
+      "detections/vendor-packs/README.md",
+      "docs/guides/index.md",
+      "docs/guides/standards/naming.md",
+      "docs/guides/standards/repository-structure.md",
+      "docs/guides/taxonomy.md",
+      "research/research/malware/README.md",
+      "research/research/malware/claude/HOWTO.md",
+      "research/research/malware/claude/MANIFEST_SHA256.txt",
+      "research/research/malware/claude/README.md",
+      "projects/active/zeid_data_cloak_check/HOWTO.md",
+      "projects/active/zeid_data_cloak_check/README.md",
+      "projects/active/zeid_data_cloak_check/zeid_data_cloak_checking_email.md",
+      "research/research/white-papers/README.md"
+    ],
+    "projects/": [
+      "README.md",
+      "detections/vendor-packs/README.md",
+      "docs/guides/index.md",
+      "docs/guides/standards/naming.md",
+      "docs/guides/standards/repository-structure.md",
+      "docs/guides/taxonomy.md",
+      "research/research/white-papers/README.md"
+    ],
+    "templates/": [
+      "README.md",
+      "content/vendors/crowdstrike/CrowdStrike Falcon Audit Evidence & Noise Reduction/HOWTO.md",
+      "content/vendors/island/README.md",
+      "content/vendors/sentinelone/README.md",
+      "docs/guides/index.md",
+      "docs/guides/standards/evidence.md",
+      "docs/guides/standards/repository-structure.md",
+      "docs/guides/taxonomy.md",
+      "projects/active/zeid_data_cloak_check/README.md",
+      "projects/active/zeid_data_cloak_check/checklists/zeid_data_evidence_bundle_template.md",
+      "projects/active/zeid_data_cloak_check/zeid_data_cloak_checking_email.md",
+      "research/research/white-papers/README.md"
+    ]
+  },
+  "moves": [
+    {
+      "from": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_01_internet_facing_exploitation_attempt_kev_prioritized.zip",
+      "to": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_01_internet_facing_exploitation_attempt_kev_prioritized.zip"
+    },
+    {
+      "from": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_02_suspicious_remote_admin_access_vpn_ssh_rdp.zip",
+      "to": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_02_suspicious_remote_admin_access_vpn_ssh_rdp.zip"
+    },
+    {
+      "from": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_03_duo_mfa_fatigue_fraudulent_push_and_high_risk_auth.zip",
+      "to": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_03_duo_mfa_fatigue_fraudulent_push_and_high_risk_auth.zip"
+    },
+    {
+      "from": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_04_phishing_to_credential_harvest_correlation_email_dns.zip",
+      "to": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_04_phishing_to_credential_harvest_correlation_email_dns.zip"
+    },
+    {
+      "from": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_05_dns_tunneling_and_exfiltration_umbrella.zip",
+      "to": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_05_dns_tunneling_and_exfiltration_umbrella.zip"
+    },
+    {
+      "from": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_06_encrypted_dns_bypass_doh_dot_third_party_resolvers.zip",
+      "to": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_06_encrypted_dns_bypass_doh_dot_third_party_resolvers.zip"
+    },
+    {
+      "from": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_07_https_beaconing_c2_rare_domains_low_and_slow.zip",
+      "to": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_07_https_beaconing_c2_rare_domains_low_and_slow.zip"
+    },
+    {
+      "from": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_08_east_west_scanning_and_lateral_movement_netflow.zip",
+      "to": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_08_east_west_scanning_and_lateral_movement_netflow.zip"
+    },
+    {
+      "from": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_09_ransomware_staging_pre_encryption_secure_endpoint.zip",
+      "to": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_09_ransomware_staging_pre_encryption_secure_endpoint.zip"
+    },
+    {
+      "from": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_10_data_exfiltration_large_uploads_to_unsanctioned_cloud.zip",
+      "to": "content/vendors/cisco/Detections/ZeidData_Cisco_Detection_10_data_exfiltration_large_uploads_to_unsanctioned_cloud.zip"
+    },
+    {
+      "from": "content/vendors/cisco/Detections/zeid_data_cisco-claude-firewall-endpoint-pack.zip",
+      "to": "content/vendors/cisco/Detections/zeid_data_cisco-claude-firewall-endpoint-pack.zip"
+    },
+    {
+      "from": "content/vendors/cisco/PRE_REQ.md",
+      "to": "content/vendors/cisco/PRE_REQ.md"
+    },
+    {
+      "from": "content/vendors/cisco/README.md",
+      "to": "content/vendors/cisco/README.md"
+    },
+    {
+      "from": "content/vendors/crowdstrike/CrowdStrike Falcon AI Governance/HOWTO.md",
+      "to": "content/vendors/crowdstrike/CrowdStrike Falcon AI Governance/HOWTO.md"
+    },
+    {
+      "from": "content/vendors/crowdstrike/CrowdStrike Falcon AI Governance/LICENSE.txt",
+      "to": "content/vendors/crowdstrike/CrowdStrike Falcon AI Governance/LICENSE.txt"
+    },
+    {
+      "from": "content/vendors/crowdstrike/CrowdStrike Falcon AI Governance/README.md",
+      "to": "content/vendors/crowdstrike/CrowdStrike Falcon AI Governance/README.md"
+    },
+    {
+      "from": "content/vendors/crowdstrike/CrowdStrike Falcon AI Governance/ZeidData_CrowdStrike_AI_Governance_Rules_Reports_Views_Filters_Package.zip",
+      "to": "content/vendors/crowdstrike/CrowdStrike Falcon AI Governance/ZeidData_CrowdStrike_AI_Governance_Rules_Reports_Views_Filters_Package.zip"
+    },
+    {
+      "from": "content/vendors/crowdstrike/CrowdStrike Falcon AI Governance/manifest.yaml",
+      "to": "content/vendors/crowdstrike/CrowdStrike Falcon AI Governance/manifest.yaml"
+    },
+    {
+      "from": "content/vendors/crowdstrike/CrowdStrike Falcon Audit Evidence & Noise Reduction/HOWTO.md",
+      "to": "content/vendors/crowdstrike/CrowdStrike Falcon Audit Evidence & Noise Reduction/HOWTO.md"
+    },
+    {
+      "from": "content/vendors/crowdstrike/CrowdStrike Falcon Audit Evidence & Noise Reduction/LICENSE.txt",
+      "to": "content/vendors/crowdstrike/CrowdStrike Falcon Audit Evidence & Noise Reduction/LICENSE.txt"
+    },
+    {
+      "from": "content/vendors/crowdstrike/CrowdStrike Falcon Audit Evidence & Noise Reduction/README.md",
+      "to": "content/vendors/crowdstrike/CrowdStrike Falcon Audit Evidence & Noise Reduction/README.md"
+    },
+    {
+      "from": "content/vendors/crowdstrike/CrowdStrike Falcon Audit Evidence & Noise Reduction/Zeid_Data_Falcon_AuditEvidence_Noise_Reduction_Pack.zip",
+      "to": "content/vendors/crowdstrike/CrowdStrike Falcon Audit Evidence & Noise Reduction/Zeid_Data_Falcon_AuditEvidence_Noise_Reduction_Pack.zip"
+    },
+    {
+      "from": "content/vendors/crowdstrike/CrowdStrike Falcon Claude Bot Detection/HOWTO.md",
+      "to": "content/vendors/crowdstrike/CrowdStrike Falcon Claude Bot Detection/HOWTO.md"
+    },
+    {
+      "from": "content/vendors/crowdstrike/CrowdStrike Falcon Claude Bot Detection/README.md",
+      "to": "content/vendors/crowdstrike/CrowdStrike Falcon Claude Bot Detection/README.md"
+    },
+    {
+      "from": "content/vendors/crowdstrike/CrowdStrike Falcon Claude Bot Detection/zeid_data_crowdstrike-claude-firewall-endpoint-pack.zip",
+      "to": "content/vendors/crowdstrike/CrowdStrike Falcon Claude Bot Detection/zeid_data_crowdstrike-claude-firewall-endpoint-pack.zip"
+    },
+    {
+      "from": "content/vendors/crowdstrike/README.md",
+      "to": "content/vendors/crowdstrike/README.md"
+    },
+    {
+      "from": "content/vendors/island/README.md",
+      "to": "content/vendors/island/README.md"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/.env.example",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/.env.example"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/HOWTO.md",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/HOWTO.md"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/README.md",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/README.md"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/docker-compose.yml",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/docker-compose.yml"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/elastic/index-template-island.json",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/elastic/index-template-island.json"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/examples/island_event_sample.json",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/examples/island_event_sample.json"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/logstash/config/logstash.yml",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/logstash/config/logstash.yml"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/logstash/pipeline/island-http.conf",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/logstash/pipeline/island-http.conf"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/tools/scripts/apply_index_template.sh",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/tools/scripts/apply_index_template.sh"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/tools/scripts/generate_test_event.py",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/tools/scripts/generate_test_event.py"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/tools/scripts/post_test_event.sh",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/tools/scripts/post_test_event.sh"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/training/KQL_QUERIES.md",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/training/KQL_QUERIES.md"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/training/SCENARIOS.md",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/training/SCENARIOS.md"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/training/screenshots/01_island_siem_settings_mock.png",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/training/screenshots/01_island_siem_settings_mock.png"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/training/screenshots/02_logstash_ingest_mock.png",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/training/screenshots/02_logstash_ingest_mock.png"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/training/screenshots/03_kibana_discover_mock.png",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/training/screenshots/03_kibana_discover_mock.png"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_elk_stack_connector/training/screenshots/04_kibana_dashboard_mock.png",
+      "to": "content/vendors/island/zeid_data_elk_stack_connector/training/screenshots/04_kibana_dashboard_mock.png"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_evidence_bundle/HOWTO.md",
+      "to": "content/vendors/island/zeid_data_evidence_bundle/HOWTO.md"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_evidence_bundle/README.md",
+      "to": "content/vendors/island/zeid_data_evidence_bundle/README.md"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_bundle_schema.json",
+      "to": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_bundle_schema.json"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_collect.py",
+      "to": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_collect.py"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_config.example.yaml",
+      "to": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_config.example.yaml"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_env.example",
+      "to": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_env.example"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_evidence_bundle_spec.md",
+      "to": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_evidence_bundle_spec.md"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_examples/zeid_data_example_island_policies.jsonl",
+      "to": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_examples/zeid_data_example_island_policies.jsonl"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_examples/zeid_data_example_island_users.jsonl",
+      "to": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_examples/zeid_data_example_island_users.jsonl"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_examples/zeid_data_example_manifest.json",
+      "to": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_examples/zeid_data_example_manifest.json"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_gitignore",
+      "to": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_gitignore"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_island_client.py",
+      "to": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_island_client.py"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_make_bundle.py",
+      "to": "content/vendors/island/zeid_data_evidence_bundle/zeid_data_make_bundle.py"
+    },
+    {
+      "from": "content/vendors/island/zeid_data_evidence_bundle/zeid_datapip_requirements.txt",
+      "to": "content/vendors/island/zeid_data_evidence_bundle/zeid_datapip_requirements.txt"
+    },
+    {
+      "from": "content/vendors/sentinelone/README.md",
+      "to": "content/vendors/sentinelone/README.md"
+    },
+    {
+      "from": "content/vendors/sentinelone/SOC2_Content/HOWTO.md",
+      "to": "content/vendors/sentinelone/SOC2_Content/HOWTO.md"
+    },
+    {
+      "from": "content/vendors/sentinelone/SOC2_Content/README.md",
+      "to": "content/vendors/sentinelone/SOC2_Content/README.md"
+    },
+    {
+      "from": "content/vendors/sentinelone/SOC2_Content/Zeid Data_sentinel_soc2_workbook_multi_source.workbook",
+      "to": "content/vendors/sentinelone/SOC2_Content/Zeid Data_sentinel_soc2_workbook_multi_source.workbook"
+    },
+    {
+      "from": "content/vendors/sentinelone/SOC2_Content/Zeid Data_sentinel_soc2_workbook_multi_source_arm.json",
+      "to": "content/vendors/sentinelone/SOC2_Content/Zeid Data_sentinel_soc2_workbook_multi_source_arm.json"
+    },
+    {
+      "from": "content/vendors/snowflake/Base_AI_Queries",
+      "to": "content/vendors/snowflake/Base_AI_Queries"
+    },
+    {
+      "from": "content/vendors/snowflake/HOWTO.md",
+      "to": "content/vendors/snowflake/HOWTO.md"
+    },
+    {
+      "from": "content/vendors/snowflake/LICENSE",
+      "to": "content/vendors/snowflake/LICENSE"
+    },
+    {
+      "from": "content/vendors/snowflake/README.md",
+      "to": "content/vendors/snowflake/README.md"
+    },
+    {
+      "from": "content/vendors/snowflake/zeid_data_snowflake-ai-governance-compliance-pack.zip",
+      "to": "content/vendors/snowflake/zeid_data_snowflake-ai-governance-compliance-pack.zip"
+    },
+    {
+      "from": "content/vendors/README.md",
+      "to": "content/vendors/README.md"
+    },
+    {
+      "from": "content/vendors/SPL_Top 10 Threat Hunts (AD + ASA + CrowdStrike)",
+      "to": "content/vendors/SPL_Top 10 Threat Hunts (AD + ASA + CrowdStrike)"
+    },
+    {
+      "from": "content/vendors/YAML.md",
+      "to": "content/vendors/YAML.md"
+    },
+    {
+      "from": "content/vendors/Zeid Data Claude Bot Content/HOWTO.md",
+      "to": "content/vendors/Zeid Data Claude Bot Content/HOWTO.md"
+    },
+    {
+      "from": "content/vendors/Zeid Data Claude Bot Content/README.md",
+      "to": "content/vendors/Zeid Data Claude Bot Content/README.md"
+    },
+    {
+      "from": "content/vendors/Zeid Data Claude Bot Content/zeid_data_splunk-claude-firewall-endpoint-pack.zip",
+      "to": "content/vendors/Zeid Data Claude Bot Content/zeid_data_splunk-claude-firewall-endpoint-pack.zip"
+    },
+    {
+      "from": "content/vendors/Zeid Data Splunk App - Exfil Watch/HOWTO.md",
+      "to": "content/vendors/Zeid Data Splunk App - Exfil Watch/HOWTO.md"
+    },
+    {
+      "from": "content/vendors/Zeid Data Splunk App - Exfil Watch/README.md",
+      "to": "content/vendors/Zeid Data Splunk App - Exfil Watch/README.md"
+    },
+    {
+      "from": "content/vendors/Zeid Data Splunk App - Exfil Watch/ZeidData_Splunk_Exfil_Monitor_App.zip",
+      "to": "content/vendors/Zeid Data Splunk App - Exfil Watch/ZeidData_Splunk_Exfil_Monitor_App.zip"
+    },
+    {
+      "from": "content/vendors/savedsearches.conf",
+      "to": "content/vendors/savedsearches.conf"
+    },
+    {
+      "from": "detections/vendor-packs/README.md",
+      "to": "detections/vendor-packs/README.md"
+    },
+    {
+      "from": "detections/vendor-packs/claude_bot/README.md",
+      "to": "detections/vendor-packs/claude_bot/README.md"
+    },
+    {
+      "from": "detections/vendor-packs/claude_bot/zeid_data_claude_detection",
+      "to": "detections/vendor-packs/claude_bot/zeid_data_claude_detection"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2025-20393/README.md",
+      "to": "detections/vendor-packs/cve-2025-20393/README.md"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2025-20393/zeid_data_cisco_cve-2025-20393-detection-package.zip",
+      "to": "detections/vendor-packs/cve-2025-20393/zeid_data_cisco_cve-2025-20393-detection-package.zip"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2025-40551/HOWTO.md",
+      "to": "detections/vendor-packs/cve-2025-40551/HOWTO.md"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2025-40551/LICENSE",
+      "to": "detections/vendor-packs/cve-2025-40551/LICENSE"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2025-40551/README.md",
+      "to": "detections/vendor-packs/cve-2025-40551/README.md"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2025-40551/test.txt",
+      "to": "detections/vendor-packs/cve-2025-40551/test.txt"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2025-40551/zeid_data_CVE-2025-40551.py",
+      "to": "detections/vendor-packs/cve-2025-40551/zeid_data_CVE-2025-40551.py"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2026-24423/HOWTO.md",
+      "to": "detections/vendor-packs/cve-2026-24423/HOWTO.md"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2026-24423/LICENSE",
+      "to": "detections/vendor-packs/cve-2026-24423/LICENSE"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2026-24423/README.md",
+      "to": "detections/vendor-packs/cve-2026-24423/README.md"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2026-24423/zeid_data_CVE-2026-24423.py",
+      "to": "detections/vendor-packs/cve-2026-24423/zeid_data_CVE-2026-24423.py"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2026-24858/HOWTO.md",
+      "to": "detections/vendor-packs/cve-2026-24858/HOWTO.md"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2026-24858/LICENSE",
+      "to": "detections/vendor-packs/cve-2026-24858/LICENSE"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2026-24858/README.md",
+      "to": "detections/vendor-packs/cve-2026-24858/README.md"
+    },
+    {
+      "from": "detections/vendor-packs/cve-2026-24858/zeid_data_CVE-2026-24858.py",
+      "to": "detections/vendor-packs/cve-2026-24858/zeid_data_CVE-2026-24858.py"
+    },
+    {
+      "from": "docs/guides/index.md",
+      "to": "docs/guides/index.md"
+    },
+    {
+      "from": "docs/guides/profile-readme.md",
+      "to": "docs/guides/profile-readme.md"
+    },
+    {
+      "from": "docs/guides/standards/evidence.md",
+      "to": "docs/guides/standards/evidence.md"
+    },
+    {
+      "from": "docs/guides/standards/naming.md",
+      "to": "docs/guides/standards/naming.md"
+    },
+    {
+      "from": "docs/guides/standards/repository-structure.md",
+      "to": "docs/guides/standards/repository-structure.md"
+    },
+    {
+      "from": "docs/guides/taxonomy.md",
+      "to": "docs/guides/taxonomy.md"
+    },
+    {
+      "from": "research/research/malware/README.md",
+      "to": "research/research/research/malware/README.md"
+    },
+    {
+      "from": "research/research/malware/claude/HOWTO.md",
+      "to": "research/research/research/malware/claude/HOWTO.md"
+    },
+    {
+      "from": "research/research/malware/claude/LICENSE",
+      "to": "research/research/research/malware/claude/LICENSE"
+    },
+    {
+      "from": "research/research/malware/claude/MANIFEST_SHA256.txt",
+      "to": "research/research/research/malware/claude/MANIFEST_SHA256.txt"
+    },
+    {
+      "from": "research/research/malware/claude/README.md",
+      "to": "research/research/research/malware/claude/README.md"
+    },
+    {
+      "from": "research/research/malware/claude/detections/sigma/zeid_data_claude_code_baseurl_env_override.yml",
+      "to": "research/research/research/malware/claude/detections/sigma/zeid_data_claude_code_baseurl_env_override.yml"
+    },
+    {
+      "from": "research/research/malware/claude/detections/sigma/zeid_data_claude_code_shell_spawn.yml",
+      "to": "research/research/research/malware/claude/detections/sigma/zeid_data_claude_code_shell_spawn.yml"
+    },
+    {
+      "from": "research/research/malware/claude/detections/sigma/zeid_data_claude_code_suspicious_config_change.yml",
+      "to": "research/research/research/malware/claude/detections/sigma/zeid_data_claude_code_suspicious_config_change.yml"
+    },
+    {
+      "from": "research/research/malware/claude/detections/yara/zeid_data_claude_code_config_risky_strings.yar",
+      "to": "research/research/research/malware/claude/detections/yara/zeid_data_claude_code_config_risky_strings.yar"
+    },
+    {
+      "from": "research/research/malware/claude/queries/sentinel/zeid_data_mde_file_events_claude_config.kql",
+      "to": "research/research/research/malware/claude/queries/sentinel/zeid_data_mde_file_events_claude_config.kql"
+    },
+    {
+      "from": "research/research/malware/claude/queries/sentinel/zeid_data_mde_network_unexpected_from_claude.kql",
+      "to": "research/research/research/malware/claude/queries/sentinel/zeid_data_mde_network_unexpected_from_claude.kql"
+    },
+    {
+      "from": "research/research/malware/claude/queries/sentinel/zeid_data_mde_process_shell_from_claude.kql",
+      "to": "research/research/research/malware/claude/queries/sentinel/zeid_data_mde_process_shell_from_claude.kql"
+    },
+    {
+      "from": "research/research/malware/claude/queries/splunk/zeid_data_file_change_claude_config.spl",
+      "to": "research/research/research/malware/claude/queries/splunk/zeid_data_file_change_claude_config.spl"
+    },
+    {
+      "from": "research/research/malware/claude/queries/splunk/zeid_data_network_unexpected_from_claude.spl",
+      "to": "research/research/research/malware/claude/queries/splunk/zeid_data_network_unexpected_from_claude.spl"
+    },
+    {
+      "from": "research/research/malware/claude/queries/splunk/zeid_data_process_shell_from_claude.spl",
+      "to": "research/research/research/malware/claude/queries/splunk/zeid_data_process_shell_from_claude.spl"
+    },
+    {
+      "from": "research/research/malware/claude/tools/scripts/zeid_data_ci_block_risky_claude_config.ps1",
+      "to": "research/research/research/malware/claude/tools/scripts/zeid_data_ci_block_risky_claude_config.ps1"
+    },
+    {
+      "from": "research/research/malware/claude/tools/scripts/zeid_data_ci_block_risky_claude_config.sh",
+      "to": "research/research/research/malware/claude/tools/scripts/zeid_data_ci_block_risky_claude_config.sh"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/HOWTO.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/HOWTO.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/LICENSE.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/LICENSE.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/README.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/README.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_crowdstrike_deployment_steps.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_crowdstrike_deployment_steps.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_crowdstrike_detections.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_crowdstrike_detections.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_crowdstrike_overview.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_crowdstrike_overview.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_crowdstrike_queries.txt",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_crowdstrike_queries.txt"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_crowdstrike_tuning_guidance.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_crowdstrike_tuning_guidance.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_detection_strategy.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_detection_strategy.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_executive_summary.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_executive_summary.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_false_positive_guidance.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_false_positive_guidance.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_iocs.csv",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_iocs.csv"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_microsoft_deployment_steps.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_microsoft_deployment_steps.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_microsoft_detections.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_microsoft_detections.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_microsoft_overview.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_microsoft_overview.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_microsoft_queries.txt",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_microsoft_queries.txt"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_microsoft_tuning_guidance.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_microsoft_tuning_guidance.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_mitre_mapping.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_mitre_mapping.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_references.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_references.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_splunk_deployment_steps.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_splunk_deployment_steps.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_splunk_detections.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_splunk_detections.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_splunk_overview.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_splunk_overview.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_splunk_queries.txt",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_splunk_queries.txt"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_splunk_tuning_guidance.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_splunk_tuning_guidance.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_threat_overview.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_threat_overview.md"
+    },
+    {
+      "from": "research/research/malware/promptflux_fruitshell/zeid_data_triage_checklist.md",
+      "to": "research/research/research/malware/promptflux_fruitshell/zeid_data_triage_checklist.md"
+    },
+    {
+      "from": "research/research/malware/qilin/Qilin_Ransomware Scanner.py",
+      "to": "research/research/research/malware/qilin/Qilin_Ransomware Scanner.py"
+    },
+    {
+      "from": "assets/images/5 Best Practices.png",
+      "to": "assets/images/5 Best Practices.png"
+    },
+    {
+      "from": "assets/images/AIGovernance.png",
+      "to": "assets/images/AIGovernance.png"
+    },
+    {
+      "from": "assets/images/DataCenterCleanUp.png",
+      "to": "assets/images/DataCenterCleanUp.png"
+    },
+    {
+      "from": "assets/images/DataExfiltration.png",
+      "to": "assets/images/DataExfiltration.png"
+    },
+    {
+      "from": "assets/images/HaveAGoodWeekend.png",
+      "to": "assets/images/HaveAGoodWeekend.png"
+    },
+    {
+      "from": "assets/images/README.md",
+      "to": "assets/images/README.md"
+    },
+    {
+      "from": "assets/images/ClaudeBot.png",
+      "to": "assets/images/ClaudeBot.png"
+    },
+    {
+      "from": "assets/images/CrowdStrikeContentRelease.png",
+      "to": "assets/images/CrowdStrikeContentRelease.png"
+    },
+    {
+      "from": "assets/images/SnowflakeContentRelease.png",
+      "to": "assets/images/SnowflakeContentRelease.png"
+    },
+    {
+      "from": "assets/images/ZD Banner.png",
+      "to": "assets/images/ZD Banner.png"
+    },
+    {
+      "from": "assets/images/ZD_Dashboard.png",
+      "to": "assets/images/ZD_Dashboard.png"
+    },
+    {
+      "from": "assets/images/zeid_logo_round_fade.png",
+      "to": "assets/images/zeid_logo_round_fade.png"
+    },
+    {
+      "from": "assets/images/ceo_coworker.png",
+      "to": "assets/images/ceo_coworker.png"
+    },
+    {
+      "from": "assets/banners/readme/content.svg",
+      "to": "assets/banners/readme/content.svg"
+    },
+    {
+      "from": "assets/banners/readme/content_cisco.svg",
+      "to": "assets/banners/readme/content_cisco.svg"
+    },
+    {
+      "from": "assets/banners/readme/content_crowdstrike.svg",
+      "to": "assets/banners/readme/content_crowdstrike.svg"
+    },
+    {
+      "from": "assets/banners/readme/content_crowdstrike_crowdstrike_falcon_ai_governance.svg",
+      "to": "assets/banners/readme/content_crowdstrike_crowdstrike_falcon_ai_governance.svg"
+    },
+    {
+      "from": "assets/banners/readme/content_crowdstrike_crowdstrike_falcon_audit_evidence_noise_reduction.svg",
+      "to": "assets/banners/readme/content_crowdstrike_crowdstrike_falcon_audit_evidence_noise_reduction.svg"
+    },
+    {
+      "from": "assets/banners/readme/content_crowdstrike_crowdstrike_falcon_claude_bot_detection.svg",
+      "to": "assets/banners/readme/content_crowdstrike_crowdstrike_falcon_claude_bot_detection.svg"
+    },
+    {
+      "from": "assets/banners/readme/content_island.svg",
+      "to": "assets/banners/readme/content_island.svg"
+    },
+    {
+      "from": "assets/banners/readme/content_island_zeid_data_elk_stack_connector.svg",
+      "to": "assets/banners/readme/content_island_zeid_data_elk_stack_connector.svg"
+    },
+    {
+      "from": "assets/banners/readme/content_island_zeid_data_evidence_bundle.svg",
+      "to": "assets/banners/readme/content_island_zeid_data_evidence_bundle.svg"
+    },
+    {
+      "from": "assets/banners/readme/content_sentinelone.svg",
+      "to": "assets/banners/readme/content_sentinelone.svg"
+    },
+    {
+      "from": "assets/banners/readme/content_sentinelone_soc2_content.svg",
+      "to": "assets/banners/readme/content_sentinelone_soc2_content.svg"
+    },
+    {
+      "from": "assets/banners/readme/content_snowflake.svg",
+      "to": "assets/banners/readme/content_snowflake.svg"
+    },
+    {
+      "from": "assets/banners/readme/content_splunk.svg",
+      "to": "assets/banners/readme/content_splunk.svg"
+    },
+    {
+      "from": "assets/banners/readme/content_splunk_zeid_data_claude_bot_content.svg",
+      "to": "assets/banners/readme/content_splunk_zeid_data_claude_bot_content.svg"
+    },
+    {
+      "from": "assets/banners/readme/content_splunk_zeid_data_splunk_app_exfil_watch.svg",
+      "to": "assets/banners/readme/content_splunk_zeid_data_splunk_app_exfil_watch.svg"
+    },
+    {
+      "from": "assets/banners/readme/detections.svg",
+      "to": "assets/banners/readme/detections.svg"
+    },
+    {
+      "from": "assets/banners/readme/detections_claude_bot.svg",
+      "to": "assets/banners/readme/detections_claude_bot.svg"
+    },
+    {
+      "from": "assets/banners/readme/detections_cve_2025_20393.svg",
+      "to": "assets/banners/readme/detections_cve_2025_20393.svg"
+    },
+    {
+      "from": "assets/banners/readme/detections_cve_2025_40551.svg",
+      "to": "assets/banners/readme/detections_cve_2025_40551.svg"
+    },
+    {
+      "from": "assets/banners/readme/detections_cve_2026_24423.svg",
+      "to": "assets/banners/readme/detections_cve_2026_24423.svg"
+    },
+    {
+      "from": "assets/banners/readme/detections_cve_2026_24858.svg",
+      "to": "assets/banners/readme/detections_cve_2026_24858.svg"
+    },
+    {
+      "from": "assets/banners/readme/malware.svg",
+      "to": "assets/banners/readme/malware.svg"
+    },
+    {
+      "from": "assets/banners/readme/malware_claude.svg",
+      "to": "assets/banners/readme/malware_claude.svg"
+    },
+    {
+      "from": "assets/banners/readme/malware_promptflux_fruitshell.svg",
+      "to": "assets/banners/readme/malware_promptflux_fruitshell.svg"
+    },
+    {
+      "from": "assets/banners/readme/media.svg",
+      "to": "assets/banners/readme/media.svg"
+    },
+    {
+      "from": "assets/banners/readme/projects_zeid_data_ai_guard.svg",
+      "to": "assets/banners/readme/projects_zeid_data_ai_guard.svg"
+    },
+    {
+      "from": "assets/banners/readme/projects_zeid_data_bruteforce_ssh.svg",
+      "to": "assets/banners/readme/projects_zeid_data_bruteforce_ssh.svg"
+    },
+    {
+      "from": "assets/banners/readme/projects_zeid_data_cloak_check.svg",
+      "to": "assets/banners/readme/projects_zeid_data_cloak_check.svg"
+    },
+    {
+      "from": "assets/banners/readme/projects_zeid_data_forensics_tools.svg",
+      "to": "assets/banners/readme/projects_zeid_data_forensics_tools.svg"
+    },
+    {
+      "from": "assets/banners/readme/projects_zeid_data_forensics_tools_zeid_data_dfir_work_flow_trainer.svg",
+      "to": "assets/banners/readme/projects_zeid_data_forensics_tools_zeid_data_dfir_work_flow_trainer.svg"
+    },
+    {
+      "from": "assets/banners/readme/projects_zeid_data_gap_check.svg",
+      "to": "assets/banners/readme/projects_zeid_data_gap_check.svg"
+    },
+    {
+      "from": "assets/banners/readme/projects_zeid_data_net_ledger.svg",
+      "to": "assets/banners/readme/projects_zeid_data_net_ledger.svg"
+    },
+    {
+      "from": "assets/banners/readme/projects_zeid_data_nist_gen_ai_evidence_pack.svg",
+      "to": "assets/banners/readme/projects_zeid_data_nist_gen_ai_evidence_pack.svg"
+    },
+    {
+      "from": "assets/banners/readme/projects_zeid_data_qilin_ransomware_detection.svg",
+      "to": "assets/banners/readme/projects_zeid_data_qilin_ransomware_detection.svg"
+    },
+    {
+      "from": "assets/banners/readme/projects_zeid_data_regex_security.svg",
+      "to": "assets/banners/readme/projects_zeid_data_regex_security.svg"
+    },
+    {
+      "from": "assets/banners/readme/projects_zeid_data_stack_crasher.svg",
+      "to": "assets/banners/readme/projects_zeid_data_stack_crasher.svg"
+    },
+    {
+      "from": "assets/banners/readme/scripts.svg",
+      "to": "assets/banners/readme/scripts.svg"
+    },
+    {
+      "from": "assets/banners/readme/scripts_automation.svg",
+      "to": "assets/banners/readme/scripts_automation.svg"
+    },
+    {
+      "from": "assets/banners/readme/scripts_automation_zeid_data_backup_verify.svg",
+      "to": "assets/banners/readme/scripts_automation_zeid_data_backup_verify.svg"
+    },
+    {
+      "from": "assets/banners/readme/scripts_automation_zeid_data_dns_audit.svg",
+      "to": "assets/banners/readme/scripts_automation_zeid_data_dns_audit.svg"
+    },
+    {
+      "from": "assets/banners/readme/scripts_automation_zeid_data_eventlog_export.svg",
+      "to": "assets/banners/readme/scripts_automation_zeid_data_eventlog_export.svg"
+    },
+    {
+      "from": "assets/banners/readme/scripts_automation_zeid_data_host_reachability.svg",
+      "to": "assets/banners/readme/scripts_automation_zeid_data_host_reachability.svg"
+    },
+    {
+      "from": "assets/banners/readme/scripts_automation_zeid_data_local_admin_audit.svg",
+      "to": "assets/banners/readme/scripts_automation_zeid_data_local_admin_audit.svg"
+    },
+    {
+      "from": "assets/banners/readme/scripts_automation_zeid_data_log_summarizer_cpp.svg",
+      "to": "assets/banners/readme/scripts_automation_zeid_data_log_summarizer_cpp.svg"
+    },
+    {
+      "from": "assets/banners/readme/scripts_automation_zeid_data_route_snapshot.svg",
+      "to": "assets/banners/readme/scripts_automation_zeid_data_route_snapshot.svg"
+    },
+    {
+      "from": "assets/banners/readme/scripts_automation_zeid_data_service_health.svg",
+      "to": "assets/banners/readme/scripts_automation_zeid_data_service_health.svg"
+    },
+    {
+      "from": "assets/banners/readme/scripts_automation_zeid_data_sha256_manifest_cpp.svg",
+      "to": "assets/banners/readme/scripts_automation_zeid_data_sha256_manifest_cpp.svg"
+    },
+    {
+      "from": "assets/banners/readme/scripts_automation_zeid_data_tls_cert_expiry.svg",
+      "to": "assets/banners/readme/scripts_automation_zeid_data_tls_cert_expiry.svg"
+    },
+    {
+      "from": "assets/banners/readme/scripts_inventory.svg",
+      "to": "assets/banners/readme/scripts_inventory.svg"
+    },
+    {
+      "from": "assets/banners/readme/scripts_weekly_top_malware_detections_scripted.svg",
+      "to": "assets/banners/readme/scripts_weekly_top_malware_detections_scripted.svg"
+    },
+    {
+      "from": "assets/banners/readme/templates.svg",
+      "to": "assets/banners/readme/templates.svg"
+    },
+    {
+      "from": "assets/banners/readme/white_papers.svg",
+      "to": "assets/banners/readme/white_papers.svg"
+    },
+    {
+      "from": "assets/banners/readme/workbooks.svg",
+      "to": "assets/banners/readme/workbooks.svg"
+    },
+    {
+      "from": "assets/banners/readme/workbooks_security_operations_playbooks.svg",
+      "to": "assets/banners/readme/workbooks_security_operations_playbooks.svg"
+    },
+    {
+      "from": "assets/banners/readme/workbooks_security_operations_playbooks_aws.svg",
+      "to": "assets/banners/readme/workbooks_security_operations_playbooks_aws.svg"
+    },
+    {
+      "from": "assets/banners/readme/workbooks_security_operations_playbooks_cisco.svg",
+      "to": "assets/banners/readme/workbooks_security_operations_playbooks_cisco.svg"
+    },
+    {
+      "from": "assets/banners/readme/workbooks_security_operations_playbooks_crowdstrike.svg",
+      "to": "assets/banners/readme/workbooks_security_operations_playbooks_crowdstrike.svg"
+    },
+    {
+      "from": "assets/banners/readme/workbooks_security_operations_playbooks_databricks.svg",
+      "to": "assets/banners/readme/workbooks_security_operations_playbooks_databricks.svg"
+    },
+    {
+      "from": "assets/banners/readme/workbooks_security_operations_playbooks_google_workspace.svg",
+      "to": "assets/banners/readme/workbooks_security_operations_playbooks_google_workspace.svg"
+    },
+    {
+      "from": "assets/banners/readme/workbooks_security_operations_playbooks_microsoft.svg",
+      "to": "assets/banners/readme/workbooks_security_operations_playbooks_microsoft.svg"
+    },
+    {
+      "from": "assets/banners/readme/workbooks_security_operations_playbooks_okta.svg",
+      "to": "assets/banners/readme/workbooks_security_operations_playbooks_okta.svg"
+    },
+    {
+      "from": "assets/banners/readme/workbooks_security_operations_playbooks_palo_alto_networks.svg",
+      "to": "assets/banners/readme/workbooks_security_operations_playbooks_palo_alto_networks.svg"
+    },
+    {
+      "from": "assets/banners/readme/workbooks_security_operations_playbooks_snowflake.svg",
+      "to": "assets/banners/readme/workbooks_security_operations_playbooks_snowflake.svg"
+    },
+    {
+      "from": "assets/banners/readme/workbooks_security_operations_playbooks_splunk.svg",
+      "to": "assets/banners/readme/workbooks_security_operations_playbooks_splunk.svg"
+    },
+    {
+      "from": "assets/images/slamdunkyouraudit.png",
+      "to": "assets/images/slamdunkyouraudit.png"
+    },
+    {
+      "from": "assets/images/zd_banner_1.png",
+      "to": "assets/images/zd_banner_1.png"
+    },
+    {
+      "from": "assets/images/zd_banner_2.png",
+      "to": "assets/images/zd_banner_2.png"
+    },
+    {
+      "from": "assets/images/zd_banner_3.png",
+      "to": "assets/images/zd_banner_3.png"
+    },
+    {
+      "from": "projects/active/zeid_data_ai_guard/HOWTO.md",
+      "to": "projects/active/zeid_data_ai_guard/HOWTO.md"
+    },
+    {
+      "from": "projects/active/zeid_data_ai_guard/LICENSE",
+      "to": "projects/active/zeid_data_ai_guard/LICENSE"
+    },
+    {
+      "from": "projects/active/zeid_data_ai_guard/README.md",
+      "to": "projects/active/zeid_data_ai_guard/README.md"
+    },
+    {
+      "from": "projects/active/zeid_data_ai_guard/SECURITY.md",
+      "to": "projects/active/zeid_data_ai_guard/SECURITY.md"
+    },
+    {
+      "from": "projects/active/zeid_data_ai_guard/Zeid Data GenAIGuard.zip",
+      "to": "projects/active/zeid_data_ai_guard/Zeid Data GenAIGuard.zip"
+    },
+    {
+      "from": "projects/active/zeid_data_ai_guard/pyproject.toml",
+      "to": "projects/active/zeid_data_ai_guard/pyproject.toml"
+    },
+    {
+      "from": "projects/active/zeid_data_bruteforce_ssh/README.md",
+      "to": "projects/active/zeid_data_bruteforce_ssh/README.md"
+    },
+    {
+      "from": "projects/active/zeid_data_bruteforce_ssh/ZD_SSH Brute Force",
+      "to": "projects/active/zeid_data_bruteforce_ssh/ZD_SSH Brute Force"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/HOWTO.md",
+      "to": "projects/active/zeid_data_cloak_check/HOWTO.md"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/LICENSE.txt",
+      "to": "projects/active/zeid_data_cloak_check/LICENSE.txt"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/README.md",
+      "to": "projects/active/zeid_data_cloak_check/README.md"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/checklists/zeid_data_cloakcheck_scorecard.md",
+      "to": "projects/active/zeid_data_cloak_check/checklists/zeid_data_cloakcheck_scorecard.md"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/checklists/zeid_data_evidence_bundle_template.md",
+      "to": "projects/active/zeid_data_cloak_check/checklists/zeid_data_evidence_bundle_template.md"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/data/zeid_data_sample_proxy_logs.csv",
+      "to": "projects/active/zeid_data_cloak_check/data/zeid_data_sample_proxy_logs.csv"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/data/zeid_data_sample_redirect_telemetry.jsonl",
+      "to": "projects/active/zeid_data_cloak_check/data/zeid_data_sample_redirect_telemetry.jsonl"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/detections/zeid_data_elastic_esql_cloakcheck.esql",
+      "to": "projects/active/zeid_data_cloak_check/detections/zeid_data_elastic_esql_cloakcheck.esql"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/detections/zeid_data_elastic_kql_cloakcheck.txt",
+      "to": "projects/active/zeid_data_cloak_check/detections/zeid_data_elastic_kql_cloakcheck.txt"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/detections/zeid_data_sentinel_cloakcheck.kql",
+      "to": "projects/active/zeid_data_cloak_check/detections/zeid_data_sentinel_cloakcheck.kql"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/detections/zeid_data_sigma_cloaked_phishing.yml",
+      "to": "projects/active/zeid_data_cloak_check/detections/zeid_data_sigma_cloaked_phishing.yml"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/detections/zeid_data_splunk_cloakcheck.spl",
+      "to": "projects/active/zeid_data_cloak_check/detections/zeid_data_splunk_cloakcheck.spl"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/requirements.txt",
+      "to": "projects/active/zeid_data_cloak_check/requirements.txt"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/tools/scripts/zeid_data_compare_runs.py",
+      "to": "projects/active/zeid_data_cloak_check/tools/scripts/zeid_data_compare_runs.py"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/tools/scripts/zeid_data_differential_fetch.py",
+      "to": "projects/active/zeid_data_cloak_check/tools/scripts/zeid_data_differential_fetch.py"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/tools/scripts/zeid_data_urls_sample.txt",
+      "to": "projects/active/zeid_data_cloak_check/tools/scripts/zeid_data_urls_sample.txt"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/templates/zeid_data_ioc_schema.csv",
+      "to": "projects/active/zeid_data_cloak_check/templates/zeid_data_ioc_schema.csv"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/templates/zeid_data_ioc_schema.json",
+      "to": "projects/active/zeid_data_cloak_check/templates/zeid_data_ioc_schema.json"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/templates/zeid_data_stix_bundle_example.json",
+      "to": "projects/active/zeid_data_cloak_check/templates/zeid_data_stix_bundle_example.json"
+    },
+    {
+      "from": "projects/active/zeid_data_cloak_check/zeid_data_cloak_checking_email.md",
+      "to": "projects/active/zeid_data_cloak_check/zeid_data_cloak_checking_email.md"
+    },
+    {
+      "from": "projects/active/zeid_data_forensics_tools/README.md",
+      "to": "projects/active/zeid_data_forensics_tools/README.md"
+    },
+    {
+      "from": "projects/active/zeid_data_forensics_tools/Zeid Data DFIR Work Flow Trainer/INSTRUCTOR_GUIDE.md",
+      "to": "projects/active/zeid_data_forensics_tools/Zeid Data DFIR Work Flow Trainer/INSTRUCTOR_GUIDE.md"
+    },
+    {
+      "from": "projects/active/zeid_data_forensics_tools/Zeid Data DFIR Work Flow Trainer/README.md",
+      "to": "projects/active/zeid_data_forensics_tools/Zeid Data DFIR Work Flow Trainer/README.md"
+    },
+    {
+      "from": "projects/active/zeid_data_forensics_tools/Zeid Data DFIR Work Flow Trainer/SECURITY.md",
+      "to": "projects/active/zeid_data_forensics_tools/Zeid Data DFIR Work Flow Trainer/SECURITY.md"
+    },
+    {
+      "from": "projects/active/zeid_data_forensics_tools/Zeid Data DFIR Work Flow Trainer/run_tests.sh",
+      "to": "projects/active/zeid_data_forensics_tools/Zeid Data DFIR Work Flow Trainer/run_tests.sh"
+    },
+    {
+      "from": "projects/active/zeid_data_forensics_tools/Zeid Data DFIR Work Flow Trainer/zeid_data_drt.zip",
+      "to": "projects/active/zeid_data_forensics_tools/Zeid Data DFIR Work Flow Trainer/zeid_data_drt.zip"
+    },
+    {
+      "from": "projects/active/zeid_data_gap_check/HOWTO.md",
+      "to": "projects/active/zeid_data_gap_check/HOWTO.md"
+    },
+    {
+      "from": "projects/active/zeid_data_gap_check/LICENSE",
+      "to": "projects/active/zeid_data_gap_check/LICENSE"
+    },
+    {
+      "from": "projects/active/zeid_data_gap_check/README.md",
+      "to": "projects/active/zeid_data_gap_check/README.md"
+    },
+    {
+      "from": "projects/active/zeid_data_gap_check/Zeid_Data_GapCheck.zip",
+      "to": "projects/active/zeid_data_gap_check/Zeid_Data_GapCheck.zip"
+    },
+    {
+      "from": "projects/active/zeid_data_gap_check/gapcheck.py",
+      "to": "projects/active/zeid_data_gap_check/gapcheck.py"
+    },
+    {
+      "from": "projects/active/zeid_data_gap_check/policy.sample.json",
+      "to": "projects/active/zeid_data_gap_check/policy.sample.json"
+    },
+    {
+      "from": "projects/active/zeid_data_gap_check/requirements.txt",
+      "to": "projects/active/zeid_data_gap_check/requirements.txt"
+    },
+    {
+      "from": "projects/active/zeid_data_net_ledger/README.md",
+      "to": "projects/active/zeid_data_net_ledger/README.md"
+    },
+    {
+      "from": "projects/active/zeid_data_net_ledger/Zeid Data NetLedger",
+      "to": "projects/active/zeid_data_net_ledger/Zeid Data NetLedger"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/.gitignore",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/.gitignore"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/HOWTO.md",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/HOWTO.md"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/LICENSE",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/LICENSE"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/README.md",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/README.md"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/controls/zeid_data_control_matrix.csv",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/controls/zeid_data_control_matrix.csv"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/controls/zeid_data_control_matrix.md",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/controls/zeid_data_control_matrix.md"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/controls/zeid_data_model_system_card_template.md",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/controls/zeid_data_model_system_card_template.md"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/controls/zeid_data_risk_register_template.csv",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/controls/zeid_data_risk_register_template.csv"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/controls/zeid_data_vendor_questionnaire.md",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/controls/zeid_data_vendor_questionnaire.md"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/diagrams/zeid_data_ai_governance_architecture.mmd",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/diagrams/zeid_data_ai_governance_architecture.mmd"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/logging/zeid_data_ai_event_schema.json",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/logging/zeid_data_ai_event_schema.json"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/logging/zeid_data_ai_event_schema.md",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/logging/zeid_data_ai_event_schema.md"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/logging/zeid_data_elastic_ingest_pipeline.json",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/logging/zeid_data_elastic_ingest_pipeline.json"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/logging/zeid_data_splunk_props.conf",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/logging/zeid_data_splunk_props.conf"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/logging/zeid_data_splunk_transforms.conf",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/logging/zeid_data_splunk_transforms.conf"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/policies/zeid_data_ai_policy_minimum.md",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/policies/zeid_data_ai_policy_minimum.md"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/requirements.txt",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/requirements.txt"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/sample_data/sample_ai_events.jsonl",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/sample_data/sample_ai_events.jsonl"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/sample_data/sample_risk_register.csv",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/sample_data/sample_risk_register.csv"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/sample_data/sample_system_card.md",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/sample_data/sample_system_card.md"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/tools/scripts/bundle_evidence.py",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/tools/scripts/bundle_evidence.py"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/tools/scripts/generate_coverage_report.py",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/tools/scripts/generate_coverage_report.py"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/tools/scripts/validate_events.py",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/tools/scripts/validate_events.py"
+    },
+    {
+      "from": "projects/active/zeid_data_nist_gen_ai_evidence_pack/zeid_data_ai_governance.md",
+      "to": "projects/active/zeid_data_nist_gen_ai_evidence_pack/zeid_data_ai_governance.md"
+    },
+    {
+      "from": "projects/active/zeid_data_qilin_ransomware_detection/HOWTO.md",
+      "to": "projects/active/zeid_data_qilin_ransomware_detection/HOWTO.md"
+    },
+    {
+      "from": "projects/active/zeid_data_qilin_ransomware_detection/README.md",
+      "to": "projects/active/zeid_data_qilin_ransomware_detection/README.md"
+    },
+    {
+      "from": "projects/active/zeid_data_qilin_ransomware_detection/qilin_ransomware_scanner",
+      "to": "projects/active/zeid_data_qilin_ransomware_detection/qilin_ransomware_scanner"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/HOWTO.md",
+      "to": "projects/active/zeid_data_regex_security/HOWTO.md"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/LICENSE.md",
+      "to": "projects/active/zeid_data_regex_security/LICENSE.md"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/README.md",
+      "to": "projects/active/zeid_data_regex_security/README.md"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/zeid_data_broken_vs_safe_regex_examples.md",
+      "to": "projects/active/zeid_data_regex_security/zeid_data_broken_vs_safe_regex_examples.md"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_auth_anchor_grouping_bypass_samples.jsonl",
+      "to": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_auth_anchor_grouping_bypass_samples.jsonl"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_filename_extension_bypass_samples.jsonl",
+      "to": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_filename_extension_bypass_samples.jsonl"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_ip_literal_unescaped_dot_samples.log",
+      "to": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_ip_literal_unescaped_dot_samples.log"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_kv_greedy_overcapture_samples.log",
+      "to": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_kv_greedy_overcapture_samples.log"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_payload_samples.log",
+      "to": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_payload_samples.log"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_proxy_url_allowlist_trap_samples.csv",
+      "to": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_proxy_url_allowlist_trap_samples.csv"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_url_allowlist_malformed_samples.jsonl",
+      "to": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_url_allowlist_malformed_samples.jsonl"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_username_class_range_trap_samples.jsonl",
+      "to": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_username_class_range_trap_samples.jsonl"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_whitespace_validation_trap_samples.jsonl",
+      "to": "projects/active/zeid_data_regex_security/zeid_data_exploitable_log_samples/zeid_data_whitespace_validation_trap_samples.jsonl"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/zeid_data_regex_education.md",
+      "to": "projects/active/zeid_data_regex_security/zeid_data_regex_education.md"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/zeid_data_regex_safety_tester.py",
+      "to": "projects/active/zeid_data_regex_security/zeid_data_regex_safety_tester.py"
+    },
+    {
+      "from": "projects/active/zeid_data_regex_security/zeid_data_regex_security_research_brief.md",
+      "to": "projects/active/zeid_data_regex_security/zeid_data_regex_security_research_brief.md"
+    },
+    {
+      "from": "projects/active/zeid_data_stack_crasher/README.md",
+      "to": "projects/active/zeid_data_stack_crasher/README.md"
+    },
+    {
+      "from": "projects/active/zeid_data_stack_crasher/Zeid Data Stack Crasher",
+      "to": "projects/active/zeid_data_stack_crasher/Zeid Data Stack Crasher"
+    },
+    {
+      "from": "tools/tools/scripts/README.md",
+      "to": "tools/tools/tools/scripts/README.md"
+    },
+    {
+      "from": "tools/tools/scripts/audit_dashboard_sources.py",
+      "to": "tools/tools/tools/scripts/audit_dashboard_sources.py"
+    },
+    {
+      "from": "tools/tools/scripts/automation/README.md",
+      "to": "tools/tools/tools/scripts/automation/README.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_backup_verify/HOWTO.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_backup_verify/HOWTO.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_backup_verify/README.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_backup_verify/README.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_backup_verify/zeid_data_backup_verify.py",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_backup_verify/zeid_data_backup_verify.py"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_dns_audit/HOWTO.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_dns_audit/HOWTO.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_dns_audit/README.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_dns_audit/README.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_dns_audit/zeid_data_dns_audit.py",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_dns_audit/zeid_data_dns_audit.py"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_eventlog_export/HOWTO.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_eventlog_export/HOWTO.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_eventlog_export/README.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_eventlog_export/README.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_eventlog_export/zeid_data_eventlog_export.ps1",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_eventlog_export/zeid_data_eventlog_export.ps1"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_host_reachability/HOWTO.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_host_reachability/HOWTO.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_host_reachability/README.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_host_reachability/README.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_host_reachability/zeid_data_host_reachability.py",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_host_reachability/zeid_data_host_reachability.py"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_local_admin_audit/HOWTO.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_local_admin_audit/HOWTO.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_local_admin_audit/README.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_local_admin_audit/README.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_local_admin_audit/zeid_data_local_admin_audit.ps1",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_local_admin_audit/zeid_data_local_admin_audit.ps1"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_log_summarizer_cpp/HOWTO.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_log_summarizer_cpp/HOWTO.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_log_summarizer_cpp/README.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_log_summarizer_cpp/README.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_log_summarizer_cpp/zeid_data_log_summarizer.cpp",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_log_summarizer_cpp/zeid_data_log_summarizer.cpp"
+    },
+    {
+      "from": "tools/validators/automation/zeid_data_regex_safety_tester.py",
+      "to": "tools/validators/automation/zeid_data_regex_safety_tester.py"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_route_snapshot/HOWTO.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_route_snapshot/HOWTO.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_route_snapshot/README.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_route_snapshot/README.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_route_snapshot/zeid_data_route_snapshot.py",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_route_snapshot/zeid_data_route_snapshot.py"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_service_health/HOWTO.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_service_health/HOWTO.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_service_health/README.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_service_health/README.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_service_health/zeid_data_service_health.ps1",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_service_health/zeid_data_service_health.ps1"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_sha256_manifest_cpp/HOWTO.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_sha256_manifest_cpp/HOWTO.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_sha256_manifest_cpp/README.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_sha256_manifest_cpp/README.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_sha256_manifest_cpp/zeid_data_sha256_manifest.cpp",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_sha256_manifest_cpp/zeid_data_sha256_manifest.cpp"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_tls_cert_expiry/HOWTO.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_tls_cert_expiry/HOWTO.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_tls_cert_expiry/README.md",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_tls_cert_expiry/README.md"
+    },
+    {
+      "from": "tools/tools/scripts/automation/zeid_data_tls_cert_expiry/zeid_data_tls_cert_expiry.py",
+      "to": "tools/tools/tools/scripts/automation/zeid_data_tls_cert_expiry/zeid_data_tls_cert_expiry.py"
+    },
+    {
+      "from": "tools/tools/scripts/detection/zeid_data_Hunt-NewScheduledTasks.ps1",
+      "to": "tools/tools/tools/scripts/detection/zeid_data_Hunt-NewScheduledTasks.ps1"
+    },
+    {
+      "from": "tools/tools/scripts/detection/zeid_data_Hunt-RansomwarePreEncryptCommands.ps1",
+      "to": "tools/tools/tools/scripts/detection/zeid_data_Hunt-RansomwarePreEncryptCommands.ps1"
+    },
+    {
+      "from": "tools/tools/scripts/detection/zeid_data_Hunt-linux-staging.sh",
+      "to": "tools/tools/tools/scripts/detection/zeid_data_Hunt-linux-staging.sh"
+    },
+    {
+      "from": "tools/tools/scripts/detection/zeid_data_README.md",
+      "to": "tools/tools/tools/scripts/detection/zeid_data_README.md"
+    },
+    {
+      "from": "tools/tools/scripts/detection/zeid_data_detection_scripts.zip",
+      "to": "tools/tools/tools/scripts/detection/zeid_data_detection_scripts.zip"
+    },
+    {
+      "from": "tools/tools/scripts/detection/zeid_data_hunt_ransomware_fileshare.py",
+      "to": "tools/tools/tools/scripts/detection/zeid_data_hunt_ransomware_fileshare.py"
+    },
+    {
+      "from": "tools/tools/scripts/detection/zeid_data_sentinel_infostealer_browser_chain.kql",
+      "to": "tools/tools/tools/scripts/detection/zeid_data_sentinel_infostealer_browser_chain.kql"
+    },
+    {
+      "from": "tools/tools/scripts/detection/zeid_data_sentinel_ransomware_prep.kql",
+      "to": "tools/tools/tools/scripts/detection/zeid_data_sentinel_ransomware_prep.kql"
+    },
+    {
+      "from": "tools/tools/scripts/detection/zeid_data_sigma_ransomware_prep.yml",
+      "to": "tools/tools/tools/scripts/detection/zeid_data_sigma_ransomware_prep.yml"
+    },
+    {
+      "from": "tools/tools/scripts/detection/zeid_data_splunk_exfil_tools.spl",
+      "to": "tools/tools/tools/scripts/detection/zeid_data_splunk_exfil_tools.spl"
+    },
+    {
+      "from": "tools/tools/scripts/detection/zeid_data_yara_infostealer_browsercred_access.yar",
+      "to": "tools/tools/tools/scripts/detection/zeid_data_yara_infostealer_browsercred_access.yar"
+    },
+    {
+      "from": "tools/tools/scripts/detection/zeid_data_zeek_firstseen_largepost.zeek",
+      "to": "tools/tools/tools/scripts/detection/zeid_data_zeek_firstseen_largepost.zeek"
+    },
+    {
+      "from": "tools/tools/scripts/inventory/README.md",
+      "to": "tools/tools/tools/scripts/inventory/README.md"
+    },
+    {
+      "from": "tools/tools/scripts/inventory/zeid_data_inventory_bash.sh",
+      "to": "tools/tools/tools/scripts/inventory/zeid_data_inventory_bash.sh"
+    },
+    {
+      "from": "tools/tools/scripts/inventory/zeid_data_inventory_csharp.cs",
+      "to": "tools/tools/tools/scripts/inventory/zeid_data_inventory_csharp.cs"
+    },
+    {
+      "from": "tools/tools/scripts/inventory/zeid_data_inventory_go.go",
+      "to": "tools/tools/tools/scripts/inventory/zeid_data_inventory_go.go"
+    },
+    {
+      "from": "tools/tools/scripts/inventory/zeid_data_inventory_java.java",
+      "to": "tools/tools/tools/scripts/inventory/zeid_data_inventory_java.java"
+    },
+    {
+      "from": "tools/tools/scripts/inventory/zeid_data_inventory_node.js",
+      "to": "tools/tools/tools/scripts/inventory/zeid_data_inventory_node.js"
+    },
+    {
+      "from": "tools/tools/scripts/inventory/zeid_data_inventory_perl.pl",
+      "to": "tools/tools/tools/scripts/inventory/zeid_data_inventory_perl.pl"
+    },
+    {
+      "from": "tools/tools/scripts/inventory/zeid_data_inventory_powershell.ps1",
+      "to": "tools/tools/tools/scripts/inventory/zeid_data_inventory_powershell.ps1"
+    },
+    {
+      "from": "tools/tools/scripts/inventory/zeid_data_inventory_python.py",
+      "to": "tools/tools/tools/scripts/inventory/zeid_data_inventory_python.py"
+    },
+    {
+      "from": "tools/tools/scripts/inventory/zeid_data_inventory_ruby.rb",
+      "to": "tools/tools/tools/scripts/inventory/zeid_data_inventory_ruby.rb"
+    },
+    {
+      "from": "tools/tools/scripts/inventory/zeid_data_inventory_rust.rs",
+      "to": "tools/tools/tools/scripts/inventory/zeid_data_inventory_rust.rs"
+    },
+    {
+      "from": "tools/tools/scripts/inventory/zeid_data_network_inventory_scripts.zip",
+      "to": "tools/tools/tools/scripts/inventory/zeid_data_network_inventory_scripts.zip"
+    },
+    {
+      "from": "tools/tools/scripts/weekly_top_malware_detections_scripted/README.md",
+      "to": "tools/tools/tools/scripts/weekly_top_malware_detections_scripted/README.md"
+    },
+    {
+      "from": "tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_Hunt-NewScheduledTasks.ps1",
+      "to": "tools/tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_Hunt-NewScheduledTasks.ps1"
+    },
+    {
+      "from": "tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_Hunt-RansomwarePreEncryptCommands.ps1",
+      "to": "tools/tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_Hunt-RansomwarePreEncryptCommands.ps1"
+    },
+    {
+      "from": "tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_Hunt-linux-staging.sh",
+      "to": "tools/tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_Hunt-linux-staging.sh"
+    },
+    {
+      "from": "tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_hunt_ransomware_fileshare.py",
+      "to": "tools/tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_hunt_ransomware_fileshare.py"
+    },
+    {
+      "from": "tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_sentinel_infostealer_browser_chain.kql",
+      "to": "tools/tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_sentinel_infostealer_browser_chain.kql"
+    },
+    {
+      "from": "tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_sentinel_ransomware_prep.kql",
+      "to": "tools/tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_sentinel_ransomware_prep.kql"
+    },
+    {
+      "from": "tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_sigma_ransomware_prep.yml",
+      "to": "tools/tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_sigma_ransomware_prep.yml"
+    },
+    {
+      "from": "tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_splunk_exfil_tools.spl",
+      "to": "tools/tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_splunk_exfil_tools.spl"
+    },
+    {
+      "from": "tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_yara_infostealer_browsercred_access.yar",
+      "to": "tools/tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_yara_infostealer_browsercred_access.yar"
+    },
+    {
+      "from": "tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_zeek_firstseen_largepost.zeek",
+      "to": "tools/tools/tools/scripts/weekly_top_malware_detections_scripted/zeid_data_zeek_firstseen_largepost.zeek"
+    },
+    {
+      "from": "research/research/white-papers/README.md",
+      "to": "research/research/white-papers/README.md"
+    },
+    {
+      "from": "research/research/white-papers/SECURITY.md",
+      "to": "research/research/white-papers/SECURITY.md"
+    },
+    {
+      "from": "research/research/white-papers/controls/zeid_data_ai_governance.md",
+      "to": "research/research/white-papers/controls/zeid_data_ai_governance.md"
+    },
+    {
+      "from": "research/research/white-papers/controls/zeid_data_broken_vs_safe_regex_examples.md",
+      "to": "research/research/white-papers/controls/zeid_data_broken_vs_safe_regex_examples.md"
+    },
+    {
+      "from": "research/research/white-papers/controls/zeid_data_regex_security.md",
+      "to": "research/research/white-papers/controls/zeid_data_regex_security.md"
+    },
+    {
+      "from": "research/research/white-papers/detections/zeid_data_akira_ransomware_detection_report.md",
+      "to": "research/research/white-papers/detections/zeid_data_akira_ransomware_detection_report.md"
+    },
+    {
+      "from": "research/research/white-papers/detections/zeid_data_black_basta_detection_report.md",
+      "to": "research/research/white-papers/detections/zeid_data_black_basta_detection_report.md"
+    },
+    {
+      "from": "research/research/white-papers/detections/zeid_data_cl0p_data_extortion_detection_report.md",
+      "to": "research/research/white-papers/detections/zeid_data_cl0p_data_extortion_detection_report.md"
+    },
+    {
+      "from": "research/research/white-papers/detections/zeid_data_cve_2025_22225_vmware_esxi_detection_report.md",
+      "to": "research/research/white-papers/detections/zeid_data_cve_2025_22225_vmware_esxi_detection_report.md"
+    },
+    {
+      "from": "research/research/white-papers/detections/zeid_data_cve_2025_34026_versa_concerto_auth_bypass_detection_report.md",
+      "to": "research/research/white-papers/detections/zeid_data_cve_2025_34026_versa_concerto_auth_bypass_detection_report.md"
+    },
+    {
+      "from": "research/research/white-papers/detections/zeid_data_cve_2025_68645_zimbra_rfi_detection_report.md",
+      "to": "research/research/white-papers/detections/zeid_data_cve_2025_68645_zimbra_rfi_detection_report.md"
+    },
+    {
+      "from": "research/research/white-papers/detections/zeid_data_cve_2025_8110_gogs_rce_detection_report.md",
+      "to": "research/research/white-papers/detections/zeid_data_cve_2025_8110_gogs_rce_detection_report.md"
+    },
+    {
+      "from": "research/research/white-papers/detections/zeid_data_cve_2026_21509_office_bypass_detection_report.md",
+      "to": "research/research/white-papers/detections/zeid_data_cve_2026_21509_office_bypass_detection_report.md"
+    },
+    {
+      "from": "research/research/white-papers/detections/zeid_data_qilin_extortion_detection_report.md",
+      "to": "research/research/white-papers/detections/zeid_data_qilin_extortion_detection_report.md"
+    },
+    {
+      "from": "research/research/white-papers/detections/zeid_data_safepay_ransomware_detection_report.md",
+      "to": "research/research/white-papers/detections/zeid_data_safepay_ransomware_detection_report.md"
+    },
+    {
+      "from": "workbooks/dashboards/README.md",
+      "to": "workbooks/dashboards/README.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/AWS/PB01_suspicious_authentication.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/AWS/PB01_suspicious_authentication.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/AWS/PB02_mfa_abuse_and_push_fatigue.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/AWS/PB02_mfa_abuse_and_push_fatigue.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/AWS/PB03_privileged_change_or_admin_grant.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/AWS/PB03_privileged_change_or_admin_grant.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/AWS/PB04_malicious_process_or_edr_detection.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/AWS/PB04_malicious_process_or_edr_detection.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/AWS/PB05_data_exfiltration_and_large_transfers.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/AWS/PB05_data_exfiltration_and_large_transfers.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/AWS/PB06_command_and_control_beaconing.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/AWS/PB06_command_and_control_beaconing.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/AWS/PB07_lateral_movement.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/AWS/PB07_lateral_movement.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/AWS/PB08_ransomware_or_destructive_activity.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/AWS/PB08_ransomware_or_destructive_activity.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/AWS/PB09_insider_risk_and_sensitive_access.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/AWS/PB09_insider_risk_and_sensitive_access.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/AWS/PB10_oauth_token_api_key_misuse.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/AWS/PB10_oauth_token_api_key_misuse.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/AWS/README.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/AWS/README.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB01_suspicious_authentication.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB01_suspicious_authentication.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB02_mfa_abuse_and_push_fatigue.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB02_mfa_abuse_and_push_fatigue.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB03_privileged_change_or_admin_grant.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB03_privileged_change_or_admin_grant.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB04_malicious_process_or_edr_detection.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB04_malicious_process_or_edr_detection.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB05_data_exfiltration_and_large_transfers.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB05_data_exfiltration_and_large_transfers.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB06_command_and_control_beaconing.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB06_command_and_control_beaconing.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB07_lateral_movement.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB07_lateral_movement.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB08_ransomware_or_destructive_activity.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB08_ransomware_or_destructive_activity.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB09_insider_risk_and_sensitive_access.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB09_insider_risk_and_sensitive_access.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB10_oauth_token_api_key_misuse.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Cisco/PB10_oauth_token_api_key_misuse.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Cisco/README.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Cisco/README.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/CrowdStrike/PB01_suspicious_authentication.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/CrowdStrike/PB01_suspicious_authentication.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/CrowdStrike/PB02_mfa_abuse_and_push_fatigue.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/CrowdStrike/PB02_mfa_abuse_and_push_fatigue.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/CrowdStrike/PB03_privileged_change_or_admin_grant.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/CrowdStrike/PB03_privileged_change_or_admin_grant.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/CrowdStrike/PB08_ransomware_or_destructive_activity.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/CrowdStrike/PB08_ransomware_or_destructive_activity.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/CrowdStrike/PB09_insider_risk_and_sensitive_access.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/CrowdStrike/PB09_insider_risk_and_sensitive_access.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/CrowdStrike/PB10_oauth_token_api_key_misuse.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/CrowdStrike/PB10_oauth_token_api_key_misuse.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/CrowdStrike/README.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/CrowdStrike/README.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB01_suspicious_authentication.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB01_suspicious_authentication.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB02_mfa_abuse_and_push_fatigue.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB02_mfa_abuse_and_push_fatigue.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB03_privileged_change_or_admin_grant.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB03_privileged_change_or_admin_grant.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB04_malicious_process_or_edr_detection.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB04_malicious_process_or_edr_detection.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB05_data_exfiltration_and_large_transfers.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB05_data_exfiltration_and_large_transfers.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB06_command_and_control_beaconing.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB06_command_and_control_beaconing.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB07_lateral_movement.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB07_lateral_movement.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB08_ransomware_or_destructive_activity.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB08_ransomware_or_destructive_activity.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB09_insider_risk_and_sensitive_access.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB09_insider_risk_and_sensitive_access.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB10_oauth_token_api_key_misuse.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Databricks/PB10_oauth_token_api_key_misuse.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Databricks/README.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Databricks/README.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB01_suspicious_authentication.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB01_suspicious_authentication.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB02_mfa_abuse_and_push_fatigue.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB02_mfa_abuse_and_push_fatigue.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB03_privileged_change_or_admin_grant.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB03_privileged_change_or_admin_grant.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB04_malicious_process_or_edr_detection.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB04_malicious_process_or_edr_detection.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB05_data_exfiltration_and_large_transfers.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB05_data_exfiltration_and_large_transfers.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB06_command_and_control_beaconing.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB06_command_and_control_beaconing.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB07_lateral_movement.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB07_lateral_movement.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB08_ransomware_or_destructive_activity.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB08_ransomware_or_destructive_activity.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB09_insider_risk_and_sensitive_access.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB09_insider_risk_and_sensitive_access.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB10_oauth_token_api_key_misuse.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/PB10_oauth_token_api_key_misuse.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/README.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Google_Workspace/README.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB01_suspicious_authentication.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB01_suspicious_authentication.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB02_mfa_abuse_and_push_fatigue.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB02_mfa_abuse_and_push_fatigue.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB03_privileged_change_or_admin_grant.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB03_privileged_change_or_admin_grant.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB04_malicious_process_or_edr_detection.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB04_malicious_process_or_edr_detection.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB05_data_exfiltration_and_large_transfers.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB05_data_exfiltration_and_large_transfers.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB06_command_and_control_beaconing.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB06_command_and_control_beaconing.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB07_lateral_movement.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB07_lateral_movement.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB08_ransomware_or_destructive_activity.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB08_ransomware_or_destructive_activity.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB09_insider_risk_and_sensitive_access.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB09_insider_risk_and_sensitive_access.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB10_oauth_token_api_key_misuse.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Microsoft/PB10_oauth_token_api_key_misuse.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Microsoft/README.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Microsoft/README.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Okta/PB01_suspicious_authentication.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Okta/PB01_suspicious_authentication.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Okta/PB02_mfa_abuse_and_push_fatigue.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Okta/PB02_mfa_abuse_and_push_fatigue.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Okta/PB03_privileged_change_or_admin_grant.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Okta/PB03_privileged_change_or_admin_grant.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Okta/PB04_malicious_process_or_edr_detection.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Okta/PB04_malicious_process_or_edr_detection.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Okta/PB05_data_exfiltration_and_large_transfers.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Okta/PB05_data_exfiltration_and_large_transfers.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Okta/PB06_command_and_control_beaconing.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Okta/PB06_command_and_control_beaconing.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Okta/PB07_lateral_movement.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Okta/PB07_lateral_movement.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Okta/PB08_ransomware_or_destructive_activity.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Okta/PB08_ransomware_or_destructive_activity.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Okta/PB09_insider_risk_and_sensitive_access.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Okta/PB09_insider_risk_and_sensitive_access.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Okta/PB10_oauth_token_api_key_misuse.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Okta/PB10_oauth_token_api_key_misuse.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Okta/README.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Okta/README.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/PLAYBOOK_TEMPLATE.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/PLAYBOOK_TEMPLATE.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB01_suspicious_authentication.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB01_suspicious_authentication.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB02_mfa_abuse_and_push_fatigue.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB02_mfa_abuse_and_push_fatigue.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB03_privileged_change_or_admin_grant.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB03_privileged_change_or_admin_grant.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB04_malicious_process_or_edr_detection.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB04_malicious_process_or_edr_detection.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB05_data_exfiltration_and_large_transfers.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB05_data_exfiltration_and_large_transfers.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB06_command_and_control_beaconing.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB06_command_and_control_beaconing.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB07_lateral_movement.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB07_lateral_movement.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB08_ransomware_or_destructive_activity.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB08_ransomware_or_destructive_activity.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB09_insider_risk_and_sensitive_access.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB09_insider_risk_and_sensitive_access.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB10_oauth_token_api_key_misuse.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/PB10_oauth_token_api_key_misuse.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/README.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Palo_Alto_Networks/README.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/README.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/README.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/SECURITY.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/SECURITY.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB01_suspicious_authentication.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB01_suspicious_authentication.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB02_mfa_abuse_and_push_fatigue.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB02_mfa_abuse_and_push_fatigue.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB03_privileged_change_or_admin_grant.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB03_privileged_change_or_admin_grant.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB04_malicious_process_or_edr_detection.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB04_malicious_process_or_edr_detection.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB05_data_exfiltration_and_large_transfers.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB05_data_exfiltration_and_large_transfers.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB06_command_and_control_beaconing.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB06_command_and_control_beaconing.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB07_lateral_movement.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB07_lateral_movement.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB08_ransomware_or_destructive_activity.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB08_ransomware_or_destructive_activity.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB09_insider_risk_and_sensitive_access.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB09_insider_risk_and_sensitive_access.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB10_oauth_token_api_key_misuse.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Snowflake/PB10_oauth_token_api_key_misuse.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Snowflake/README.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Snowflake/README.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB01_suspicious_authentication.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB01_suspicious_authentication.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB02_mfa_abuse_and_push_fatigue.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB02_mfa_abuse_and_push_fatigue.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB03_privileged_change_or_admin_grant.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB03_privileged_change_or_admin_grant.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB04_malicious_process_or_edr_detection.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB04_malicious_process_or_edr_detection.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB05_data_exfiltration_and_large_transfers.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB05_data_exfiltration_and_large_transfers.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB06_command_and_control_beaconing.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB06_command_and_control_beaconing.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB07_lateral_movement.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB07_lateral_movement.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB08_ransomware_or_destructive_activity.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB08_ransomware_or_destructive_activity.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB09_insider_risk_and_sensitive_access.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB09_insider_risk_and_sensitive_access.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB10_oauth_token_api_key_misuse.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Splunk/PB10_oauth_token_api_key_misuse.md"
+    },
+    {
+      "from": "workbooks/dashboards/Security Operations Playbooks/Splunk/README.md",
+      "to": "workbooks/dashboards/Security Operations Playbooks/Splunk/README.md"
+    }
+  ]
+}
