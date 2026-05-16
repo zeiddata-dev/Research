@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="readme_banners/media.svg" alt="Media banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data Media
 
 This folder contains **public, non-sensitive** assets used across the Zeid Data GitHub repositories and documentation. Keep visuals centralized, reusable, and linkable so projects, research modules, and drops can reference the same source of truth.

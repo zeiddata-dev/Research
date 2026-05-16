@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../../media/readme_banners/content_splunk_zeid_data_claude_bot_content.svg" alt="Splunk · Zeid Data Claude Bot Content banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Splunk — Claude/Anthropic (Firewall + Endpoint) pack
 
 Included:

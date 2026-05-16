@@ -1,3 +1,8 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../../media/readme_banners/content_splunk_zeid_data_splunk_app_exfil_watch.svg" alt="Splunk · Zeid Data Splunk App Exfil Watch banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
 
 # Zeid Data | Exfiltration Monitor (Splunk App Skeleton)
 

@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../media/readme_banners/detections.svg" alt="Detections banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Detections
 
 This folder contains Zeid Data detection engineering content: vendor-specific hunting packs, platform-ready rules/queries, and standardized detection formats. The intent is to provide deployable detections that are evidence-first, operationally realistic, and easy to tune.

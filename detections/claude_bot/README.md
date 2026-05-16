@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/detections_claude_bot.svg" alt="Claude Bot banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Claude Bot Detection (Quick Guide)
 
 This folder contains simple, vendor-agnostic guidance to **spot and validate Claude (Anthropic) web/app traffic** using the telemetry you already collect (DNS, TLS, proxy, firewall, EDR).

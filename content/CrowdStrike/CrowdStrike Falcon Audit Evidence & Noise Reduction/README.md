@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../../media/readme_banners/content_crowdstrike_crowdstrike_falcon_audit_evidence_noise_reduction.svg" alt="CrowdStrike · CrowdStrike Falcon Audit Evidence And Noise Reduction banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data — Falcon Audit Evidence + Noise Reduction Pack
 **Tagline:** *If it didn’t generate evidence, it didn’t happen.*
 

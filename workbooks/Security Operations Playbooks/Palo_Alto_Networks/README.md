@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../../media/readme_banners/workbooks_security_operations_playbooks_palo_alto_networks.svg" alt="Palo Alto Networks banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data Security Playbooks — Palo Alto Networks
 
 **Authorized SOC use only. Use only on systems/data you own or have explicit permission to analyze.**

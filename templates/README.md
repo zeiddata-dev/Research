@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../media/readme_banners/templates.svg" alt="Templates banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data - Security Templates (Quick Guide)
 
 This folder contains **ready-to-copy templates** you can use to standardize security work across teams—without reinventing the wheel each time.

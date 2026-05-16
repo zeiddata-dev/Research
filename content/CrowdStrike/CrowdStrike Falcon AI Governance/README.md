@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../../media/readme_banners/content_crowdstrike_crowdstrike_falcon_ai_governance.svg" alt="CrowdStrike · CrowdStrike Falcon AI Governance banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data — CrowdStrike Falcon AI Governance Visibility
 
 **Tagline:** _If it didn’t generate evidence, it didn’t happen._

@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/content_sentinelone.svg" alt="SentinelOne Content banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data — SentinelOne Content
 
 Defensive, evidence-first content for operating and validating detections in SentinelOne Singularity environments.

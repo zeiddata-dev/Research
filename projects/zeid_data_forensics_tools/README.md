@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/projects_zeid_data_forensics_tools.svg" alt="Zeid Data Forensics Tools banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data — Data Recovery Tools
 
 **Authorized use only. Do not use on systems or data you do not own or have explicit permission to analyze.**

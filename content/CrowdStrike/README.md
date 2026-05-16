@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/content_crowdstrike.svg" alt="CrowdStrike Content banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data — CrowdStrike Content Library
 
 A central repository for Zeid Data–authored content offerings built to extend, operationalize, and accelerate CrowdStrike deployments.

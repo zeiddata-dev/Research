@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../media/readme_banners/scripts.svg" alt="Scripts banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 ```md
 # Zeid Data Research Labs — Scripts 🧪🛠️
 *Evidence-first defensive tooling for detection engineering, hunting, auditing, and “prove it” moments.*

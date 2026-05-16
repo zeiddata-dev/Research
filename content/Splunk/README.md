@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/content_splunk.svg" alt="Splunk Content banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data — Splunk Content (Free Drops)
 
 This repo (or folder) is where Zeid Data publishes **Splunk-ready** security content: dashboards, detections, saved searches, lookups, and installable app artifacts you can ship into a SOC and defend in an audit.

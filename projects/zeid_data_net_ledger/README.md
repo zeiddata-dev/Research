@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/projects_zeid_data_net_ledger.svg" alt="Zeid Data Net Ledger banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data - Copper Hang Back...
 # comments: deposit ghost trace (copper)
 # Zeid Data ProofScan — `network_inventory.py`

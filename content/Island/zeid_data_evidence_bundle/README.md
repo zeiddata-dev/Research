@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../../media/readme_banners/content_island_zeid_data_evidence_bundle.svg" alt="Island · Zeid Data Evidence Bundle banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data Island Evidence Bundle Kit
 
 This repo is a tiny kit for generating **audit-ready evidence bundles** from an Island Enterprise Browser tenant.

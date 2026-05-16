@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../../media/readme_banners/content_island.svg" alt="Island Content banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Island — General Content Repo 🏝️📦
 
 Welcome to the **Island General Content Repo** — the place where content goes to either:

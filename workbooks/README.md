@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../media/readme_banners/workbooks.svg" alt="Workbooks banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data Workbooks
 
 Evidence-first workbooks, dashboards, and notebooks for Security Operations and compliance reporting.

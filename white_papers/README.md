@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../media/readme_banners/white_papers.svg" alt="White Papers banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data Research
 
 Zeid Data Research is a technical repository of defensive security engineering artifacts: reproducible investigations, CVE and malware analysis, detection engineering packs, and audit-grade evidence scaffolding.

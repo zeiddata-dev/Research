@@ -1,3 +1,9 @@
+<!-- ZEID DATA README BANNER START -->
+<p align="center">
+  <img src="../media/readme_banners/content.svg" alt="Content banner" width="100%">
+</p>
+<!-- ZEID DATA README BANNER END -->
+
 # Zeid Data — Network Security (Vendor Content)
 
 Welcome to Zeid Data’s vendor-organized **network security** repository: hardening guidance, configs, detection ideas, runbooks, and “here’s the proof” validation artifacts—grouped by the tech you actually run.
