@@ -7,9 +7,9 @@
   <a href="../detections"><img alt="Detections" src="https://img.shields.io/badge/Detections-FFB800?style=for-the-badge&logo=github&logoColor=white"></a>
   <a href="../docs"><img alt="Docs" src="https://img.shields.io/badge/Docs-1F6FEB?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
   <a href="../projects"><img alt="Projects" src="https://img.shields.io/badge/Projects-7B61FF?style=for-the-badge&logo=github&logoColor=white"></a>
-  <a href="../scripts"><img alt="Scripts" src="https://img.shields.io/badge/Scripts-2EA043?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="../tools/scripts"><img alt="Scripts" src="https://img.shields.io/badge/Scripts-2EA043?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="../research"><img alt="Research" src="https://img.shields.io/badge/Research-0B5FFF?style=for-the-badge&logo=github&logoColor=white"></a>
   <a href="../workbooks"><img alt="Workbooks" src="https://img.shields.io/badge/Workbooks-00C7E5?style=for-the-badge&logo=github&logoColor=white"></a>
-  <a href="https://zeiddata.com"><img alt="Website" src="https://img.shields.io/badge/Website-00B8A9?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
 </p>
 <!-- ZEID DATA README HERO END -->
 
@@ -20,40 +20,76 @@
 
 <!-- ZEID DATA TAGS END -->
 
-# Zeid Data - Security Templates (Quick Guide)
+# Zeid Data Security Templates
 
-This folder contains **ready-to-copy templates** you can use to standardize security work across teams—without reinventing the wheel each time.
+This folder contains ready-to-copy templates for repeatable security, audit, research, reporting, and operational work.
 
-## What’s in here
-Common template types you may find:
-- **Detection templates** (what to detect, data sources, logic, tuning)
-- **Incident response templates** (triage steps, containment, evidence checklist)
-- **Threat hunting templates** (hypothesis, queries, expected signals)
-- **Risk & compliance templates** (controls, evidence, audit notes)
-- **Change management templates** (what changed, why, impact, approvals)
-- **Runbooks / playbooks** (step-by-step operational procedures)
+Templates should reduce ambiguity. A good template tells the next person what to collect, what to prove, what to fill in, what to leave blank when evidence is missing, and what should never be guessed.
+
+## What belongs here
+
+Common template types:
+
+- Detection templates: behavior, data sources, logic, tuning, validation.
+- Incident response templates: triage steps, containment, timeline, evidence checklist.
+- Threat hunting templates: hypothesis, query set, expected signals, decision path.
+- Risk and compliance templates: control objective, evidence, reviewer notes, gaps.
+- Change management templates: change description, impact, rollback, approvals.
+- Runbooks and playbooks: step-by-step operating procedures.
+- Research note templates: scope, sources, analysis, defensive value, limits.
 
 ## How to use these templates
-1. **Copy** the closest template to your use case  
-2. **Fill in** the environment-specific fields (vendor, log source, owner, severity)  
-3. **Test** in a non-production or limited-scope context  
-4. **Document** outcomes (false positives, gaps, tuning decisions)  
-5. **Promote** to production with approvals and tracking
 
-## Minimum fields to complete (most templates)
-- **Owner / team**
-- **Purpose** (what problem this solves)
-- **Data sources** (DNS, EDR, firewall, SIEM, cloud logs, etc.)
-- **Detection / procedure** (logic, steps, queries)
-- **Severity + triage guidance**
-- **Evidence to collect** (fields, screenshots, exports)
-- **References** (tickets, policies, threat intel)
+1. Copy the closest template to your use case.
+2. Fill in environment-specific fields such as vendor, log source, owner, severity, and scope.
+3. Test in a non-production or limited-scope context when commands or detections are involved.
+4. Document outcomes, false positives, gaps, tuning decisions, and evidence references.
+5. Promote only after review and tracking.
 
-## Good habits
-- Prefer **clear, repeatable steps** over long narratives
-- Keep detections **measurable** (what signals, what threshold, what timeframe)
-- Track changes with a **version + changelog**
-- Design for **audit-ready outputs** (who, what, when, why, evidence)
+## Minimum fields to complete
+
+Most templates should require:
+
+- Owner or responsible team.
+- Purpose.
+- Scope.
+- Data sources.
+- Procedure, detection logic, query, or workflow.
+- Evidence to collect.
+- Expected output.
+- Known gaps or missing evidence.
+- References.
+- Last reviewed date.
+
+## Template quality rules
+
+- Keep instructions short and executable.
+- Use checkboxes for repeatable review steps.
+- Prefer tables for evidence fields and decision records.
+- Never force a fake value. Use `evidence missing`, `not evaluated`, or `not applicable` when appropriate.
+- Include safe placeholders instead of private examples.
+- Track versions when a template may be reused externally.
+
+## Suggested metadata block
+
+```yaml
+---
+title: Example Template
+status: draft
+owner: zeid-data
+last_reviewed: 2026-05-31
+category: template
+tags: [evidence, security, reporting]
+public_safe: true
+---
+```
+
+## Related docs
+
+- [`docs/taxonomy.md`](../docs/taxonomy.md)
+- [`docs/standards/evidence.md`](../docs/standards/evidence.md)
+- [`docs/automation.md`](../docs/automation.md)
 
 ## Disclaimer
-These templates are **starting points**. Validate with your policies, legal/privacy requirements, and your production environment before use.
+
+These templates are starting points. Validate them against your policies, legal requirements, privacy requirements, and production environment before use.
