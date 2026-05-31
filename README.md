@@ -20,41 +20,13 @@
 [![Release](https://github.com/zeiddata-dev/Research/actions/workflows/release.yml/badge.svg)](https://github.com/zeiddata-dev/Research/actions/workflows/release.yml)
 <!-- ZEID DATA WORKFLOW BADGES END -->
 
-
-<!-- ZEID DATA LAB MAP START -->
-## Lab Map
-
-| Area | What it is for |
-|---|---|
-| [Content](./content) | Vendor packs, field guides, governance content, and reusable evidence material. |
-| [Detections](./detections) | Detection rules, defensive analytics, signal logic, and security queries. |
-| [Docs](./docs) | Design notes, standards, implementation notes, and operating guidance. |
-| [Projects](./projects) | Project workspaces, prototypes, and active experiments. |
-| [Research](./research) | Research material, malware analysis, white papers, and experiments. |
-| [Scripts](./tools/scripts) | Automation helpers, validators, collectors, and repeatable operations. |
-| [Templates](./templates) | Reusable documentation, reporting, and delivery templates. |
-| [Workbooks](./workbooks) | Dashboard, workbook, and visual analytics artifacts. |
-| [Security Policy](./SECURITY.md) | Security reporting and supported vulnerability disclosure path. |
-| [License](./LICENSE.md) | Repository usage terms and attribution requirements. |
-
-<!-- ZEID DATA LAB MAP END -->
-
-<!-- ZEID DATA TAGS START -->
-### Tags
-
-![zeid-data](https://img.shields.io/badge/zeid%20data-0B5FFF?style=flat-square) ![public-safe](https://img.shields.io/badge/public%20safe-166534?style=flat-square) ![research](https://img.shields.io/badge/research-1F6FEB?style=flat-square) ![security-research](https://img.shields.io/badge/security%20research-0B5FFF?style=flat-square) ![detection-engineering](https://img.shields.io/badge/detection%20engineering-FFB800?style=flat-square) ![data-tooling](https://img.shields.io/badge/data%20tooling-334155?style=flat-square) ![automation](https://img.shields.io/badge/automation-2EA043?style=flat-square) ![malware-analysis](https://img.shields.io/badge/malware%20analysis-D83B01?style=flat-square) ![blue-team](https://img.shields.io/badge/blue%20team-0969DA?style=flat-square) ![governance](https://img.shields.io/badge/governance-6F42C1?style=flat-square) ![workbooks](https://img.shields.io/badge/workbooks-00C7E5?style=flat-square)
-
-<!-- ZEID DATA TAGS END -->
-
-
-<h1 align="center">Zeid Data Research</h1>
+# Zeid Data Research
 
 <p align="center">
-  Security research, detection engineering, data tooling, automation, and experiments.
+  Security research, detection engineering, data tooling, automation, and public-safe experiments.
   <br>
   Built for receipts, not vibes. The robot is friendly. The pipeline is not.
 </p>
-
 
 <p align="center">
   <img alt="MIT License" src="https://img.shields.io/badge/license-MIT-22c55e?style=for-the-badge">
@@ -77,6 +49,29 @@ collect -> normalize -> analyze -> validate -> document -> ship with receipts
 
 If a tool cannot explain what it read, what it changed, and what evidence supports the output, it gets escorted back to the lab bench by a disappointed robot.
 
+## Lab map
+
+| Area | What it is for | Docs |
+|---|---|---|
+| [Content](./content) | Vendor packs, field guides, governance content, and reusable evidence material. | [`content/README.md`](./content/README.md) |
+| [Detections](./detections) | Detection rules, defensive analytics, signal logic, and security queries. | [`detections/README.md`](./detections/README.md) |
+| [Docs](./docs) | Design notes, standards, implementation notes, and operating guidance. | [`docs/README.md`](./docs/README.md) |
+| [Projects](./projects) | Project workspaces, prototypes, and active experiments. | [`projects/README.md`](./projects/README.md) |
+| [Research](./research) | Research material, malware analysis, white papers, and experiments. | [`research/README.md`](./research/README.md) |
+| [Scripts](./tools/scripts) | Automation helpers, validators, collectors, and repeatable operations. | [`tools/scripts/README.md`](./tools/scripts/README.md) |
+| [Templates](./templates) | Reusable documentation, reporting, and delivery templates. | [`templates/README.md`](./templates/README.md) |
+| [Workbooks](./workbooks) | Dashboard, workbook, and visual analytics artifacts. | [`workbooks/README.md`](./workbooks/README.md) |
+| [Security Policy](./SECURITY.md) | Security reporting and supported vulnerability disclosure path. | [`SECURITY.md`](./SECURITY.md) |
+| [License](./LICENSE.md) | Repository usage terms and attribution requirements. | [`LICENSE.md`](./LICENSE.md) |
+
+## Current documentation standards
+
+The documentation refresh adds a clearer structure for keeping the repo current:
+
+- [`docs/README.md`](./docs/README.md) is the documentation index.
+- [`docs/taxonomy.md`](./docs/taxonomy.md) defines what belongs where.
+- [`docs/standards/evidence.md`](./docs/standards/evidence.md) defines what counts as traceable evidence.
+- [`docs/automation.md`](./docs/automation.md) proposes scheduled maintenance for inventories, stale-doc checks, link checks, and weekly digest drafts.
 
 ## Featured operating principles
 
@@ -129,6 +124,19 @@ Good additions should include:
 - Machine-readable output when the artifact is meant for automation.
 - Explicit assumptions and limits.
 - No secrets, tokens, private URLs, private logs, or personal data.
+
+## Recommended update cadence
+
+Use automation to keep the repo current without allowing automation to invent research.
+
+| Cadence | Action | Output |
+|---|---|---|
+| Weekly | Build documentation inventory and link-check report. | PR updating generated docs inventory. |
+| Weekly | Draft repo activity digest from changed files and merged PRs. | Draft Markdown digest for review. |
+| Monthly | Flag stale docs based on `last_reviewed` metadata. | Issue or PR listing review-needed docs. |
+| Pull request | Check README coverage for new folders. | Pass/fail report with missing documentation fields. |
+
+Start with the inventory job from [`docs/automation.md`](./docs/automation.md). It gives the highest signal with the lowest risk.
 
 ## Security and responsible disclosure
 
