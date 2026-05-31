@@ -7,9 +7,9 @@
   <a href="../../detections"><img alt="Detections" src="https://img.shields.io/badge/Detections-FFB800?style=for-the-badge&logo=github&logoColor=white"></a>
   <a href="../../docs"><img alt="Docs" src="https://img.shields.io/badge/Docs-1F6FEB?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
   <a href="../../projects"><img alt="Projects" src="https://img.shields.io/badge/Projects-7B61FF?style=for-the-badge&logo=github&logoColor=white"></a>
-  <a href="../../scripts"><img alt="Scripts" src="https://img.shields.io/badge/Scripts-2EA043?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="."><img alt="Scripts" src="https://img.shields.io/badge/Scripts-2EA043?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="../../research"><img alt="Research" src="https://img.shields.io/badge/Research-0B5FFF?style=for-the-badge&logo=github&logoColor=white"></a>
   <a href="../../workbooks"><img alt="Workbooks" src="https://img.shields.io/badge/Workbooks-00C7E5?style=for-the-badge&logo=github&logoColor=white"></a>
-  <a href="https://zeiddata.com"><img alt="Website" src="https://img.shields.io/badge/Website-00B8A9?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
 </p>
 <!-- ZEID DATA README HERO END -->
 
@@ -20,64 +20,55 @@
 
 <!-- ZEID DATA TAGS END -->
 
-```md
-# Zeid Data Research Labs — Scripts 🧪🛠️
-*Evidence-first defensive tooling for detection engineering, hunting, auditing, and “prove it” moments.*
+# Zeid Data Research Scripts
 
-If it didn’t generate evidence, it didn’t happen. ☠️  
-If it *did* happen and you didn’t log it… congrats, you own a ghost story.
+This folder contains evidence-first defensive tooling for detection engineering, hunting, auditing, validation, collection, and repeatable maintenance tasks.
 
----
+Scripts here should be boring in the useful way: clear inputs, predictable outputs, explicit limits, and no surprise damage.
 
-## What this is
-This directory contains practical security and audit-oriented scripts used for:
+## What this is for
 
-- Detection engineering
-- Threat hunting
-- Validation and control testing
-- Evidence generation and packaging
+Use `tools/scripts/` for small runnable helpers that support:
 
-Across common enterprise telemetry sources (endpoint, network, SIEM, cloud, and whatever else is screaming today).
+- Detection engineering.
+- Threat hunting.
+- Validation and control testing.
+- Evidence generation and packaging.
+- Repo maintenance and documentation automation.
+- Local transforms or inventory generation.
 
----
+If a tool grows into a standalone product with its own config, tests, docs, and release flow, move it to [`projects/`](../../projects).
 
-## What you’ll find here
-Scripts are organized by purpose and telemetry source. Expect a mix of:
+## Supported script types
 
-- **Endpoint hunts** (Windows/Linux process, persistence, staging, ransomware prep) 💻
-- **Network analytics** (Zeek, DNS/TLS, HTTP behavior, first-seen + burst detection) 🌐
-- **SIEM queries** (Microsoft Sentinel KQL, Splunk SPL) 📊
-- **Rules-as-code** (Sigma, YARA) 🧩
-- **Auditing helpers** (inventory, policy validation, retention checks, evidence packaging) 🧾
+This repo may include multiple ecosystems:
 
-This folder may include both:
-- **Drop-in scripts** (single file, runnable)
-- **Detection snippets** (queries/rules meant to be copied into your platform)
+- PowerShell: Windows process, persistence, scheduled task, and audit checks.
+- KQL: Microsoft Sentinel and Defender hunts.
+- SPL: Splunk searches and correlation logic.
+- Sigma: portable detection rules.
+- YARA: defensive scanning rules.
+- Zeek: network behavior detections.
+- Python: automation, transforms, validators, and evidence generation.
+- Bash: lightweight Linux checks and repo maintenance.
 
-The goal is boring on purpose: predictable inputs, defensible outputs, less “we think maybe…” during incidents.
+## Naming conventions
 
----
-
-## Naming conventions (chaos is expensive)
-All scripts should follow:
-
-- Prefix: `zeid_data_`
-- Descriptive file name
-- Extension that matches the ecosystem
+Use clear names with the `zeid_data_` prefix when practical.
 
 Examples:
+
 - `zeid_data_hunt_ransomware_fileshare.py`
 - `zeid_data_sentinel_ransomware_prep.kql`
 - `zeid_data_sigma_ransomware_prep.yml`
 - `zeid_data_zeek_firstseen_largepost.zeek`
 - `zeid_data_Hunt-NewScheduledTasks.ps1`
 
----
+## Recommended layout
 
-## Directory layout (recommended)
-As this directory grows, keep it easy to browse:
-
+```text
 tools/scripts/
+  docs/
   endpoint/
     windows/
     linux/
@@ -95,114 +86,77 @@ tools/scripts/
     evidence/
     retention/
     inventory/
-  docs/
+```
 
-If your script fits a category above, put it there. If it doesn’t… it probably needs its own folder (or a better name).
+Create folders when real content exists. Empty structure is not documentation. It is furniture with no building.
 
----
+## Script header expectations
 
-## Supported script types
-This repo intentionally spans multiple ecosystems:
+Every script should include or link to:
 
-- **PowerShell (.ps1)**  
-  Windows process creation, persistence, scheduled task hunting.  
-  Common dependencies: Sysmon (recommended), Security auditing (4688 with command line), appropriate log permissions.
+- Purpose.
+- Intended telemetry source or input files.
+- Required permissions.
+- Dependencies.
+- Safe usage example.
+- Expected output.
+- Failure modes.
+- Tuning notes and allowlists, if applicable.
 
-- **Microsoft Sentinel KQL (.kql)**  
-  Hunting and analytics in Defender / Log Analytics.  
-  Common tables: `DeviceProcessEvents`, `DeviceNetworkEvents`, `SecurityEvent`.
+## Evidence-first output expectations
 
-- **Splunk SPL (.spl)**  
-  Process telemetry hunts, exfil tooling detection, correlation searches.  
-  Assumes normalized fields where possible; may use `coalesce()` to reduce friction.
-
-- **Sigma (.yml)**  
-  Portable detection format intended for conversion into platform-native rules.
-
-- **YARA (.yar)**  
-  Heuristic/signature scanning helpers. Many rules are conservative and should be tuned to reduce false positives.
-
-- **Zeek (.zeek)**  
-  Network behavior detections using Zeek logs/analyzers (HTTP, DNS, TLS).
-
-- **Python (.py)**  
-  Automation, file share sweeps, evidence generation, local transforms.
-
-- **Bash (.sh)**  
-  Lightweight Linux checks and persistence sweeps.
-
----
-
-## How to use (please don’t YOLO this into prod)
-1. **Read the header first**  
-   Most scripts include:
-   - Intended telemetry source
-   - Required permissions
-   - Expected output
-   - Tuning tips and allowlists
-
-2. **Run in a test environment**
-   - Validate against known benign baselines
-   - Add allowlists for admin tools and maintenance windows
-   - Confirm output format matches your evidence workflows
-
-3. **Promote into your platform**
-   - Convert Sigma to SIEM-native rules
-   - Turn KQL/SPL into scheduled analytics
-   - Track versions and changes in Git
-
----
-
-## Evidence-first output expectations 📂
 Scripts should prefer outputs that are easy to store and defend.
 
 Recommended fields:
-- Timestamp (UTC preferred)
-- Host/device identifier
-- User/account
-- Process image + full command line
-- Parent process (when available)
-- Network destination (domain/IP/port) when relevant
-- Match reason (rule name, threshold, keyword hit, etc.)
+
+- Timestamp in UTC when practical.
+- Host or device identifier.
+- User or account, if relevant and public-safe.
+- Source file, table, index, or telemetry source.
+- Match reason, rule name, threshold, or keyword hit.
+- Output path.
+- Warnings and skipped items.
 
 Preferred output formats:
-- JSONL
-- CSV
-- clean console tables (exportable)
 
-The point is receipts. Not vibes.
+- JSONL.
+- JSON.
+- CSV.
+- Markdown summaries generated from structured output.
 
----
+## Safety and scope
 
-## Safety and scope 🛡️
 This repo is for defensive security and auditing.
 
-- No exploit code
-- No credential theft tooling
-- No misuse instructions
-- Any simulation content must use synthetic inputs and safe training patterns
+Do not add:
 
-If a contribution is dual-use, it will be rejected or rewritten into a safe training version.
+- Exploit code.
+- Credential theft tooling.
+- Misuse instructions.
+- Stealth or evasion tooling for unauthorized activity.
+- Private logs, tokens, or sensitive customer data.
 
----
+Simulation content must use synthetic inputs and safe training patterns.
 
-## Contributing
-When adding a new script, include:
-- Short header block (purpose, prerequisites, usage, tuning notes)
-- Clear assumptions (what logs/tables are required)
-- Output schema notes (fields it emits)
-- A brief example run or sample output
+## Contributing checklist
 
-Make it usable for the next person who stumbles into this folder at 2:13 AM. 😬
+When adding a script:
 
----
+- [ ] Name is clear.
+- [ ] Purpose is documented.
+- [ ] Inputs are documented.
+- [ ] Outputs are documented.
+- [ ] Required permissions are documented.
+- [ ] Example run is included.
+- [ ] Failure modes or limitations are listed.
+- [ ] Examples are sanitized.
+
+## Related docs
+
+- [`docs/automation.md`](../../docs/automation.md)
+- [`docs/taxonomy.md`](../../docs/taxonomy.md)
+- [`docs/standards/evidence.md`](../../docs/standards/evidence.md)
 
 ## License
+
 Unless otherwise noted in a specific file, scripts in this directory follow the repository license.
-
----
-
-## Disclaimer
-Zeid Data Research Labs scripts are provided as-is for educational and operational support.  
-You are responsible for validating fit, accuracy, and compliance requirements in your environment.
-```
