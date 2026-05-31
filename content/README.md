@@ -7,9 +7,9 @@
   <a href="../detections"><img alt="Detections" src="https://img.shields.io/badge/Detections-FFB800?style=for-the-badge&logo=github&logoColor=white"></a>
   <a href="../docs"><img alt="Docs" src="https://img.shields.io/badge/Docs-1F6FEB?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
   <a href="../projects"><img alt="Projects" src="https://img.shields.io/badge/Projects-7B61FF?style=for-the-badge&logo=github&logoColor=white"></a>
-  <a href="../scripts"><img alt="Scripts" src="https://img.shields.io/badge/Scripts-2EA043?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="../tools/scripts"><img alt="Scripts" src="https://img.shields.io/badge/Scripts-2EA043?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="../research"><img alt="Research" src="https://img.shields.io/badge/Research-0B5FFF?style=for-the-badge&logo=github&logoColor=white"></a>
   <a href="../workbooks"><img alt="Workbooks" src="https://img.shields.io/badge/Workbooks-00C7E5?style=for-the-badge&logo=github&logoColor=white"></a>
-  <a href="https://zeiddata.com"><img alt="Website" src="https://img.shields.io/badge/Website-00B8A9?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
 </p>
 <!-- ZEID DATA README HERO END -->
 
@@ -20,28 +20,61 @@
 
 <!-- ZEID DATA TAGS END -->
 
-# Zeid Data — Network Security (Vendor Content)
+# Zeid Data Network Security Content
 
-Welcome to Zeid Data’s vendor-organized **network security** repository: hardening guidance, configs, detection ideas, runbooks, and “here’s the proof” validation artifacts—grouped by the tech you actually run.
+This folder contains vendor-organized network security content: hardening guidance, reference configurations, detection ideas, runbooks, validation steps, and audit-ready evidence material.
 
-If it didn’t generate evidence, it didn’t happen. 🧾🔒
+The purpose is practical reuse. A reader should be able to find a vendor, understand the control or workflow, apply it safely in a controlled environment, and capture proof that it worked.
 
----
+## What this folder is for
 
-## What this repo is for
+Use `content/` for public-safe material such as:
 
-This repo is a practical library of **deployable** and **reviewable** network security content, organized **by vendor** so you can quickly find:
+- Baseline hardening notes.
+- Reference configurations with comments and assumptions.
+- Validation commands and expected evidence.
+- Detection and monitoring ideas.
+- Operational runbooks, rollback notes, and break-glass guidance.
+- Audit-ready evidence checklists.
+- Vendor field guides and implementation notes.
 
-- Baseline hardening (secure defaults, recommended toggles, pitfalls)
-- Reference configurations (templates you can adapt, with commentary)
-- Validation steps (commands/queries to prove the control is enabled)
-- Detection + monitoring patterns (SIEM-friendly ideas and fields)
-- Operational runbooks (change control, rollback, break-glass notes)
-- Audit-ready evidence checklists (what to capture, how to package it)
+## Minimum vendor content structure
 
----
+Recommended layout:
 
-## Directory layout (vendor-first)
+```text
+content/
+  VendorName/
+    README.md
+    hardening/
+    detections/
+    runbooks/
+    evidence/
+    references.md
+```
 
-Each vendor gets its own folder. Inside, content is separated by type and kept as close to “copy/paste usable” as possible.
+A vendor folder does not need every subfolder on day one. Add structure when there is actual content to place there.
 
+## Quality bar
+
+Every vendor note should include:
+
+- Product or platform scope.
+- Version assumptions, if known.
+- Required permissions.
+- Exact setting, command, policy, query, or workflow.
+- Validation method.
+- Evidence to capture.
+- Known risk, rollback, or operational impact.
+- Public references when available.
+
+## Public-safe rules
+
+Do not commit private customer configs, tokens, secrets, tenant URLs, internal IPs, private screenshots, or sensitive logs. Use sanitized examples and clearly mark placeholders.
+
+## Related docs
+
+- [`docs/taxonomy.md`](../docs/taxonomy.md)
+- [`docs/standards/evidence.md`](../docs/standards/evidence.md)
+- [`detections/`](../detections)
+- [`templates/`](../templates)
