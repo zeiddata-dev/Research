@@ -1,0 +1,22 @@
+\documentclass[11pt]{article}
+% Papers live at research/<section>/<slug>/, exactly three levels under the repo
+% root, so \zdroot is ../../../ . Adjust only if you place a paper elsewhere.
+\def\zdroot{../../../}
+\input{\zdroot templates/whitepaper/zd-whitepaper.tex}
+\begin{document}
+\zdtitle{PAPER TITLE}{One paragraph abstract.}{YYYY-MM-DD}
+
+\section{Background}
+Body text with a cited claim.\,[1]
+
+\section{Analysis}
+More body. Every factual claim points to a real source.\,[2]
+
+\section{Limitations and Unverified Claims}
+What the evidence does not yet support. Mandatory section, even if short.
+
+\section{References}
+\begin{enumerate}[label={[\arabic*]}]
+  \item Source title. \href{https://example.com}{example.com}. Accessed YYYY-MM-DD.
+\end{enumerate}
+\end{document}

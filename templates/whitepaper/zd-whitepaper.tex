@@ -1,0 +1,54 @@
+% Zeid Data Research white paper preamble. XeLaTeX / tectonic.
+% Build from the repo root. Fonts vendored at templates/whitepaper/fonts/.
+% Fonts: OFL. DM Serif Display (headings), Inter (body).
+\usepackage{geometry}
+\geometry{a4paper, margin=1in, headheight=14pt}
+\usepackage{xcolor}
+\definecolor{zdCarbon}{HTML}{1A1A1A}
+\definecolor{zdSlate}{HTML}{4A4A4A}
+\definecolor{zdOffWhite}{HTML}{F4F1EA}
+\definecolor{zdAmber}{HTML}{E0A800}
+
+\usepackage{fontspec}
+% Vendored fonts. Build runs from the repo root, so Path is repo-root-relative.
+% Bold and italic for body text are synthesized from the single regular weight.
+% If a font file is missing, the build fails loud. Run the bootstrap to vendor
+% fonts before building. Do not ship a paper with a silently broken font.
+\setmainfont{Inter-Regular.ttf}[
+  Path = \zdroot templates/whitepaper/fonts/ ,
+  AutoFakeBold = 2.0 ,
+  AutoFakeSlant = 0.2 ]
+\newfontfamily\zdHead{DMSerifDisplay-Regular.ttf}[
+  Path = \zdroot templates/whitepaper/fonts/ ]
+
+\usepackage{titlesec}
+\titleformat{\section}{\zdHead\Large\color{zdCarbon}}{\thesection}{0.6em}{}[{\color{zdAmber}\titlerule}]
+\titleformat{\subsection}{\zdHead\large\color{zdCarbon}}{\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1.4em}{0.5em}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyfoot[L]{\footnotesize\color{zdSlate}Zeid Data Research Lab}
+\fancyfoot[C]{\footnotesize\color{zdSlate}Evidence first}
+\fancyfoot[R]{\footnotesize\color{zdSlate}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{zdAmber}\leaders\hrule height \footrulewidth\hfill}}
+
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{colorlinks=true, linkcolor=zdCarbon, urlcolor=zdAmber, citecolor=zdAmber}
+\usepackage{csquotes}
+
+\color{zdCarbon}
+
+% Title block macro. Usage: \zdtitle{Title}{Abstract text}{YYYY-MM-DD}
+\newcommand{\zdtitle}[3]{%
+  \thispagestyle{fancy}
+  \noindent\colorbox{zdCarbon}{\parbox{\dimexpr\textwidth-2\fboxsep}{%
+    \vspace{4pt}{\zdHead\LARGE\color{zdOffWhite} #1}\\[4pt]
+    {\footnotesize\color{zdAmber}Zeid Data Research Lab \quad\textbullet\quad #3}\vspace{4pt}}}%
+  \vspace{1.2em}\par\noindent{\color{zdAmber}\rule{\textwidth}{1.5pt}}\vspace{0.8em}\par
+  \noindent\textbf{Abstract.} #2\par\vspace{1.2em}}
