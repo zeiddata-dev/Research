@@ -1,0 +1,66 @@
+name: Repo Quality
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate repository quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run repository quality checks
+        run: python scripts/ci/validate_repo_quality.py
+
+      - name: Check shell script syntax
+        run: |
+          set -e
+          while IFS= read -r -d '' file; do
+            bash -n "$file"
+          done < <(find . -type f -name '*.sh' \
+            -not -path './.git/*' \
+            -not -path './.venv/*' \
+            -not -path './node_modules/*' \
+            -print0)
+
+      - name: Check PowerShell parser syntax
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $files = Get-ChildItem -Path . -Recurse -File -Filter *.ps1 |
+            Where-Object {
+              $_.FullName -notmatch '\\.git\\' -and
+              $_.FullName -notmatch '\\.venv\\' -and
+              $_.FullName -notmatch '\\node_modules\\'
+            }
+
+          foreach ($file in $files) {
+            $tokens = $null
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($file.FullName, [ref]$tokens, [ref]$errors) | Out-Null
+
+            if ($errors.Count -gt 0) {
+              Write-Host "[FAIL] PowerShell syntax: $($file.FullName)"
+              $errors | ForEach-Object { Write-Host $_.Message }
+              exit 1
+            }
+          }
+
+          Write-Host "[PASS] PowerShell syntax"
