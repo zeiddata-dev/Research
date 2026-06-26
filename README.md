@@ -14,12 +14,6 @@
 </p>
 <!-- ZEID DATA README HERO END -->
 
-<!-- ZEID DATA WORKFLOW BADGES START -->
-[![Repo Quality](https://github.com/zeiddata-dev/Research/actions/workflows/repo-quality.yml/badge.svg)](https://github.com/zeiddata-dev/Research/actions/workflows/repo-quality.yml)
-[![README Link Check](https://github.com/zeiddata-dev/Research/actions/workflows/readme-link-check.yml/badge.svg)](https://github.com/zeiddata-dev/Research/actions/workflows/readme-link-check.yml)
-[![Release](https://github.com/zeiddata-dev/Research/actions/workflows/release.yml/badge.svg)](https://github.com/zeiddata-dev/Research/actions/workflows/release.yml)
-<!-- ZEID DATA WORKFLOW BADGES END -->
-
 # Zeid Data Research
 
 <p align="center">
